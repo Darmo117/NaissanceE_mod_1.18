@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "naissancee:block/light_gray_slab_bottom"
+    },
+    "type=top": {
+      "model": "naissancee:block/light_gray_slab_top"
+    },
+    "type=double": {
+      "model": "naissancee:block/light_gray_block"
+    }
+  }
+}

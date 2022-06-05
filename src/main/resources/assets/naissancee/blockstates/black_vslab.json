@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=north": {
+      "model": "naissancee:block/black_vslab"
+    },
+    "type=south": {
+      "model": "naissancee:block/black_vslab",
+      "y": 180
+    },
+    "type=west": {
+      "model": "naissancee:block/black_vslab",
+      "y": 270
+    },
+    "type=east": {
+      "model": "naissancee:block/black_vslab",
+      "y": 90
+    },
+    "type=double": {
+      "model": "naissancee:block/black_block"
+    }
+  }
+}

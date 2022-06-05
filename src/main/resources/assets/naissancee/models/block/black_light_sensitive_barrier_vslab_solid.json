@@ -1,0 +1,8 @@
+{
+  "parent": "naissancee:block/vertical_slab",
+  "textures": {
+    "side": "naissancee:blocks/black_light_sensitive_barrier",
+    "top": "naissancee:blocks/black_light_sensitive_barrier",
+    "bottom": "naissancee:blocks/black_light_sensitive_barrier"
+  }
+}

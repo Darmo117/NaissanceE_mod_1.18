@@ -12,10 +12,22 @@ import net.minecraft.util.registry.Registry;
 @SuppressWarnings("unused")
 public final class ModBlocks {
   // Plain blocks
-  public static final Block BLACK_BLOCK = register("black_block", new PlainBlock(BlockColor.BLACK));
-  public static final Block GRAY_BLOCK = register("gray_block", new PlainBlock(BlockColor.GRAY));
-  public static final Block LIGHT_GRAY_BLOCK = register("light_gray_block", new PlainBlock(BlockColor.LIGHT_GRAY));
-  public static final Block WHITE_BLOCK = register("white_block", new PlainBlock(BlockColor.WHITE));
+  public static final Block BLACK_BLOCK = register("black_block", new ColoredBlock(BlockColor.BLACK));
+  public static final Block GRAY_BLOCK = register("gray_block", new ColoredBlock(BlockColor.GRAY));
+  public static final Block LIGHT_GRAY_BLOCK = register("light_gray_block", new ColoredBlock(BlockColor.LIGHT_GRAY));
+  public static final Block WHITE_BLOCK = register("white_block", new ColoredBlock(BlockColor.WHITE));
+
+  // Plain slabs
+  public static final Block BLACK_SLAB = register("black_slab", new ColoredSlabBlock(BlockColor.BLACK));
+  public static final Block GRAY_SLAB = register("gray_slab", new ColoredSlabBlock(BlockColor.GRAY));
+  public static final Block LIGHT_GRAY_SLAB = register("light_gray_slab", new ColoredSlabBlock(BlockColor.LIGHT_GRAY));
+  public static final Block WHITE_SLAB = register("white_slab", new ColoredSlabBlock(BlockColor.WHITE));
+
+  // Plain vertical slabs
+  public static final Block BLACK_VSLAB = register("black_vslab", new ColoredVerticalSlabBlock(BlockColor.BLACK));
+  public static final Block GRAY_VSLAB = register("gray_vslab", new ColoredVerticalSlabBlock(BlockColor.GRAY));
+  public static final Block LIGHT_GRAY_VSLAB = register("light_gray_vslab", new ColoredVerticalSlabBlock(BlockColor.LIGHT_GRAY));
+  public static final Block WHITE_VSLAB = register("white_vslab", new ColoredVerticalSlabBlock(BlockColor.WHITE));
 
   // Light-sensitive blocks
   public static final LightSensitiveBarrierBlock BLACK_LIGHT_SENSITIVE_BARRIER = register("black_light_sensitive_barrier", new LightSensitiveBarrierBlock(BlockColor.BLACK, false));
@@ -27,7 +39,7 @@ public final class ModBlocks {
   public static final LightSensitiveBarrierBlock WHITE_LIGHT_SENSITIVE_BARRIER = register("white_light_sensitive_barrier", new LightSensitiveBarrierBlock(BlockColor.WHITE, false));
   public static final LightSensitiveBarrierBlock WHITE_LIGHT_SENSITIVE_BARRIER_PASSABLE = register("white_light_sensitive_barrier_passable", new LightSensitiveBarrierBlock(BlockColor.WHITE, true));
 
-  // Light-sensitive horizontal slabs
+  // Light-sensitive slabs
   public static final LightSensitiveBarrierSlabBlock BLACK_LIGHT_SENSITIVE_BARRIER_SLAB = register("black_light_sensitive_barrier_slab", new LightSensitiveBarrierSlabBlock(BlockColor.BLACK, false));
   public static final LightSensitiveBarrierSlabBlock BLACK_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE = register("black_light_sensitive_barrier_slab_passable", new LightSensitiveBarrierSlabBlock(BlockColor.BLACK, true));
   public static final LightSensitiveBarrierSlabBlock GRAY_LIGHT_SENSITIVE_BARRIER_SLAB = register("gray_light_sensitive_barrier_slab", new LightSensitiveBarrierSlabBlock(BlockColor.GRAY, false));
@@ -38,8 +50,16 @@ public final class ModBlocks {
   public static final LightSensitiveBarrierSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE = register("white_light_sensitive_barrier_slab_passable", new LightSensitiveBarrierSlabBlock(BlockColor.WHITE, true));
 
   // Light-sensitive vertical slabs
+  public static final LightSensitiveBarrierVerticalSlabBlock BLACK_LIGHT_SENSITIVE_BARRIER_VSLAB = register("black_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.BLACK, false));
+  public static final LightSensitiveBarrierVerticalSlabBlock BLACK_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE = register("black_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.BLACK, true));
+  public static final LightSensitiveBarrierVerticalSlabBlock GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB = register("gray_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.GRAY, false));
+  public static final LightSensitiveBarrierVerticalSlabBlock GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE = register("gray_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.GRAY, true));
+  public static final LightSensitiveBarrierVerticalSlabBlock LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB = register("light_gray_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.LIGHT_GRAY, false));
+  public static final LightSensitiveBarrierVerticalSlabBlock LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE = register("light_gray_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.LIGHT_GRAY, true));
+  public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB = register("white_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, false));
+  public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE = register("white_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, true));
 
-  // TODO vertical slabs, slabs, stairs, corners, ladders, light orb controller, etc.
+  // TODO stairs, corners, ladders, light orb controller, etc.
   // TODO doors
   // TODO light blocks
 
@@ -65,6 +85,11 @@ public final class ModBlocks {
     GRAY_LIGHT_SENSITIVE_BARRIER_SLAB.setCounterpartBlock(GRAY_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE);
     LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_SLAB.setCounterpartBlock(LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE);
     WHITE_LIGHT_SENSITIVE_BARRIER_SLAB.setCounterpartBlock(WHITE_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE);
+
+    BLACK_LIGHT_SENSITIVE_BARRIER_VSLAB.setCounterpartBlock(BLACK_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE);
+    GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB.setCounterpartBlock(GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE);
+    LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB.setCounterpartBlock(LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE);
+    WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB.setCounterpartBlock(WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE);
   }
 
   public static void registerBlockRenderLayers() {
@@ -77,6 +102,11 @@ public final class ModBlocks {
     BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE, RenderLayer.getTranslucent());
     BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GRAY_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE, RenderLayer.getTranslucent());
     BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WHITE_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE, RenderLayer.getTranslucent());
+
+    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACK_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE, RenderLayer.getTranslucent());
+    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE, RenderLayer.getTranslucent());
+    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE, RenderLayer.getTranslucent());
+    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE, RenderLayer.getTranslucent());
   }
 
   private ModBlocks() {

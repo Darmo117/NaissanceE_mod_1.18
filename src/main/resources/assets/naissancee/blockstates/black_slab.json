@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "naissancee:block/black_slab_bottom"
+    },
+    "type=top": {
+      "model": "naissancee:block/black_slab_top"
+    },
+    "type=double": {
+      "model": "naissancee:block/black_block"
+    }
+  }
+}

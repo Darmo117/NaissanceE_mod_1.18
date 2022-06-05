@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=north": {
+      "model": "naissancee:block/light_gray_light_sensitive_barrier_vslab_solid"
+    },
+    "type=south": {
+      "model": "naissancee:block/light_gray_light_sensitive_barrier_vslab_solid",
+      "y": 180
+    },
+    "type=west": {
+      "model": "naissancee:block/light_gray_light_sensitive_barrier_vslab_solid",
+      "y": 270
+    },
+    "type=east": {
+      "model": "naissancee:block/light_gray_light_sensitive_barrier_vslab_solid",
+      "y": 90
+    },
+    "type=double": {
+      "model": "naissancee:block/light_gray_light_sensitive_barrier_solid"
+    }
+  }
+}

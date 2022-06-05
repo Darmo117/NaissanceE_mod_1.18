@@ -16,7 +16,8 @@ import net.minecraft.world.World;
 /**
  * Light sensitive barrier blocks have two states: passable and solid. When passable, players can pass through it.
  */
-public class LightSensitiveBarrierBlock extends Block implements ColoredBlock, LightSensitiveBlock<LightSensitiveBarrierBlock> {
+public class LightSensitiveBarrierBlock extends Block
+    implements Colored, LightSensitiveBlock<LightSensitiveBarrierBlock> {
   private final BlockColor color;
   private final boolean passable;
   private LightSensitiveBarrierBlock counterpartBlock;
