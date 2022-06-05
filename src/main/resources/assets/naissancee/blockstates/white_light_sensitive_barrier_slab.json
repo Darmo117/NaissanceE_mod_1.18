@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "naissancee:block/white_light_sensitive_barrier_slab_bottom_solid"
+    },
+    "type=top": {
+      "model": "naissancee:block/white_light_sensitive_barrier_slab_top_solid"
+    },
+    "type=double": {
+      "model": "naissancee:block/white_light_sensitive_barrier_solid"
+    }
+  }
+}

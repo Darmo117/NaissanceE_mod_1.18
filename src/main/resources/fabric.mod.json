@@ -20,8 +20,15 @@
   "entrypoints": {
     "main": [
       "net.darmo_creations.naissancee.NaissanceE"
+    ],
+    "client": [
+      "net.darmo_creations.naissancee.ClientInitializer"
     ]
   },
+
+  "mixins": [
+    "disable_experimental_settings_warning.mixin.json"
+  ],
 
   "depends": {
     "fabricloader": ">=0.14.6",

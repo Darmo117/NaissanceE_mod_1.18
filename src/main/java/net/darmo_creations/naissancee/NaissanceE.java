@@ -1,15 +1,34 @@
 package net.darmo_creations.naissancee;
 
+import net.darmo_creations.naissancee.blocks.ModBlocks;
+import net.darmo_creations.naissancee.dimension.VoidDimensionEffects;
+import net.darmo_creations.naissancee.items.ModItems;
 import net.fabricmc.api.ModInitializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.mixin.client.rendering.DimensionEffectsAccessor;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 
 public class NaissanceE implements ModInitializer {
   public static final String MODID = "naissancee";
-  public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
+
+  public static final ItemGroup BLOCKS_GROUP = FabricItemGroupBuilder.build(
+      new Identifier(MODID, "blocks"),
+      () -> new ItemStack(ModBlocks.GRAY_BLOCK)
+  );
+  public static final ItemGroup TECHNICAL_GROUP = FabricItemGroupBuilder.build(
+      new Identifier(MODID, "technical"),
+      () -> new ItemStack(ModItems.PASSABLE_STATE_TOGGLER)
+  );
+
+  public static final Identifier VOID_DIMENSION_EFFECTS_KEY = new Identifier(MODID, "void");
 
   @Override
   public void onInitialize() {
-    LOGGER.info("Hello Fabric world!");
+    ModBlocks.init();
+    ModItems.init();
+    // Inject custom dimension effects. Custom dimension and dimension type are added through datapack.
+    DimensionEffectsAccessor.getIdentifierMap().put(VOID_DIMENSION_EFFECTS_KEY, new VoidDimensionEffects());
   }
 }
