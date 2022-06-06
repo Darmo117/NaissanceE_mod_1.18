@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "naissancee:black_stairs",
+    "naissancee:gray_stairs",
+    "naissancee:light_gray_stairs",
+    "naissancee:white_stairs"
+  ]
+}

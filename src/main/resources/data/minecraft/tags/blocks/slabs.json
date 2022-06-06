@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "naissancee:black_slab",
+    "naissancee:gray_slab",
+    "naissancee:light_gray_slab",
+    "naissancee:white_slab",
+    "naissancee:black_light_sensitive_barrier_slab",
+    "naissancee:black_light_sensitive_barrier_slab_passable",
+    "naissancee:gray_light_sensitive_barrier_slab",
+    "naissancee:gray_light_sensitive_barrier_slab_passable",
+    "naissancee:light_gray_light_sensitive_barrier_slab",
+    "naissancee:light_gray_light_sensitive_barrier_slab_passable",
+    "naissancee:white_light_sensitive_barrier_slab",
+    "naissancee:white_light_sensitive_barrier_slab_passable"
+  ]
+}
