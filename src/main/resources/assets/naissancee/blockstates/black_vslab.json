@@ -5,15 +5,18 @@
     },
     "type=south": {
       "model": "naissancee:block/black_vslab",
-      "y": 180
+      "y": 180,
+      "uvlock": true
     },
     "type=west": {
       "model": "naissancee:block/black_vslab",
-      "y": 270
+      "y": 270,
+      "uvlock": true
     },
     "type=east": {
       "model": "naissancee:block/black_vslab",
-      "y": 90
+      "y": 90,
+      "uvlock": true
     },
     "type=double": {
       "model": "naissancee:block/black_block"
