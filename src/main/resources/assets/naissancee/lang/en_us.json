@@ -49,6 +49,16 @@
   "block.naissancee.white_light_sensitive_barrier_vslab": "White Light-Sensitive Barrier Vertical Slab",
   "block.naissancee.white_light_sensitive_barrier_vslab_passable": "White Light-Sensitive Barrier Vertical Slab (Passable)",
 
+  "block.naissancee.black_ladder": "Black Ladder",
+  "block.naissancee.gray_ladder": "Gray Ladder",
+  "block.naissancee.light_gray_ladder": "Light Gray Ladder",
+  "block.naissancee.white_ladder": "White Ladder",
+
+  "block.naissancee.black_half_ladder": "Black Half Ladder",
+  "block.naissancee.gray_half_ladder": "Gray Half Ladder",
+  "block.naissancee.light_gray_half_ladder": "Light Gray Half Ladder",
+  "block.naissancee.white_half_ladder": "White Half Ladder",
+
   "item.naissancee.barrier_state_toggler": "Barrier State Toggler",
 
   "commands.setpassable.too_big": "Too many blocks (%d < %d)!",

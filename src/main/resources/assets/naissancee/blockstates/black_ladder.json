@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "naissancee:block/black_ladder"
+    },
+    "facing=south": {
+      "model": "naissancee:block/black_ladder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "naissancee:block/black_ladder",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "naissancee:block/black_ladder",
+      "y": 90
+    }
+  }
+}

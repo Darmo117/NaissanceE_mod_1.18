@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "naissancee:black_ladder",
+    "naissancee:gray_ladder",
+    "naissancee:light_gray_ladder",
+    "naissancee:white_ladder",
+    "naissancee:black_half_ladder",
+    "naissancee:gray_half_ladder",
+    "naissancee:light_gray_half_ladder",
+    "naissancee:white_half_ladder"
+  ]
+}

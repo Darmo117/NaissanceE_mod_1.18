@@ -65,7 +65,17 @@ public final class ModBlocks {
   public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB = register("white_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, false));
   public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE = register("white_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, true));
 
-  // TODO stairs, corners, posts, walls, ladders, light orb controller, etc.
+  // Ladders
+  public static final Block BLACK_LADDER = register("black_ladder", new TwoPartLadderBlock(BlockColor.BLACK));
+  public static final Block GRAY_LADDER = register("gray_ladder", new TwoPartLadderBlock(BlockColor.GRAY));
+  public static final Block LIGHT_GRAY_LADDER = register("light_gray_ladder", new TwoPartLadderBlock(BlockColor.LIGHT_GRAY));
+  public static final Block WHITE_LADDER = register("white_ladder", new TwoPartLadderBlock(BlockColor.WHITE));
+  public static final Block BLACK_HALF_LADDER = register("black_half_ladder", new HalfLadderBlock(BlockColor.BLACK));
+  public static final Block GRAY_HALF_LADDER = register("gray_half_ladder", new HalfLadderBlock(BlockColor.GRAY));
+  public static final Block LIGHT_GRAY_HALF_LADDER = register("light_gray_half_ladder", new HalfLadderBlock(BlockColor.LIGHT_GRAY));
+  public static final Block WHITE_HALF_LADDER = register("white_half_ladder", new HalfLadderBlock(BlockColor.WHITE));
+
+  // TODO corners, posts, walls, light orb controller, etc.
   // TODO doors
   // TODO light blocks
 

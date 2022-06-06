@@ -1,0 +1,6 @@
+{
+  "parent": "naissancee:block/half_ladder_right",
+  "textures": {
+    "all": "naissancee:blocks/light_gray_block"
+  }
+}

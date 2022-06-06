@@ -27,7 +27,6 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
   public static final EnumProperty<VerticalSlabType> TYPE = EnumProperty.of("type", VerticalSlabType.class);
   public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
-  // TODO shapes
   protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(0, 0, 8, 16, 16, 16);
   protected static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 16, 8);
   protected static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0, 0, 0, 8, 16, 16);
