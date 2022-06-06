@@ -19,7 +19,7 @@ public class NaissanceE implements ModInitializer {
   );
   public static final ItemGroup TECHNICAL_GROUP = FabricItemGroupBuilder.build(
       new Identifier(MODID, "technical"),
-      () -> new ItemStack(ModItems.PASSABLE_STATE_TOGGLER)
+      () -> new ItemStack(ModItems.BARRIER_STATE_TOGGLER)
   );
 
   public static final Identifier VOID_DIMENSION_EFFECTS_KEY = new Identifier(MODID, "void");
