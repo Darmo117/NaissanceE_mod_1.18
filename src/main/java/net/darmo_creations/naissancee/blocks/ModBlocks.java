@@ -3,7 +3,10 @@ package net.darmo_creations.naissancee.blocks;
 import net.darmo_creations.naissancee.NaissanceE;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.Material;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.Identifier;
@@ -65,6 +68,14 @@ public final class ModBlocks {
   public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB = register("white_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, false));
   public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE = register("white_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, true));
 
+  public static final Block[] LIGHT_BLOCKS = new Block[15];
+
+  static {
+    for (int i = 1; i < 16; i++) {
+      LIGHT_BLOCKS[i - 1] = register("light_block_" + i, new Block(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(i)));
+    }
+  }
+
   // Ladders
   public static final Block BLACK_LADDER = register("black_ladder", new TwoPartLadderBlock(BlockColor.BLACK));
   public static final Block GRAY_LADDER = register("gray_ladder", new TwoPartLadderBlock(BlockColor.GRAY));
@@ -75,9 +86,10 @@ public final class ModBlocks {
   public static final Block LIGHT_GRAY_HALF_LADDER = register("light_gray_half_ladder", new HalfLadderBlock(BlockColor.LIGHT_GRAY));
   public static final Block WHITE_HALF_LADDER = register("white_half_ladder", new HalfLadderBlock(BlockColor.WHITE));
 
+  public static final Block ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp());
+
   // TODO corners, posts, walls, light orb controller, etc.
   // TODO doors
-  // TODO light blocks
 
   public static <T extends Block> T register(final String name, final T block) {
     return register(name, block, true);

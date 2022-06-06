@@ -59,6 +59,24 @@
   "block.naissancee.light_gray_half_ladder": "Light Gray Half Ladder",
   "block.naissancee.white_half_ladder": "White Half Ladder",
 
+  "block.naissancee.activator_lamp": "Activator Lamp",
+
+  "block.naissancee.light_block_1": "Light Block 1",
+  "block.naissancee.light_block_2": "Light Block 2",
+  "block.naissancee.light_block_3": "Light Block 3",
+  "block.naissancee.light_block_4": "Light Block 4",
+  "block.naissancee.light_block_5": "Light Block 5",
+  "block.naissancee.light_block_6": "Light Block 6",
+  "block.naissancee.light_block_7": "Light Block 7",
+  "block.naissancee.light_block_8": "Light Block 8",
+  "block.naissancee.light_block_9": "Light Block 9",
+  "block.naissancee.light_block_10": "Light Block 10",
+  "block.naissancee.light_block_11": "Light Block 11",
+  "block.naissancee.light_block_12": "Light Block 12",
+  "block.naissancee.light_block_13": "Light Block 13",
+  "block.naissancee.light_block_14": "Light Block 14",
+  "block.naissancee.light_block_15": "Light Block 15",
+
   "item.naissancee.barrier_state_toggler": "Barrier State Toggler",
 
   "commands.setpassable.too_big": "Too many blocks (%d < %d)!",
