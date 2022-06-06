@@ -1,0 +1,53 @@
+{
+  "itemGroup.naissancee.building": "NaissanceE (Building)",
+  "itemGroup.naissancee.technical": "NaissanceE (Technical)",
+
+  "block.naissancee.black_block": "Black Block",
+  "block.naissancee.gray_block": "Gray Block",
+  "block.naissancee.light_gray_block": "Light Gray Block",
+  "block.naissancee.white_block": "White Block",
+
+  "block.naissancee.black_stairs": "Black Stairs",
+  "block.naissancee.gray_stairs": "Gray Stairs",
+  "block.naissancee.light_gray_stairs": "Light Gray Stairs",
+  "block.naissancee.white_stairs": "White Stairs",
+
+  "block.naissancee.black_slab": "Black Slab",
+  "block.naissancee.gray_slab": "Gray Slab",
+  "block.naissancee.light_gray_slab": "Light Gray Slab",
+  "block.naissancee.white_slab": "White Slab",
+
+  "block.naissancee.black_vslab": "Black Vertical Slab",
+  "block.naissancee.gray_vslab": "Gray Vertical Slab",
+  "block.naissancee.light_gray_vslab": "Light Gray Vertical Slab",
+  "block.naissancee.white_vslab": "White Vertical Slab",
+
+  "block.naissancee.black_light_sensitive_barrier": "Black Light-Sensitive Barrier",
+  "block.naissancee.black_light_sensitive_barrier_passable": "Black Light-Sensitive Barrier (Passable)",
+  "block.naissancee.gray_light_sensitive_barrier": "Gray Light-Sensitive Barrier",
+  "block.naissancee.gray_light_sensitive_barrier_passable": "Gray Light-Sensitive Barrier (Passable)",
+  "block.naissancee.light_gray_light_sensitive_barrier": "Light Gray Light-Sensitive Barrier",
+  "block.naissancee.light_gray_light_sensitive_barrier_passable": "Light Gray Light-Sensitive Barrier (Passable)",
+  "block.naissancee.white_light_sensitive_barrier": "White Light-Sensitive Barrier",
+  "block.naissancee.white_light_sensitive_barrier_passable": "White Light-Sensitive Barrier (Passable)",
+
+  "block.naissancee.black_light_sensitive_barrier_slab": "Black Light-Sensitive Barrier Slab",
+  "block.naissancee.black_light_sensitive_barrier_slab_passable": "Black Light-Sensitive Barrier Slab (Passable)",
+  "block.naissancee.gray_light_sensitive_barrier_slab": "Gray Light-Sensitive Barrier Slab",
+  "block.naissancee.gray_light_sensitive_barrier_slab_passable": "Gray Light-Sensitive Barrier Slab (Passable)",
+  "block.naissancee.light_gray_light_sensitive_barrier_slab": "Light Gray Light-Sensitive Barrier Slab",
+  "block.naissancee.light_gray_light_sensitive_barrier_slab_passable": "Light Gray Light-Sensitive Barrier Slab (Passable)",
+  "block.naissancee.white_light_sensitive_barrier_slab": "White Light-Sensitive Barrier Slab",
+  "block.naissancee.white_light_sensitive_barrier_slab_passable": "White Light-Sensitive Barrier Slab (Passable)",
+
+  "block.naissancee.black_light_sensitive_barrier_vslab": "Black Light-Sensitive Barrier Vertical Slab",
+  "block.naissancee.black_light_sensitive_barrier_vslab_passable": "Black Light-Sensitive Barrier Vertical Slab (Passable)",
+  "block.naissancee.gray_light_sensitive_barrier_vslab": "Gray Light-Sensitive Barrier Vertical Slab",
+  "block.naissancee.gray_light_sensitive_barrier_vslab_passable": "Gray Light-Sensitive Barrier Vertical Slab (Passable)",
+  "block.naissancee.light_gray_light_sensitive_barrier_vslab": "Light Gray Light-Sensitive Barrier Vertical Slab",
+  "block.naissancee.light_gray_light_sensitive_barrier_vslab_passable": "Light Gray Light-Sensitive Barrier Vertical Slab (Passable)",
+  "block.naissancee.white_light_sensitive_barrier_vslab": "White Light-Sensitive Barrier Vertical Slab",
+  "block.naissancee.white_light_sensitive_barrier_vslab_passable": "White Light-Sensitive Barrier Vertical Slab (Passable)",
+
+  "item.naissancee.barrier_state_toggler": "Barrier State Toggler"
+}

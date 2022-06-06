@@ -14,7 +14,7 @@ public class NaissanceE implements ModInitializer {
   public static final String MODID = "naissancee";
 
   public static final ItemGroup BLOCKS_GROUP = FabricItemGroupBuilder.build(
-      new Identifier(MODID, "blocks"),
+      new Identifier(MODID, "building"),
       () -> new ItemStack(ModBlocks.GRAY_BLOCK)
   );
   public static final ItemGroup TECHNICAL_GROUP = FabricItemGroupBuilder.build(
