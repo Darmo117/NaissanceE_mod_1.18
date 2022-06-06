@@ -12,10 +12,16 @@ import net.minecraft.util.registry.Registry;
 @SuppressWarnings("unused")
 public final class ModBlocks {
   // Plain blocks
-  public static final Block BLACK_BLOCK = register("black_block", new ColoredBlock(BlockColor.BLACK));
-  public static final Block GRAY_BLOCK = register("gray_block", new ColoredBlock(BlockColor.GRAY));
-  public static final Block LIGHT_GRAY_BLOCK = register("light_gray_block", new ColoredBlock(BlockColor.LIGHT_GRAY));
-  public static final Block WHITE_BLOCK = register("white_block", new ColoredBlock(BlockColor.WHITE));
+  public static final ColoredBlock BLACK_BLOCK = register("black_block", new ColoredBlock(BlockColor.BLACK));
+  public static final ColoredBlock GRAY_BLOCK = register("gray_block", new ColoredBlock(BlockColor.GRAY));
+  public static final ColoredBlock LIGHT_GRAY_BLOCK = register("light_gray_block", new ColoredBlock(BlockColor.LIGHT_GRAY));
+  public static final ColoredBlock WHITE_BLOCK = register("white_block", new ColoredBlock(BlockColor.WHITE));
+
+  // Plain stairs
+  public static final Block BLACK_STAIRS = register("black_stairs", new ColoredStairsBlock(BLACK_BLOCK));
+  public static final Block GRAY_STAIRS = register("gray_stairs", new ColoredStairsBlock(GRAY_BLOCK));
+  public static final Block LIGHT_GRAY_STAIRS = register("light_gray_stairs", new ColoredStairsBlock(LIGHT_GRAY_BLOCK));
+  public static final Block WHITE_STAIRS = register("white_stairs", new ColoredStairsBlock(WHITE_BLOCK));
 
   // Plain slabs
   public static final Block BLACK_SLAB = register("black_slab", new ColoredSlabBlock(BlockColor.BLACK));
@@ -59,7 +65,7 @@ public final class ModBlocks {
   public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB = register("white_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, false));
   public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE = register("white_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, true));
 
-  // TODO stairs, corners, ladders, light orb controller, etc.
+  // TODO stairs, corners, posts, walls, ladders, light orb controller, etc.
   // TODO doors
   // TODO light blocks
 
