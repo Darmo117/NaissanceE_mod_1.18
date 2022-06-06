@@ -68,6 +68,17 @@ public final class ModBlocks {
   public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB = register("white_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, false));
   public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE = register("white_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, true));
 
+  // Creatures
+  public static final Block[] CREATURE_BLOCKS = new Block[16];
+
+  static {
+    for (int i = 0; i < 16; i++) {
+      CREATURE_BLOCKS[i] = register("creature_block_" + i, new Block(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(i)));
+    }
+  }
+
+  public static final Block LIVING_BLOCK = register("living_block", new LivingBlock());
+
   public static final Block[] LIGHT_BLOCKS = new Block[15];
 
   static {
