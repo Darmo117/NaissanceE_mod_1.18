@@ -14,6 +14,14 @@ public interface LightSensitiveBlock<T extends LightSensitiveBlock<T>> {
 
   boolean isPassable();
 
+  default boolean setPassable(BlockState state, World world, BlockPos pos, boolean passable) {
+    if (passable != this.isPassable()) {
+      this.toggleState(state, world, pos);
+      return true;
+    }
+    return false;
+  }
+
   T getCounterpartBlock();
 
   void setCounterpartBlock(T block);

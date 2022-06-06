@@ -1,10 +1,12 @@
 package net.darmo_creations.naissancee;
 
 import net.darmo_creations.naissancee.blocks.ModBlocks;
+import net.darmo_creations.naissancee.commands.SetPassableCommand;
 import net.darmo_creations.naissancee.dimension.VoidDimensionEffects;
 import net.darmo_creations.naissancee.items.ModItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.mixin.client.rendering.DimensionEffectsAccessor;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -30,5 +32,10 @@ public class NaissanceE implements ModInitializer {
     ModItems.init();
     // Inject custom dimension effects. Custom dimension and dimension type are added through datapack.
     DimensionEffectsAccessor.getIdentifierMap().put(VOID_DIMENSION_EFFECTS_KEY, new VoidDimensionEffects());
+    this.registerCommands();
+  }
+
+  private void registerCommands() {
+    CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> SetPassableCommand.register(dispatcher));
   }
 }

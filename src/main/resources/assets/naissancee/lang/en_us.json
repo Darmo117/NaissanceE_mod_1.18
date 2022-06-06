@@ -49,5 +49,9 @@
   "block.naissancee.white_light_sensitive_barrier_vslab": "White Light-Sensitive Barrier Vertical Slab",
   "block.naissancee.white_light_sensitive_barrier_vslab_passable": "White Light-Sensitive Barrier Vertical Slab (Passable)",
 
-  "item.naissancee.barrier_state_toggler": "Barrier State Toggler"
+  "item.naissancee.barrier_state_toggler": "Barrier State Toggler",
+
+  "commands.setpassable.too_big": "Too many blocks (%d < %d)!",
+  "commands.setpassable.failed": "No barrier blocks changed.",
+  "commands.setpassable.success": "Changed state of %d barrier block(s)."
 }
