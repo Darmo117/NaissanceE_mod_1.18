@@ -95,10 +95,5 @@ public class HalfLadderBlock extends LadderBlockWithoutSupport implements Colore
     public String asString() {
       return this == LEFT ? "left" : "right";
     }
-
-    @Override
-    public String toString() {
-      return this.asString();
-    }
   }
 }
