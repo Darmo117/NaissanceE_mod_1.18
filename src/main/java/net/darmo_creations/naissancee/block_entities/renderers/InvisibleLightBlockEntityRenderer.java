@@ -27,14 +27,14 @@ import net.minecraft.util.math.Vec3f;
  * @see InvisibleLightBlock
  * @see ModBlocks#INVISIBLE_LIGHT
  */
-public class InvisibleLightSourceBlockEntityRenderer implements BlockEntityRenderer<InvisibleLightBlockEntity> {
+public class InvisibleLightBlockEntityRenderer implements BlockEntityRenderer<InvisibleLightBlockEntity> {
   private static final ItemStack STACK = new ItemStack(Item.BLOCK_ITEMS.get(ModBlocks.INVISIBLE_LIGHT));
 
   private static final float TEXT_SCALE = 0.01f;
   private static final float INVERSE_TEXT_SCALE = 1 / TEXT_SCALE;
   private static final int TEXT_COLOR = 0xffffff; // White
 
-  public InvisibleLightSourceBlockEntityRenderer(BlockEntityRendererFactory.Context ignored) {
+  public InvisibleLightBlockEntityRenderer(BlockEntityRendererFactory.Context ignored) {
     // Required by registry
   }
 

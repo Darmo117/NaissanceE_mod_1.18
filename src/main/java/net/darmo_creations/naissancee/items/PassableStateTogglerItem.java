@@ -1,8 +1,6 @@
 package net.darmo_creations.naissancee.items;
 
-import net.darmo_creations.naissancee.NaissanceE;
 import net.darmo_creations.naissancee.blocks.LightSensitiveBlock;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
@@ -14,8 +12,8 @@ import net.minecraft.world.World;
  * Tool used to toggle the state of right-clicked light-sensitive blocks.
  */
 public class PassableStateTogglerItem extends Item {
-  public PassableStateTogglerItem() {
-    super(new FabricItemSettings().group(NaissanceE.TECHNICAL_GROUP));
+  public PassableStateTogglerItem(Settings settings) {
+    super(settings);
   }
 
   @Override

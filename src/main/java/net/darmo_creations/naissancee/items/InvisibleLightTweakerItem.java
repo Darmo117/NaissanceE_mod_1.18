@@ -1,17 +1,18 @@
 package net.darmo_creations.naissancee.items;
 
-import net.darmo_creations.naissancee.NaissanceE;
 import net.darmo_creations.naissancee.blocks.InvisibleLightBlock;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+/**
+ * Tool used to change the light level of {@link InvisibleLightBlock}s.
+ */
 public class InvisibleLightTweakerItem extends Item {
-  public InvisibleLightTweakerItem() {
-    super(new FabricItemSettings().group(NaissanceE.TECHNICAL_GROUP));
+  public InvisibleLightTweakerItem(Settings settings) {
+    super(settings);
   }
 
   @Override
