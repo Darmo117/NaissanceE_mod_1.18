@@ -1,6 +1,7 @@
 package net.darmo_creations.naissancee;
 
 import net.darmo_creations.naissancee.block_entities.ModBlockEntities;
+import net.darmo_creations.naissancee.blocks.BlockColor;
 import net.darmo_creations.naissancee.blocks.ModBlocks;
 import net.darmo_creations.naissancee.commands.SetPassableCommand;
 import net.darmo_creations.naissancee.dimensions.VoidDimensionEffects;
@@ -22,7 +23,7 @@ public class NaissanceE implements ModInitializer {
   // Creative mode’s item groups
   public static final ItemGroup BLOCKS_GROUP = FabricItemGroupBuilder.build(
       new Identifier(MODID, "building"),
-      () -> new ItemStack(ModBlocks.LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER)
+      () -> new ItemStack(ModBlocks.COLORED_LIGHT_SENSITIVE_BARRIERS.get(BlockColor.LIGHT_GRAY))
   );
   public static final ItemGroup TECHNICAL_GROUP = FabricItemGroupBuilder.build(
       new Identifier(MODID, "technical"),

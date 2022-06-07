@@ -13,91 +13,66 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.Arrays;
+import java.util.function.Function;
+
 /**
  * Declares all blocks added by this mod.
  */
 @SuppressWarnings("unused")
 public final class ModBlocks {
-  // Plain blocks
-  public static final ColoredBlock BLACK_BLOCK = register("black_block", new ColoredBlock(BlockColor.BLACK));
-  public static final ColoredBlock GRAY_BLOCK = register("gray_block", new ColoredBlock(BlockColor.GRAY));
-  public static final ColoredBlock LIGHT_GRAY_BLOCK = register("light_gray_block", new ColoredBlock(BlockColor.LIGHT_GRAY));
-  public static final ColoredBlock WHITE_BLOCK = register("white_block", new ColoredBlock(BlockColor.WHITE));
-
-  // Plain stairs
-  public static final Block BLACK_STAIRS = register("black_stairs", new ColoredStairsBlock(BLACK_BLOCK));
-  public static final Block GRAY_STAIRS = register("gray_stairs", new ColoredStairsBlock(GRAY_BLOCK));
-  public static final Block LIGHT_GRAY_STAIRS = register("light_gray_stairs", new ColoredStairsBlock(LIGHT_GRAY_BLOCK));
-  public static final Block WHITE_STAIRS = register("white_stairs", new ColoredStairsBlock(WHITE_BLOCK));
-
-  // Plain slabs
-  public static final Block BLACK_SLAB = register("black_slab", new ColoredSlabBlock(BlockColor.BLACK));
-  public static final Block GRAY_SLAB = register("gray_slab", new ColoredSlabBlock(BlockColor.GRAY));
-  public static final Block LIGHT_GRAY_SLAB = register("light_gray_slab", new ColoredSlabBlock(BlockColor.LIGHT_GRAY));
-  public static final Block WHITE_SLAB = register("white_slab", new ColoredSlabBlock(BlockColor.WHITE));
-
-  // Plain vertical slabs
-  public static final Block BLACK_VSLAB = register("black_vslab", new ColoredVerticalSlabBlock(BlockColor.BLACK));
-  public static final Block GRAY_VSLAB = register("gray_vslab", new ColoredVerticalSlabBlock(BlockColor.GRAY));
-  public static final Block LIGHT_GRAY_VSLAB = register("light_gray_vslab", new ColoredVerticalSlabBlock(BlockColor.LIGHT_GRAY));
-  public static final Block WHITE_VSLAB = register("white_vslab", new ColoredVerticalSlabBlock(BlockColor.WHITE));
+  public static final ColoredBlockMap<ColoredBlock> COLORED_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_block", ColoredBlock::new);
+  public static final ColoredBlockMap<ColoredStairsBlock> COLORED_STAIRS =
+      generateAndRegisterColoredBlocks("%s_stairs", color -> new ColoredStairsBlock(COLORED_BLOCKS.get(color)));
+  public static final ColoredBlockMap<ColoredSlabBlock> COLORED_SLABS =
+      generateAndRegisterColoredBlocks("%s_slab", ColoredSlabBlock::new);
+  public static final ColoredBlockMap<ColoredVerticalSlabBlock> COLORED_VERTICAL_SLABS =
+      generateAndRegisterColoredBlocks("%s_vslab", ColoredVerticalSlabBlock::new);
 
   // Light-sensitive blocks
-  public static final LightSensitiveBarrierBlock BLACK_LIGHT_SENSITIVE_BARRIER =
-      register("black_light_sensitive_barrier", new LightSensitiveBarrierBlock(BlockColor.BLACK, false));
-  public static final LightSensitiveBarrierBlock BLACK_LIGHT_SENSITIVE_BARRIER_PASSABLE =
-      register("black_light_sensitive_barrier_passable", new LightSensitiveBarrierBlock(BlockColor.BLACK, true));
-  public static final LightSensitiveBarrierBlock GRAY_LIGHT_SENSITIVE_BARRIER =
-      register("gray_light_sensitive_barrier", new LightSensitiveBarrierBlock(BlockColor.GRAY, false));
-  public static final LightSensitiveBarrierBlock GRAY_LIGHT_SENSITIVE_BARRIER_PASSABLE =
-      register("gray_light_sensitive_barrier_passable", new LightSensitiveBarrierBlock(BlockColor.GRAY, true));
-  public static final LightSensitiveBarrierBlock LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER =
-      register("light_gray_light_sensitive_barrier", new LightSensitiveBarrierBlock(BlockColor.LIGHT_GRAY, false));
-  public static final LightSensitiveBarrierBlock LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_PASSABLE =
-      register("light_gray_light_sensitive_barrier_passable", new LightSensitiveBarrierBlock(BlockColor.LIGHT_GRAY, true));
-  public static final LightSensitiveBarrierBlock WHITE_LIGHT_SENSITIVE_BARRIER =
-      register("white_light_sensitive_barrier", new LightSensitiveBarrierBlock(BlockColor.WHITE, false));
-  public static final LightSensitiveBarrierBlock WHITE_LIGHT_SENSITIVE_BARRIER_PASSABLE =
-      register("white_light_sensitive_barrier_passable", new LightSensitiveBarrierBlock(BlockColor.WHITE, true));
+  public static final ColoredBlockMap<LightSensitiveBarrierBlock> COLORED_LIGHT_SENSITIVE_BARRIERS =
+      generateAndRegisterColoredBlocks("%s_light_sensitive_barrier", color -> new LightSensitiveBarrierBlock(color, false));
+  public static final ColoredBlockMap<LightSensitiveBarrierBlock> COLORED_LIGHT_SENSITIVE_BARRIERS_PASSABLE =
+      generateAndRegisterColoredBlocks("%s_light_sensitive_barrier_passable", color -> new LightSensitiveBarrierBlock(color, true));
 
   // Light-sensitive slabs
-  public static final LightSensitiveBarrierSlabBlock BLACK_LIGHT_SENSITIVE_BARRIER_SLAB =
-      register("black_light_sensitive_barrier_slab", new LightSensitiveBarrierSlabBlock(BlockColor.BLACK, false));
-  public static final LightSensitiveBarrierSlabBlock BLACK_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE =
-      register("black_light_sensitive_barrier_slab_passable", new LightSensitiveBarrierSlabBlock(BlockColor.BLACK, true));
-  public static final LightSensitiveBarrierSlabBlock GRAY_LIGHT_SENSITIVE_BARRIER_SLAB =
-      register("gray_light_sensitive_barrier_slab", new LightSensitiveBarrierSlabBlock(BlockColor.GRAY, false));
-  public static final LightSensitiveBarrierSlabBlock GRAY_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE =
-      register("gray_light_sensitive_barrier_slab_passable", new LightSensitiveBarrierSlabBlock(BlockColor.GRAY, true));
-  public static final LightSensitiveBarrierSlabBlock LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_SLAB =
-      register("light_gray_light_sensitive_barrier_slab", new LightSensitiveBarrierSlabBlock(BlockColor.LIGHT_GRAY, false));
-  public static final LightSensitiveBarrierSlabBlock LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE =
-      register("light_gray_light_sensitive_barrier_slab_passable", new LightSensitiveBarrierSlabBlock(BlockColor.LIGHT_GRAY, true));
-  public static final LightSensitiveBarrierSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_SLAB =
-      register("white_light_sensitive_barrier_slab", new LightSensitiveBarrierSlabBlock(BlockColor.WHITE, false));
-  public static final LightSensitiveBarrierSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE =
-      register("white_light_sensitive_barrier_slab_passable", new LightSensitiveBarrierSlabBlock(BlockColor.WHITE, true));
+  public static final ColoredBlockMap<LightSensitiveBarrierSlabBlock> COLORED_LIGHT_SENSITIVE_BARRIER_SLABS =
+      generateAndRegisterColoredBlocks("%s_light_sensitive_barrier_slab", color -> new LightSensitiveBarrierSlabBlock(color, false));
+  public static final ColoredBlockMap<LightSensitiveBarrierSlabBlock> COLORED_LIGHT_SENSITIVE_BARRIER_SLABS_PASSABLE =
+      generateAndRegisterColoredBlocks("%s_light_sensitive_barrier_slab_passable", color -> new LightSensitiveBarrierSlabBlock(color, true));
 
   // Light-sensitive vertical slabs
-  public static final LightSensitiveBarrierVerticalSlabBlock BLACK_LIGHT_SENSITIVE_BARRIER_VSLAB =
-      register("black_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.BLACK, false));
-  public static final LightSensitiveBarrierVerticalSlabBlock BLACK_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE =
-      register("black_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.BLACK, true));
-  public static final LightSensitiveBarrierVerticalSlabBlock GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB =
-      register("gray_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.GRAY, false));
-  public static final LightSensitiveBarrierVerticalSlabBlock GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE =
-      register("gray_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.GRAY, true));
-  public static final LightSensitiveBarrierVerticalSlabBlock LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB =
-      register("light_gray_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.LIGHT_GRAY, false));
-  public static final LightSensitiveBarrierVerticalSlabBlock LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE =
-      register("light_gray_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.LIGHT_GRAY, true));
-  public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB =
-      register("white_light_sensitive_barrier_vslab", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, false));
-  public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE =
-      register("white_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, true));
+  public static final ColoredBlockMap<LightSensitiveBarrierVerticalSlabBlock> COLORED_LIGHT_SENSITIVE_BARRIER_VSLABS =
+      generateAndRegisterColoredBlocks("%s_light_sensitive_barrier_vslab", color -> new LightSensitiveBarrierVerticalSlabBlock(color, false));
+  public static final ColoredBlockMap<LightSensitiveBarrierVerticalSlabBlock> COLORED_LIGHT_SENSITIVE_BARRIER_VSLABS_PASSABLE =
+      generateAndRegisterColoredBlocks("%s_light_sensitive_barrier_vslab_passable", color -> new LightSensitiveBarrierVerticalSlabBlock(color, true));
+
+  // Lights
+  public static final FloatingVariableLightBlock FLOATING_VARIABLE_LIGHT_BLOCK =
+      register("floating_variable_light_block", new FloatingVariableLightBlock(), NaissanceE.TECHNICAL_GROUP);
+  public static final InvisibleLightBlock INVISIBLE_LIGHT =
+      register("invisible_light", new InvisibleLightBlock(), NaissanceE.TECHNICAL_GROUP);
+  public static final BlockActivatorLamp ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp());
+  public static final Block[] LIGHT_BLOCKS = new Block[15];
+
+  static {
+    for (int i = 1; i < 16; i++) {
+      LIGHT_BLOCKS[i - 1] = register(
+          "light_block_" + i,
+          new Block(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(i))
+      );
+    }
+  }
+
+  // Ladders
+  public static final ColoredBlockMap<LadderBlockWithoutSupport> COLORED_LADDERS =
+      generateAndRegisterColoredBlocks("%s_ladder", LadderBlockWithoutSupport::new);
+  public static final ColoredBlockMap<HalfLadderBlock> COLORED_HALF_LADDERS =
+      generateAndRegisterColoredBlocks("%s_half_ladder", HalfLadderBlock::new);
 
   // Creatures
-  public static final Block LIVING_BLOCK = register("living_block", new LivingBlock(), NaissanceE.CREATURES_GROUP);
+  public static final LivingBlock LIVING_BLOCK = register("living_block", new LivingBlock(), NaissanceE.CREATURES_GROUP);
   public static final Block[] CREATURE_BLOCKS = new Block[16];
 
   static {
@@ -110,33 +85,29 @@ public final class ModBlocks {
     }
   }
 
-  // Lights
-  public static final Block FLOATING_VARIABLE_LIGHT_BLOCK =
-      register("floating_variable_light_block", new FloatingVariableLightBlock(), NaissanceE.TECHNICAL_GROUP);
-  public static final Block INVISIBLE_LIGHT =
-      register("invisible_light", new InvisibleLightBlock(), NaissanceE.TECHNICAL_GROUP);
-  public static final Block ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp());
-  public static final Block[] LIGHT_BLOCKS = new Block[15];
-
-  static {
-    for (int i = 1; i < 16; i++) {
-      LIGHT_BLOCKS[i - 1] = register("light_block_" + i, new Block(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(i)));
-    }
-  }
-
-  // Ladders
-  public static final Block BLACK_LADDER = register("black_ladder", new LadderBlockWithoutSupport(BlockColor.BLACK));
-  public static final Block GRAY_LADDER = register("gray_ladder", new LadderBlockWithoutSupport(BlockColor.GRAY));
-  public static final Block LIGHT_GRAY_LADDER = register("light_gray_ladder", new LadderBlockWithoutSupport(BlockColor.LIGHT_GRAY));
-  public static final Block WHITE_LADDER = register("white_ladder", new LadderBlockWithoutSupport(BlockColor.WHITE));
-
-  public static final Block BLACK_HALF_LADDER = register("black_half_ladder", new HalfLadderBlock(BlockColor.BLACK));
-  public static final Block GRAY_HALF_LADDER = register("gray_half_ladder", new HalfLadderBlock(BlockColor.GRAY));
-  public static final Block LIGHT_GRAY_HALF_LADDER = register("light_gray_half_ladder", new HalfLadderBlock(BlockColor.LIGHT_GRAY));
-  public static final Block WHITE_HALF_LADDER = register("white_half_ladder", new HalfLadderBlock(BlockColor.WHITE));
-
   // TODO corners, posts, walls, light orb controller, etc.
   // TODO doors (make partially openable)
+
+  /**
+   * Instanciates then registers a block for each {@link BlockColor}.
+   *
+   * @param namePattern  Pattern for the block’s name into which to insert the color name.
+   * @param blockFactory A factory that returns a block instance for the given color.
+   * @param <T>          Concrete type of generated blocks.
+   * @return A map associating a block instance to each {@link BlockColor}.
+   */
+  private static <T extends Block> ColoredBlockMap<T> generateAndRegisterColoredBlocks(
+      final String namePattern,
+      final Function<BlockColor, T> blockFactory
+  ) {
+    ColoredBlockMap<T> blocks = new ColoredBlockMap<>(BlockColor.class);
+    Arrays.stream(BlockColor.values()).forEach(color -> {
+      T block = blockFactory.apply(color);
+      register(namePattern.formatted(color.asString()), block);
+      blocks.put(color, block);
+    });
+    return blocks;
+  }
 
   /**
    * Registers a block and puts it in the mod’s “Blocks” item group.
@@ -151,7 +122,7 @@ public final class ModBlocks {
   }
 
   /**
-   * Registers a block and puts it in the given item group.
+   * Registers a block and its item, and puts it in the given item group.
    *
    * @param name      Block’s name.
    * @param block     Block to register.
@@ -171,20 +142,12 @@ public final class ModBlocks {
    * Must be called on both clients and server.
    */
   public static void init() {
-    BLACK_LIGHT_SENSITIVE_BARRIER.setCounterpartBlock(BLACK_LIGHT_SENSITIVE_BARRIER_PASSABLE);
-    GRAY_LIGHT_SENSITIVE_BARRIER.setCounterpartBlock(GRAY_LIGHT_SENSITIVE_BARRIER_PASSABLE);
-    LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER.setCounterpartBlock(LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_PASSABLE);
-    WHITE_LIGHT_SENSITIVE_BARRIER.setCounterpartBlock(WHITE_LIGHT_SENSITIVE_BARRIER_PASSABLE);
-
-    BLACK_LIGHT_SENSITIVE_BARRIER_SLAB.setCounterpartBlock(BLACK_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE);
-    GRAY_LIGHT_SENSITIVE_BARRIER_SLAB.setCounterpartBlock(GRAY_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE);
-    LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_SLAB.setCounterpartBlock(LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE);
-    WHITE_LIGHT_SENSITIVE_BARRIER_SLAB.setCounterpartBlock(WHITE_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE);
-
-    BLACK_LIGHT_SENSITIVE_BARRIER_VSLAB.setCounterpartBlock(BLACK_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE);
-    GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB.setCounterpartBlock(GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE);
-    LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB.setCounterpartBlock(LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE);
-    WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB.setCounterpartBlock(WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE);
+    COLORED_LIGHT_SENSITIVE_BARRIERS.forEach(
+        (color, block) -> block.setCounterpartBlock(COLORED_LIGHT_SENSITIVE_BARRIERS_PASSABLE.get(color)));
+    COLORED_LIGHT_SENSITIVE_BARRIER_SLABS.forEach(
+        (color, block) -> block.setCounterpartBlock(COLORED_LIGHT_SENSITIVE_BARRIER_SLABS_PASSABLE.get(color)));
+    COLORED_LIGHT_SENSITIVE_BARRIER_VSLABS.forEach(
+        (color, block) -> block.setCounterpartBlock(COLORED_LIGHT_SENSITIVE_BARRIER_VSLABS_PASSABLE.get(color)));
   }
 
   /**
@@ -193,20 +156,12 @@ public final class ModBlocks {
    * Must be called on client only.
    */
   public static void registerBlockRenderLayers() {
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACK_LIGHT_SENSITIVE_BARRIER_PASSABLE, RenderLayer.getTranslucent());
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_PASSABLE, RenderLayer.getTranslucent());
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GRAY_LIGHT_SENSITIVE_BARRIER_PASSABLE, RenderLayer.getTranslucent());
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WHITE_LIGHT_SENSITIVE_BARRIER_PASSABLE, RenderLayer.getTranslucent());
-
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACK_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE, RenderLayer.getTranslucent());
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE, RenderLayer.getTranslucent());
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GRAY_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE, RenderLayer.getTranslucent());
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WHITE_LIGHT_SENSITIVE_BARRIER_SLAB_PASSABLE, RenderLayer.getTranslucent());
-
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACK_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE, RenderLayer.getTranslucent());
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE, RenderLayer.getTranslucent());
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GRAY_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE, RenderLayer.getTranslucent());
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE, RenderLayer.getTranslucent());
+    COLORED_LIGHT_SENSITIVE_BARRIERS_PASSABLE.values()
+        .forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getTranslucent()));
+    COLORED_LIGHT_SENSITIVE_BARRIER_SLABS_PASSABLE.values()
+        .forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getTranslucent()));
+    COLORED_LIGHT_SENSITIVE_BARRIER_VSLABS_PASSABLE.values()
+        .forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getTranslucent()));
   }
 
   private ModBlocks() {
