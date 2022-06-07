@@ -9,7 +9,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 
 /**
- * Tile entity for {@link FloatingVariableLightBlock}.
+ * Block entity for {@link FloatingVariableLightBlock}.
  * Handles light level change.
  */
 public class FloatingVariableLightBlockEntity extends BlockEntity {
@@ -59,15 +59,14 @@ public class FloatingVariableLightBlockEntity extends BlockEntity {
     //noinspection ConstantConditions
     BlockState state = this.world.getBlockState(pos);
 
-    if (state.getBlock() instanceof FloatingVariableLightBlock) {
-      int lightLevel = state.get(FloatingVariableLightBlock.LIGHT_LEVEL);
+    if (state.getBlock() instanceof FloatingVariableLightBlock b) {
+      final int lightLevel = state.get(FloatingVariableLightBlock.LIGHT_LEVEL);
 
       if (this.time == 0) {
         if (this.increasing) {
-          if (lightLevel < 15) { // Prevent crash when BE is loading while player is colliding block
-            this.world.setBlockState(pos, state.with(FloatingVariableLightBlock.LIGHT_LEVEL, ++lightLevel));
-          }
-          if (lightLevel == 15) {
+          if (lightLevel < 15) {
+            b.increaseLightLevel(this.world, pos);
+          } else {
             this.increasing = false;
             this.stopped = true;
             if (this.playerColliding) {
@@ -75,10 +74,9 @@ public class FloatingVariableLightBlockEntity extends BlockEntity {
             }
           }
         } else {
-          if (lightLevel > MIN_LIGHT_LEVEL) { // Prevent crash when BE is loading while player is colliding block
-            this.world.setBlockState(pos, state.with(FloatingVariableLightBlock.LIGHT_LEVEL, --lightLevel));
-          }
-          if (lightLevel == MIN_LIGHT_LEVEL) {
+          if (lightLevel > MIN_LIGHT_LEVEL) {
+            b.decreaseLightLevel(this.world, pos);
+          } else {
             this.increasing = true;
             this.stopped = true;
             if (this.playerColliding) {

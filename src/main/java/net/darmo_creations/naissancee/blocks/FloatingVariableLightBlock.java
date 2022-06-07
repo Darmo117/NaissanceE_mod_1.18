@@ -12,8 +12,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
@@ -23,21 +21,13 @@ import net.minecraft.world.World;
  * A floating block that emits light. When a player collides it,
  * the block’s light level toggles between two values over several seconds.
  */
-public class FloatingVariableLightBlock extends BlockWithEntity {
-  public static final IntProperty LIGHT_LEVEL = IntProperty.of("light_level", 0, 15);
-
-  private static final VoxelShape SHAPE = Block.createCuboidShape(4, 8, 4, 12, 16, 12);
+public class FloatingVariableLightBlock extends VariableLightBlock implements BlockEntityProvider {
+  private static final VoxelShape SHAPE = Block.createCuboidShape(4, 7, 4, 12, 15, 12);
 
   public FloatingVariableLightBlock() {
     super(FabricBlockSettings.of(Material.STONE, MapColor.WHITE)
-        .sounds(BlockSoundGroup.STONE)
-        .luminance(state -> state.get(LIGHT_LEVEL)));
+        .sounds(BlockSoundGroup.STONE));
     this.setDefaultState(this.getDefaultState().with(LIGHT_LEVEL, FloatingVariableLightBlockEntity.MIN_LIGHT_LEVEL));
-  }
-
-  @Override
-  protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-    super.appendProperties(builder.add(LIGHT_LEVEL));
   }
 
   @SuppressWarnings("deprecation")
@@ -48,7 +38,9 @@ public class FloatingVariableLightBlock extends BlockWithEntity {
 
   @Override
   public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-    return checkType(type, ModBlockEntities.FLOATING_VARIABLE_LIGHT_BLOCK, (w, pos, s, be) -> be.update());
+    return type == ModBlockEntities.FLOATING_VARIABLE_LIGHT_BLOCK
+        ? (world_, pos, state_, be) -> ((FloatingVariableLightBlockEntity) be).update()
+        : null;
   }
 
   @Override
@@ -68,10 +60,5 @@ public class FloatingVariableLightBlock extends BlockWithEntity {
       Utils.getBlockEntity(FloatingVariableLightBlockEntity.class, world, pos)
           .ifPresent(FloatingVariableLightBlockEntity::onPlayerColliding);
     }
-  }
-
-  @Override
-  public BlockRenderType getRenderType(BlockState state) {
-    return BlockRenderType.MODEL;
   }
 }
