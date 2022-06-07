@@ -31,10 +31,10 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
   public static final EnumProperty<VerticalSlabType> TYPE = EnumProperty.of("type", VerticalSlabType.class);
   public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
-  protected static final VoxelShape NORTH_SHAPE = createCuboidShape(0, 0, 8, 16, 16, 16);
-  protected static final VoxelShape SOUTH_SHAPE = createCuboidShape(0, 0, 0, 16, 16, 8);
-  protected static final VoxelShape EAST_SHAPE = createCuboidShape(0, 0, 0, 8, 16, 16);
-  protected static final VoxelShape WEST_SHAPE = createCuboidShape(8, 0, 0, 16, 16, 16);
+  protected static final VoxelShape NORTH_SHAPE = createCuboidShape(0, 0, 0, 16, 16, 8);
+  protected static final VoxelShape SOUTH_SHAPE = createCuboidShape(0, 0, 8, 16, 16, 16);
+  protected static final VoxelShape WEST_SHAPE = createCuboidShape(0, 0, 0, 8, 16, 16);
+  protected static final VoxelShape EAST_SHAPE = createCuboidShape(8, 0, 0, 16, 16, 16);
 
   public VerticalSlabBlock(Settings settings) {
     super(settings);
@@ -43,7 +43,7 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
 
   @Override
   protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-    builder.add(TYPE, WATERLOGGED);
+    super.appendProperties(builder.add(TYPE, WATERLOGGED));
   }
 
   @SuppressWarnings("deprecation")
@@ -73,7 +73,7 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
     }
     FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
     return this.getDefaultState()
-        .with(TYPE, VerticalSlabType.forDirection(ctx.getPlayerFacing().getOpposite()))
+        .with(TYPE, VerticalSlabType.forDirection(ctx.getPlayerFacing()))
         .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
   }
 
@@ -93,14 +93,14 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
         double xHit = hitPos.x - blockPos.getX();
         double zHit = hitPos.z - blockPos.getZ();
         return switch (slabType) {
-          case NORTH -> zHit < 0.5;
-          case SOUTH -> zHit > 0.5;
-          case WEST -> xHit < 0.5;
-          case EAST -> xHit > 0.5;
+          case NORTH -> zHit > 0.5;
+          case SOUTH -> zHit < 0.5;
+          case WEST -> xHit > 0.5;
+          case EAST -> xHit < 0.5;
           default -> false;
         };
       }
-      return slabType.getDirection() == side;
+      return slabType.getDirection() == side.getOpposite();
     }
     return true;
   }
