@@ -79,6 +79,12 @@ public final class ModBlocks {
   public static final ColoredBlockMap<HalfLadderBlock> COLORED_HALF_LADDERS =
       generateAndRegisterColoredBlocks("%s_half_ladder", HalfLadderBlock::new);
 
+  // Doors
+  public static final ColoredBlockMap<PlainDoorBlock> COLORED_DOORS =
+      generateAndRegisterColoredBlocks("%s_door", color -> new PlainDoorBlock(color, true));
+  public static final ColoredBlockMap<PlainDoorBlock> COLORED_PARTIAL_DOORS =
+      generateAndRegisterColoredBlocks("%s_partial_door", color -> new PlainDoorBlock(color, false));
+
   // Creatures
   public static final LivingBlock LIVING_BLOCK = register("living_block", new LivingBlock(), NaissanceE.CREATURES_GROUP);
   public static final Block[] CREATURE_BLOCKS = new Block[16];
@@ -94,7 +100,6 @@ public final class ModBlocks {
   }
 
   // TODO light orb controller, etc.
-  // TODO doors (make partially openable)
 
   /**
    * Instanciates then registers a block for each {@link BlockColor}.

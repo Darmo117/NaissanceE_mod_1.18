@@ -80,6 +80,16 @@
   "block.naissancee.light_gray_half_ladder": "Light Gray Half Ladder",
   "block.naissancee.white_half_ladder": "White Half Ladder",
 
+  "block.naissancee.black_door": "Black Door",
+  "block.naissancee.gray_door": "Gray Door",
+  "block.naissancee.light_gray_door": "Light Gray Door",
+  "block.naissancee.white_door": "White Door",
+
+  "block.naissancee.black_partial_door": "Black Partial Door",
+  "block.naissancee.gray_partial_door": "Gray Partial Door",
+  "block.naissancee.light_gray_partial_door": "Light Gray Partial Door",
+  "block.naissancee.white_partial_door": "White Partial Door",
+
   "block.naissancee.activator_lamp": "Activator Lamp",
 
   "block.naissancee.invisible_light": "Invisible Light",

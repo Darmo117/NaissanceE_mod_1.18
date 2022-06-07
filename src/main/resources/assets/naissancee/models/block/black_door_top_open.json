@@ -1,0 +1,6 @@
+{
+  "parent": "naissancee:block/plain_door_top_open",
+  "textures": {
+    "all": "naissancee:blocks/black_block"
+  }
+}
