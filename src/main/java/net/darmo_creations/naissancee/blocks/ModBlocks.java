@@ -108,8 +108,10 @@ public final class ModBlocks {
   }
 
   // Lights
-
-  public static final Block INVISIBLE_LIGHT = register("invisible_light", new InvisibleLightBlock(), NaissanceE.TECHNICAL_GROUP);
+  public static final Block FLOATING_VARIABLE_LIGHT_BLOCK =
+      register("floating_variable_light_block", new FloatingVariableLightBlock(), NaissanceE.TECHNICAL_GROUP);
+  public static final Block INVISIBLE_LIGHT =
+      register("invisible_light", new InvisibleLightBlock(), NaissanceE.TECHNICAL_GROUP);
   public static final Block[] LIGHT_BLOCKS = new Block[15];
 
   static {
@@ -131,7 +133,7 @@ public final class ModBlocks {
   public static final Block ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp());
 
   // TODO corners, posts, walls, light orb controller, etc.
-  // TODO doors
+  // TODO doors (make partially openable)
 
   /**
    * Registers a block and puts it in the Blocks item group.

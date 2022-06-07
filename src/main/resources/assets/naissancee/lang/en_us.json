@@ -62,6 +62,9 @@
 
   "block.naissancee.activator_lamp": "Activator Lamp",
 
+  "block.naissancee.invisible_light": "Invisible Light",
+  "block.naissancee.floating_variable_light_block": "Floating Variable Light Block",
+
   "block.naissancee.light_block_1": "Light Block 1",
   "block.naissancee.light_block_2": "Light Block 2",
   "block.naissancee.light_block_3": "Light Block 3",
@@ -96,8 +99,6 @@
   "block.naissancee.creature_block_15": "“Creature” Block 15",
 
   "block.naissancee.living_block": "“Living” Block",
-
-  "block.naissancee.invisible_light": "Invisible Light",
 
   "item.naissancee.barrier_state_toggler": "Barrier State Toggler",
   "item.naissancee.invisible_light_tweaker": "Invisible Light Tweaker",

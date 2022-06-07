@@ -14,6 +14,8 @@ import net.minecraft.util.registry.Registry;
 public final class ModBlockEntities {
   public static final BlockEntityType<InvisibleLightBlockEntity> INVISIBLE_LIGHT_BLOCK =
       register("invisible_light_block", InvisibleLightBlockEntity::new, ModBlocks.INVISIBLE_LIGHT);
+  public static final BlockEntityType<FloatingVariableLightBlockEntity> FLOATING_VARIABLE_LIGHT_BLOCK =
+      register("floating_variable_light", FloatingVariableLightBlockEntity::new, ModBlocks.FLOATING_VARIABLE_LIGHT_BLOCK);
 
   private static <T extends BlockEntityType<U>, U extends BlockEntity> T register(
       final String name, FabricBlockEntityTypeBuilder.Factory<U> factory, final Block... blocks

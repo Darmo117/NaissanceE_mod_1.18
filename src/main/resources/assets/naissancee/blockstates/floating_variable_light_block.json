@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "naissancee:block/floating_variable_light_block"
+    }
+  }
+}
