@@ -9,6 +9,7 @@ import net.minecraft.block.MapColor;
 import net.minecraft.block.Material;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -69,16 +70,22 @@ public final class ModBlocks {
   public static final LightSensitiveBarrierVerticalSlabBlock WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE = register("white_light_sensitive_barrier_vslab_passable", new LightSensitiveBarrierVerticalSlabBlock(BlockColor.WHITE, true));
 
   // Creatures
+  public static final Block LIVING_BLOCK = register("living_block", new LivingBlock(), NaissanceE.CREATURES_GROUP);
   public static final Block[] CREATURE_BLOCKS = new Block[16];
 
   static {
     for (int i = 0; i < 16; i++) {
-      CREATURE_BLOCKS[i] = register("creature_block_" + i, new Block(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(i)));
+      CREATURE_BLOCKS[i] = register(
+          "creature_block_" + i,
+          new Block(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(i)),
+          NaissanceE.CREATURES_GROUP
+      );
     }
   }
 
-  public static final Block LIVING_BLOCK = register("living_block", new LivingBlock());
+  // Lights
 
+  public static final Block INVISIBLE_LIGHT = register("invisible_light", new InvisibleLightBlock(), NaissanceE.TECHNICAL_GROUP);
   public static final Block[] LIGHT_BLOCKS = new Block[15];
 
   static {
@@ -102,15 +109,30 @@ public final class ModBlocks {
   // TODO corners, posts, walls, light orb controller, etc.
   // TODO doors
 
-  public static <T extends Block> T register(final String name, final T block) {
-    return register(name, block, true);
+  /**
+   * Registers a block and puts it in the Blocks item group.
+   *
+   * @param name  Block’s name.
+   * @param block Block to register.
+   * @param <T>   Type of the block to register.
+   * @return The registered block.
+   */
+  private static <T extends Block> T register(final String name, final T block) {
+    return register(name, block, NaissanceE.BLOCKS_GROUP);
   }
 
-  public static <T extends Block> T register(final String name, final T block, final boolean generateItem) {
+  /**
+   * Registers a block and puts it in the given item group.
+   *
+   * @param name      Block’s name.
+   * @param block     Block to register.
+   * @param itemGroup Item group to put the block in.
+   * @param <T>       Type of the block to register.
+   * @return The registered block.
+   */
+  private static <T extends Block> T register(final String name, final T block, final ItemGroup itemGroup) {
     Registry.register(Registry.BLOCK, new Identifier(NaissanceE.MODID, name), block);
-    if (generateItem) {
-      Registry.register(Registry.ITEM, new Identifier(NaissanceE.MODID, name), new BlockItem(block, new FabricItemSettings().group(NaissanceE.BLOCKS_GROUP)));
-    }
+    Registry.register(Registry.ITEM, new Identifier(NaissanceE.MODID, name), new BlockItem(block, new FabricItemSettings().group(itemGroup)));
     return block;
   }
 

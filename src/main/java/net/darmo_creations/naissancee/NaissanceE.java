@@ -1,5 +1,6 @@
 package net.darmo_creations.naissancee;
 
+import net.darmo_creations.naissancee.block_entities.ModBlockEntities;
 import net.darmo_creations.naissancee.blocks.ModBlocks;
 import net.darmo_creations.naissancee.commands.SetPassableCommand;
 import net.darmo_creations.naissancee.dimension.VoidDimensionEffects;
@@ -17,11 +18,15 @@ public class NaissanceE implements ModInitializer {
 
   public static final ItemGroup BLOCKS_GROUP = FabricItemGroupBuilder.build(
       new Identifier(MODID, "building"),
-      () -> new ItemStack(ModBlocks.GRAY_BLOCK)
+      () -> new ItemStack(ModBlocks.LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER)
   );
   public static final ItemGroup TECHNICAL_GROUP = FabricItemGroupBuilder.build(
       new Identifier(MODID, "technical"),
-      () -> new ItemStack(ModItems.BARRIER_STATE_TOGGLER)
+      () -> new ItemStack(ModItems.INVISIBLE_LIGHT_TWEAKER)
+  );
+  public static final ItemGroup CREATURES_GROUP = FabricItemGroupBuilder.build(
+      new Identifier(MODID, "creatures"),
+      () -> new ItemStack(ModBlocks.LIVING_BLOCK)
   );
 
   public static final Identifier VOID_DIMENSION_EFFECTS_KEY = new Identifier(MODID, "void");
@@ -30,6 +35,7 @@ public class NaissanceE implements ModInitializer {
   public void onInitialize() {
     ModBlocks.init();
     ModItems.init();
+    ModBlockEntities.init();
     // Inject custom dimension effects. Custom dimension and dimension type are added through datapack.
     DimensionEffectsAccessor.getIdentifierMap().put(VOID_DIMENSION_EFFECTS_KEY, new VoidDimensionEffects());
     this.registerCommands();

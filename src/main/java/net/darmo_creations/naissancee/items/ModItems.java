@@ -8,6 +8,7 @@ import net.minecraft.util.registry.Registry;
 @SuppressWarnings("unused")
 public final class ModItems {
   public static final Item BARRIER_STATE_TOGGLER = register("barrier_state_toggler", new PassableStateTogglerItem());
+  public static final Item INVISIBLE_LIGHT_TWEAKER = register("invisible_light_tweaker", new InvisibleLightTweakerItem());
 
   public static <T extends Item> T register(final String name, T item) {
     return Registry.register(Registry.ITEM, new Identifier(NaissanceE.MODID, name), item);
