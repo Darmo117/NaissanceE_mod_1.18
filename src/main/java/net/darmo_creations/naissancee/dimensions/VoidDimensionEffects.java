@@ -3,6 +3,15 @@ package net.darmo_creations.naissancee.dimensions;
 import net.minecraft.client.render.DimensionEffects;
 import net.minecraft.util.math.Vec3d;
 
+/**
+ * Custom effects for the custom void dimensions defined in this mod’s datapack.
+ * <p>
+ * Features:
+ * <li>No clouds</li>
+ * <li>No skybox</li>
+ * <li>Fog</li>
+ * <li>No thick fog</li>
+ */
 public class VoidDimensionEffects extends DimensionEffects {
   public VoidDimensionEffects() {
     super(Float.NaN, false, DimensionEffects.SkyType.NONE, false, false);

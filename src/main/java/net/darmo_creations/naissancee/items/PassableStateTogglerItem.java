@@ -9,7 +9,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /**
- * Tool used to toggle the state of right-clicked light-sensitive blocks.
+ * Tool used to toggle the state of light-sensitive blocks.
+ * <p>
+ * Right-click on a compatible block to toggle its state.
  */
 public class PassableStateTogglerItem extends Item {
   public PassableStateTogglerItem(Settings settings) {

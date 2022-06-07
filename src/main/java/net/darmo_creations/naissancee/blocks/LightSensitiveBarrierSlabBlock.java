@@ -15,6 +15,8 @@ import net.minecraft.world.World;
 
 /**
  * This block represents a light-sensitive slab.
+ *
+ * @see LightSensitiveBarrierBlock
  */
 public class LightSensitiveBarrierSlabBlock extends SlabBlock
     implements Colored, LightSensitiveBlock<LightSensitiveBarrierSlabBlock> {

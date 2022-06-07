@@ -25,7 +25,7 @@ public class BlockActivatorLamp extends Block {
   public static final BooleanProperty POWERED = Properties.POWERED;
 
   private static final VoxelShape COLLISION_AABB = Block.createCuboidShape(0.1, 0.1, 0.1, 15.9, 15.9, 15.9);
-  private static final Box BOX = VoxelShapes.fullCube().getBoundingBox();
+  private static final Box HITBOX = VoxelShapes.fullCube().getBoundingBox();
 
   private static final int TICK_DELAY = 10;
 
@@ -104,7 +104,7 @@ public class BlockActivatorLamp extends Block {
    */
   private void updateState(World world, BlockPos pos, BlockState state) {
     if (!world.isClient()) {
-      int strength = world.getNonSpectatingEntities(PlayerEntity.class, BOX.offset(pos)).isEmpty() ? 0 : 15;
+      int strength = world.getNonSpectatingEntities(PlayerEntity.class, HITBOX.offset(pos)).isEmpty() ? 0 : 15;
       if (this.getRedstoneStrength(state) != strength) {
         world.setBlockState(pos, state.with(POWERED, strength != 0), 2);
         this.updateNeighbors(world, pos);

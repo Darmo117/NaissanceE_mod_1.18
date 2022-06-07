@@ -20,8 +20,11 @@ public enum BlockColor implements StringIdentifiable {
     this.mapColor = mapColor;
   }
 
+  /**
+   * Returns the map color for this block color.
+   */
   public MapColor getMapColor() {
-    return mapColor;
+    return this.mapColor;
   }
 
   @Override

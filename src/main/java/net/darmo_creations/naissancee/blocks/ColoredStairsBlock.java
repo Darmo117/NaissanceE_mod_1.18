@@ -4,6 +4,9 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.sound.BlockSoundGroup;
 
+/**
+ * A simple colored stairs block.
+ */
 public class ColoredStairsBlock extends StairsBlock implements Colored {
   private final BlockColor color;
 
@@ -12,7 +15,7 @@ public class ColoredStairsBlock extends StairsBlock implements Colored {
    *
    * @param baseBlock Colored block to use a base.
    */
-  public ColoredStairsBlock(ColoredBlock baseBlock) {
+  public ColoredStairsBlock(final ColoredBlock baseBlock) {
     super(baseBlock.getDefaultState(),
         FabricBlockSettings.of(baseBlock.getDefaultState().getMaterial(), baseBlock.getColor().getMapColor())
             .sounds(BlockSoundGroup.STONE));

@@ -14,6 +14,11 @@ import net.minecraft.world.WorldView;
 public class TwoPartLadderBlock extends LadderBlock implements Colored {
   private final BlockColor color;
 
+  /**
+   * Creates a ladder with the given color.
+   *
+   * @param color Ladder’s color.
+   */
   public TwoPartLadderBlock(final BlockColor color) {
     super(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE).nonOpaque());
     this.color = color;

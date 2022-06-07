@@ -14,6 +14,11 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
+/**
+ * This class reprensents a part of the striped black-and-white blocks that are afraid of light in the original game.
+ * <p>
+ * Its texture can connect to other adjacent blocks of the same class.
+ */
 public class LivingBlock extends Block {
   public static final BooleanProperty NORTH = BooleanProperty.of("north");
   public static final BooleanProperty SOUTH = BooleanProperty.of("south");

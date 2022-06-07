@@ -3,8 +3,9 @@ package net.darmo_creations.naissancee.blocks;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.Direction;
 
-import javax.annotation.Nullable;
-
+/**
+ * Types of vertical slabs.
+ */
 public enum VerticalSlabType implements StringIdentifiable {
   NORTH("north", Direction.NORTH),
   SOUTH("south", Direction.SOUTH),
@@ -20,7 +21,9 @@ public enum VerticalSlabType implements StringIdentifiable {
     this.direction = direction;
   }
 
-  @Nullable
+  /**
+   * Returns the direction associated to this type.
+   */
   public Direction getDirection() {
     return this.direction;
   }
@@ -35,6 +38,12 @@ public enum VerticalSlabType implements StringIdentifiable {
     return this.asString();
   }
 
+  /**
+   * Returns the slab type for the given horizontal direction.
+   *
+   * @param direction A horizontal direction.
+   * @return The corresponding slab type or null if the direction is vertical.
+   */
   public static VerticalSlabType forDirection(Direction direction) {
     return switch (direction) {
       case NORTH -> NORTH;

@@ -9,6 +9,8 @@ import net.minecraft.world.World;
 
 /**
  * Tool used to change the light level of {@link InvisibleLightBlock}s.
+ * <p>
+ * Right-click on block to increase its light level. Sneak while right-clicking to decrease it.
  */
 public class InvisibleLightTweakerItem extends Item {
   public InvisibleLightTweakerItem(Settings settings) {

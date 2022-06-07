@@ -1,5 +1,6 @@
 package net.darmo_creations.naissancee.block_entities.renderers;
 
+import net.darmo_creations.naissancee.Utils;
 import net.darmo_creations.naissancee.block_entities.InvisibleLightBlockEntity;
 import net.darmo_creations.naissancee.blocks.InvisibleLightBlock;
 import net.darmo_creations.naissancee.blocks.ModBlocks;
@@ -25,7 +26,6 @@ import net.minecraft.util.math.Vec3f;
  *
  * @see InvisibleLightBlockEntity
  * @see InvisibleLightBlock
- * @see ModBlocks#INVISIBLE_LIGHT
  */
 public class InvisibleLightBlockEntityRenderer implements BlockEntityRenderer<InvisibleLightBlockEntity> {
   private static final ItemStack STACK = new ItemStack(Item.BLOCK_ITEMS.get(ModBlocks.INVISIBLE_LIGHT));
@@ -34,27 +34,35 @@ public class InvisibleLightBlockEntityRenderer implements BlockEntityRenderer<In
   private static final float INVERSE_TEXT_SCALE = 1 / TEXT_SCALE;
   private static final int TEXT_COLOR = 0xffffff; // White
 
+  /**
+   * Constructor required for registration.
+   */
   public InvisibleLightBlockEntityRenderer(BlockEntityRendererFactory.Context ignored) {
-    // Required by registry
   }
 
   @Override
   public void render(InvisibleLightBlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-    //noinspection ConstantConditions
     if (this.shouldDraw(MinecraftClient.getInstance().player)) {
       this.drawRotatingItem(blockEntity, tickDelta, matrices, vertexConsumers);
       this.drawLightLevelText(blockEntity, matrices);
     }
   }
 
-  private boolean shouldDraw(PlayerEntity player) {
-    return player.getMainHandStack().getItem() == ModItems.INVISIBLE_LIGHT_TWEAKER
-        || player.getOffHandStack().getItem() == ModItems.INVISIBLE_LIGHT_TWEAKER
-        || player.getMainHandStack().getItem() == Item.BLOCK_ITEMS.get(ModBlocks.INVISIBLE_LIGHT)
-        || player.getOffHandStack().getItem() == Item.BLOCK_ITEMS.get(ModBlocks.INVISIBLE_LIGHT);
+  /**
+   * Indicates whether anything should be drawn.
+   *
+   * @param player The local player.
+   * @return True if things need to be drawn, false otherwise.
+   */
+  private boolean shouldDraw(final PlayerEntity player) {
+    return Utils.playerHoldsAnyItem(player,
+        ModItems.INVISIBLE_LIGHT_TWEAKER, Item.BLOCK_ITEMS.get(ModBlocks.INVISIBLE_LIGHT));
   }
 
-  private void drawRotatingItem(InvisibleLightBlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
+  /**
+   * Draws a rotating item in the center of the block.
+   */
+  private void drawRotatingItem(final InvisibleLightBlockEntity blockEntity, final float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
     //noinspection ConstantConditions
     int lightAbove = WorldRenderer.getLightmapCoordinates(blockEntity.getWorld(), blockEntity.getPos().up());
     matrices.push();
@@ -65,7 +73,10 @@ public class InvisibleLightBlockEntityRenderer implements BlockEntityRenderer<In
     matrices.pop();
   }
 
-  private void drawLightLevelText(InvisibleLightBlockEntity blockEntity, MatrixStack matrices) {
+  /**
+   * Draws the light level on the sides of the block.
+   */
+  private void drawLightLevelText(final InvisibleLightBlockEntity blockEntity, MatrixStack matrices) {
     //noinspection ConstantConditions
     BlockState blockState = blockEntity.getWorld().getBlockState(blockEntity.getPos());
     if (blockState.isOf(ModBlocks.INVISIBLE_LIGHT)) { // Block may have been removed

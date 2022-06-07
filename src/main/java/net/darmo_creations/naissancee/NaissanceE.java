@@ -13,9 +13,13 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
+/**
+ * Mod’s main class. Common initializer for both client and server.
+ */
 public class NaissanceE implements ModInitializer {
   public static final String MODID = "naissancee";
 
+  // Creative mode’s item groups
   public static final ItemGroup BLOCKS_GROUP = FabricItemGroupBuilder.build(
       new Identifier(MODID, "building"),
       () -> new ItemStack(ModBlocks.LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER)
@@ -41,6 +45,9 @@ public class NaissanceE implements ModInitializer {
     this.registerCommands();
   }
 
+  /**
+   * Registers all custom commands.
+   */
   private void registerCommands() {
     CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> SetPassableCommand.register(dispatcher));
   }

@@ -15,7 +15,8 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 
 /**
- * One half of a ladder. Meant to be used as a way to center a ladder between two blocks.
+ * One half of a ladder that does not disappear if the block it is placed against is removed.
+ * Meant to be used as a way to center a ladder between two blocks.
  */
 public class HalfLadderBlock extends LadderBlock implements Colored {
   public static final EnumProperty<Side> SIDE = EnumProperty.of("side", Side.class);
@@ -32,6 +33,11 @@ public class HalfLadderBlock extends LadderBlock implements Colored {
 
   private final BlockColor color;
 
+  /**
+   * Creates a half ladder with the given color.
+   *
+   * @param color Ladder’s color.
+   */
   public HalfLadderBlock(final BlockColor color) {
     super(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE).nonOpaque());
     this.color = color;

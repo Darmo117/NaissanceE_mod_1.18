@@ -12,12 +12,22 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+/**
+ * This block represents a light-sensitive vertical slab.
+ *
+ * @see LightSensitiveBarrierBlock
+ */
 public class LightSensitiveBarrierVerticalSlabBlock extends VerticalSlabBlock
     implements Colored, LightSensitiveBlock<LightSensitiveBarrierVerticalSlabBlock> {
   private final BlockColor color;
   private final boolean passable;
   private LightSensitiveBarrierVerticalSlabBlock counterpartBlock;
 
+  /**
+   * Create a light sensitive barrier vertical slab.
+   *
+   * @param passable Whether this block can be passed through.
+   */
   public LightSensitiveBarrierVerticalSlabBlock(final BlockColor color, final boolean passable) {
     super(LightSensitiveBlock.getSettings(FabricBlockSettings.of(Material.STONE, color.getMapColor())
         .sounds(BlockSoundGroup.STONE), passable));

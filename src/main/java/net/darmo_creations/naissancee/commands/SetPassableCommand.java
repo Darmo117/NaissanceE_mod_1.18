@@ -27,6 +27,9 @@ public class SetPassableCommand {
   private static final Dynamic2CommandExceptionType TOO_BIG_EXCEPTION = new Dynamic2CommandExceptionType((maxCount, count) -> new TranslatableText("commands.setpassable.too_big", maxCount, count));
   private static final SimpleCommandExceptionType FAILED_EXCEPTION = new SimpleCommandExceptionType(new TranslatableText("commands.setpassable.failed"));
 
+  /**
+   * Registers this command.
+   */
   public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
     dispatcher.register(CommandManager.literal("setpassable")
         .requires(source -> source.hasPermissionLevel(2))

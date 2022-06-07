@@ -5,9 +5,17 @@ import net.minecraft.block.Material;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.sound.BlockSoundGroup;
 
+/**
+ * A simple colored slab block.
+ */
 public class ColoredSlabBlock extends SlabBlock implements Colored {
   private final BlockColor color;
 
+  /**
+   * Creates a slab for the given color.
+   *
+   * @param color Slab’s color.
+   */
   public ColoredSlabBlock(final BlockColor color) {
     super(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE));
     this.color = color;

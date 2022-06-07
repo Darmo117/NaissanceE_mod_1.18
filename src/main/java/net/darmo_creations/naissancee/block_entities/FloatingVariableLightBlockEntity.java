@@ -11,6 +11,8 @@ import net.minecraft.util.math.BlockPos;
 /**
  * Block entity for {@link FloatingVariableLightBlock}.
  * Handles light level change.
+ *
+ * @see FloatingVariableLightBlock
  */
 public class FloatingVariableLightBlockEntity extends BlockEntity {
   private static final String TIME_TAG_KEY = "Time";
@@ -44,7 +46,10 @@ public class FloatingVariableLightBlockEntity extends BlockEntity {
     this.playerColliding = true;
   }
 
-  public void update() {
+  /**
+   * Executes one tick of this block entity’s logic.
+   */
+  public void tick() {
     if (this.waitForNoCollision && !this.playerColliding) {
       this.waitForNoCollision = false;
     } else if (this.playerColliding && !this.waitForNoCollision) {
@@ -59,32 +64,11 @@ public class FloatingVariableLightBlockEntity extends BlockEntity {
     //noinspection ConstantConditions
     BlockState state = this.world.getBlockState(pos);
 
-    if (state.getBlock() instanceof FloatingVariableLightBlock b) {
+    if (state.getBlock() instanceof FloatingVariableLightBlock block) {
       final int lightLevel = state.get(FloatingVariableLightBlock.LIGHT_LEVEL);
 
       if (this.time == 0) {
-        if (this.increasing) {
-          if (lightLevel < 15) {
-            b.increaseLightLevel(this.world, pos);
-          } else {
-            this.increasing = false;
-            this.stopped = true;
-            if (this.playerColliding) {
-              this.waitForNoCollision = true;
-            }
-          }
-        } else {
-          if (lightLevel > MIN_LIGHT_LEVEL) {
-            b.decreaseLightLevel(this.world, pos);
-          } else {
-            this.increasing = true;
-            this.stopped = true;
-            if (this.playerColliding) {
-              this.waitForNoCollision = true;
-            }
-          }
-        }
-        this.time = DELAY;
+        this.updateLightLevel(pos, block, lightLevel);
       } else {
         if (((this.increasing && lightLevel == MIN_LIGHT_LEVEL) || (!this.increasing && lightLevel == 15)) && this.time == DELAY) {
           this.world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
@@ -94,6 +78,38 @@ public class FloatingVariableLightBlockEntity extends BlockEntity {
       }
     }
     this.playerColliding = false;
+  }
+
+  /**
+   * Updates the light level of the block at the given position.
+   *
+   * @param pos        Block’s position.
+   * @param block      The block to update.
+   * @param lightLevel Block’s current light level.
+   */
+  private void updateLightLevel(final BlockPos pos, FloatingVariableLightBlock block, final int lightLevel) {
+    if (this.increasing) {
+      if (lightLevel < 15) {
+        block.increaseLightLevel(this.world, pos);
+      } else {
+        this.increasing = false;
+        this.stopped = true;
+        if (this.playerColliding) {
+          this.waitForNoCollision = true;
+        }
+      }
+    } else {
+      if (lightLevel > MIN_LIGHT_LEVEL) {
+        block.decreaseLightLevel(this.world, pos);
+      } else {
+        this.increasing = true;
+        this.stopped = true;
+        if (this.playerColliding) {
+          this.waitForNoCollision = true;
+        }
+      }
+    }
+    this.time = DELAY;
   }
 
   @Override

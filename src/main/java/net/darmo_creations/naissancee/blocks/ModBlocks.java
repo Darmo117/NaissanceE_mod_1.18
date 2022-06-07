@@ -13,6 +13,9 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+/**
+ * Declares all blocks added by this mod.
+ */
 @SuppressWarnings("unused")
 public final class ModBlocks {
   // Plain blocks
@@ -136,7 +139,7 @@ public final class ModBlocks {
   // TODO doors (make partially openable)
 
   /**
-   * Registers a block and puts it in the Blocks item group.
+   * Registers a block and puts it in the mod’s “Blocks” item group.
    *
    * @param name  Block’s name.
    * @param block Block to register.
@@ -162,6 +165,11 @@ public final class ModBlocks {
     return block;
   }
 
+  /**
+   * Initializes various properties on blocks.
+   * <p>
+   * Must be called on both clients and server.
+   */
   public static void init() {
     BLACK_LIGHT_SENSITIVE_BARRIER.setCounterpartBlock(BLACK_LIGHT_SENSITIVE_BARRIER_PASSABLE);
     GRAY_LIGHT_SENSITIVE_BARRIER.setCounterpartBlock(GRAY_LIGHT_SENSITIVE_BARRIER_PASSABLE);
@@ -179,6 +187,11 @@ public final class ModBlocks {
     WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB.setCounterpartBlock(WHITE_LIGHT_SENSITIVE_BARRIER_VSLAB_PASSABLE);
   }
 
+  /**
+   * Registers render layers for some block.
+   * <p>
+   * Must be called on client only.
+   */
   public static void registerBlockRenderLayers() {
     BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACK_LIGHT_SENSITIVE_BARRIER_PASSABLE, RenderLayer.getTranslucent());
     BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIGHT_GRAY_LIGHT_SENSITIVE_BARRIER_PASSABLE, RenderLayer.getTranslucent());

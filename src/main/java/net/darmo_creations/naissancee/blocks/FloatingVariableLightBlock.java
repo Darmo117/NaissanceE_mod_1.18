@@ -39,7 +39,7 @@ public class FloatingVariableLightBlock extends VariableLightBlock implements Bl
   @Override
   public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
     return type == ModBlockEntities.FLOATING_VARIABLE_LIGHT_BLOCK
-        ? (world_, pos, state_, be) -> ((FloatingVariableLightBlockEntity) be).update()
+        ? (world_, pos, state_, be) -> ((FloatingVariableLightBlockEntity) be).tick()
         : null;
   }
 
