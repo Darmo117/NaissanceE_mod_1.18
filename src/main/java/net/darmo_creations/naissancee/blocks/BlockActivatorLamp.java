@@ -24,7 +24,7 @@ import java.util.Random;
 public class BlockActivatorLamp extends Block {
   public static final BooleanProperty POWERED = Properties.POWERED;
 
-  private static final VoxelShape COLLISION_AABB = Block.createCuboidShape(0.1, 0.1, 0.1, 15.9, 15.9, 15.9);
+  private static final VoxelShape COLLISION_AABB = createCuboidShape(0.1, 0.1, 0.1, 15.9, 15.9, 15.9);
   private static final Box HITBOX = VoxelShapes.fullCube().getBoundingBox();
 
   private static final int TICK_DELAY = 10;

@@ -22,7 +22,7 @@ import net.minecraft.world.World;
  * the block’s light level toggles between two values over several seconds.
  */
 public class FloatingVariableLightBlock extends VariableLightBlock implements BlockEntityProvider {
-  private static final VoxelShape SHAPE = Block.createCuboidShape(4, 7, 4, 12, 15, 12);
+  private static final VoxelShape SHAPE = createCuboidShape(4, 7, 4, 12, 15, 12);
 
   public FloatingVariableLightBlock() {
     super(FabricBlockSettings.of(Material.STONE, MapColor.WHITE)

@@ -20,7 +20,7 @@ import net.minecraft.world.BlockView;
  * @see InvisibleLightTweakerItem
  */
 public class InvisibleLightBlock extends VariableLightBlock implements BlockEntityProvider {
-  private static final VoxelShape SHAPE = Block.createCuboidShape(4, 4, 4, 12, 12, 12);
+  private static final VoxelShape SHAPE = createCuboidShape(4, 4, 4, 12, 12, 12);
 
   public InvisibleLightBlock() {
     super(FabricBlockSettings.of(Material.AIR)

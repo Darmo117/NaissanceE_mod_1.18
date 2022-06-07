@@ -20,15 +20,15 @@ import net.minecraft.world.BlockView;
 public class HalfLadderBlock extends LadderBlockWithoutSupport implements Colored {
   public static final EnumProperty<Side> SIDE = EnumProperty.of("side", Side.class);
 
-  protected static final VoxelShape NORTH_LEFT_AABB = Block.createCuboidShape(8, 0, 13, 16, 16, 16);
-  protected static final VoxelShape SOUTH_LEFT_AABB = Block.createCuboidShape(0, 0, 0, 8, 16, 3);
-  protected static final VoxelShape WEST_LEFT_AABB = Block.createCuboidShape(13, 0, 0, 16, 16, 8);
-  protected static final VoxelShape EAST_LEFT_AABB = Block.createCuboidShape(0, 0, 8, 3, 16, 16);
+  protected static final VoxelShape NORTH_LEFT_AABB = createCuboidShape(8, 0, 13, 16, 16, 16);
+  protected static final VoxelShape SOUTH_LEFT_AABB = createCuboidShape(0, 0, 0, 8, 16, 3);
+  protected static final VoxelShape WEST_LEFT_AABB = createCuboidShape(13, 0, 0, 16, 16, 8);
+  protected static final VoxelShape EAST_LEFT_AABB = createCuboidShape(0, 0, 8, 3, 16, 16);
 
-  protected static final VoxelShape NORTH_RIGHT_AABB = Block.createCuboidShape(0, 0, 13, 8, 16, 16);
-  protected static final VoxelShape SOUTH_RIGHT_AABB = Block.createCuboidShape(8, 0, 0, 16, 16, 3);
-  protected static final VoxelShape WEST_RIGHT_AABB = Block.createCuboidShape(13, 0, 8, 16, 16, 16);
-  protected static final VoxelShape EAST_RIGHT_AABB = Block.createCuboidShape(0, 0, 0, 3, 16, 8);
+  protected static final VoxelShape NORTH_RIGHT_AABB = createCuboidShape(0, 0, 13, 8, 16, 16);
+  protected static final VoxelShape SOUTH_RIGHT_AABB = createCuboidShape(8, 0, 0, 16, 16, 3);
+  protected static final VoxelShape WEST_RIGHT_AABB = createCuboidShape(13, 0, 8, 16, 16, 16);
+  protected static final VoxelShape EAST_RIGHT_AABB = createCuboidShape(0, 0, 0, 3, 16, 8);
 
   /**
    * Creates a half ladder with the given color.
