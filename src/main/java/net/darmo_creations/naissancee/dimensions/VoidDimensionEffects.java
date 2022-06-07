@@ -1,4 +1,4 @@
-package net.darmo_creations.naissancee.dimension;
+package net.darmo_creations.naissancee.dimensions;
 
 import net.minecraft.client.render.DimensionEffects;
 import net.minecraft.util.math.Vec3d;

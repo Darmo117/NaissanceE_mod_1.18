@@ -3,7 +3,7 @@ package net.darmo_creations.naissancee;
 import net.darmo_creations.naissancee.block_entities.ModBlockEntities;
 import net.darmo_creations.naissancee.blocks.ModBlocks;
 import net.darmo_creations.naissancee.commands.SetPassableCommand;
-import net.darmo_creations.naissancee.dimension.VoidDimensionEffects;
+import net.darmo_creations.naissancee.dimensions.VoidDimensionEffects;
 import net.darmo_creations.naissancee.items.ModItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
