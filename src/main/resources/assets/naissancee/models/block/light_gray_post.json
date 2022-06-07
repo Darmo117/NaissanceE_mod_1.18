@@ -1,0 +1,6 @@
+{
+  "parent": "naissancee:block/post",
+  "textures": {
+    "all": "naissancee:blocks/light_gray_block"
+  }
+}

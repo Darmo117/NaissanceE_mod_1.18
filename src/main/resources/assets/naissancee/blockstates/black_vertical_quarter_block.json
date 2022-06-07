@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "position=north": {
+      "model": "naissancee:block/black_vertical_quarter_block_middle",
+      "y": 90
+    },
+    "position=south": {
+      "model": "naissancee:block/black_vertical_quarter_block_middle",
+      "y": 270
+    },
+    "position=west": {
+      "model": "naissancee:block/black_vertical_quarter_block_middle"
+    },
+    "position=east": {
+      "model": "naissancee:block/black_vertical_quarter_block_middle",
+      "y": 180
+    },
+    "position=north_west": {
+      "model": "naissancee:block/black_vertical_quarter_block_corner",
+      "y": 90
+    },
+    "position=south_west": {
+      "model": "naissancee:block/black_vertical_quarter_block_corner"
+    },
+    "position=north_east": {
+      "model": "naissancee:block/black_vertical_quarter_block_corner",
+      "y": 180
+    },
+    "position=south_east": {
+      "model": "naissancee:block/black_vertical_quarter_block_corner",
+      "y": 270
+    }
+  }
+}

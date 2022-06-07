@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "naissancee:block/white_thick_post_horizontal",
+      "y": 90
+    },
+    "axis=y": {
+      "model": "naissancee:block/white_thick_post"
+    },
+    "axis=z": {
+      "model": "naissancee:block/white_thick_post_horizontal"
+    }
+  }
+}

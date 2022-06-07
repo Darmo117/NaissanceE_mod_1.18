@@ -1,0 +1,6 @@
+{
+  "parent": "naissancee:block/vertical_quarter_block_middle",
+  "textures": {
+    "all": "naissancee:blocks/gray_block"
+  }
+}

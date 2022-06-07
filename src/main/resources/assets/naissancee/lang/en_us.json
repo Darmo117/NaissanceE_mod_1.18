@@ -23,6 +23,26 @@
   "block.naissancee.light_gray_vslab": "Light Gray Vertical Slab",
   "block.naissancee.white_vslab": "White Vertical Slab",
 
+  "block.naissancee.black_horizontal_quarter_block": "Black Horizontal Quarter Block",
+  "block.naissancee.gray_horizontal_quarter_block": "Gray Horizontal Quarter Block",
+  "block.naissancee.light_gray_horizontal_quarter_block": "Light Gray Horizontal Quarter Block",
+  "block.naissancee.white_horizontal_quarter_block": "White Horizontal Quarter Block",
+
+  "block.naissancee.black_vertical_quarter_block": "Black Vertical Quarter Block",
+  "block.naissancee.gray_vertical_quarter_block": "Gray Vertical Quarter Block",
+  "block.naissancee.light_gray_vertical_quarter_block": "Light Gray Vertical Quarter Block",
+  "block.naissancee.white_vertical_quarter_block": "White Vertical Quarter Block",
+
+  "block.naissancee.black_post": "Black Post",
+  "block.naissancee.gray_post": "Gray Post",
+  "block.naissancee.light_gray_post": "Light Gray Post",
+  "block.naissancee.white_post": "White Post",
+
+  "block.naissancee.black_thick_post": "Black Thick Post",
+  "block.naissancee.gray_thick_post": "Gray Thick Post",
+  "block.naissancee.light_gray_thick_post": "Light Gray Thick Post",
+  "block.naissancee.white_thick_post": "White Thick Post",
+
   "block.naissancee.black_light_sensitive_barrier": "Black Light-Sensitive Barrier",
   "block.naissancee.black_light_sensitive_barrier_passable": "Black Light-Sensitive Barrier (Passable)",
   "block.naissancee.gray_light_sensitive_barrier": "Gray Light-Sensitive Barrier",

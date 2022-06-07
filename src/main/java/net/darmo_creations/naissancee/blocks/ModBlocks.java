@@ -29,6 +29,14 @@ public final class ModBlocks {
       generateAndRegisterColoredBlocks("%s_slab", ColoredSlabBlock::new);
   public static final ColoredBlockMap<ColoredVerticalSlabBlock> COLORED_VERTICAL_SLABS =
       generateAndRegisterColoredBlocks("%s_vslab", ColoredVerticalSlabBlock::new);
+  public static final ColoredBlockMap<HorizontalQuarterBlock> COLORED_HORIZONTAL_QUARTER_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_horizontal_quarter_block", HorizontalQuarterBlock::new);
+  public static final ColoredBlockMap<VerticalQuarterBlock> COLORED_VERTICAL_QUARTER_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_vertical_quarter_block", VerticalQuarterBlock::new);
+  public static final ColoredBlockMap<PostBlock> COLORED_POSTS =
+      generateAndRegisterColoredBlocks("%s_post", PostBlock::new);
+  public static final ColoredBlockMap<ThickPostBlock> COLORED_THICK_POSTS =
+      generateAndRegisterColoredBlocks("%s_thick_post", ThickPostBlock::new);
 
   // Light-sensitive blocks
   public static final ColoredBlockMap<LightSensitiveBarrierBlock> COLORED_LIGHT_SENSITIVE_BARRIERS =
@@ -85,7 +93,7 @@ public final class ModBlocks {
     }
   }
 
-  // TODO corners, posts, walls, light orb controller, etc.
+  // TODO light orb controller, etc.
   // TODO doors (make partially openable)
 
   /**
