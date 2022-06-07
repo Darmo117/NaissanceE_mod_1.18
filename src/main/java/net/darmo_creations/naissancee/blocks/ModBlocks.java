@@ -115,6 +115,7 @@ public final class ModBlocks {
       register("floating_variable_light_block", new FloatingVariableLightBlock(), NaissanceE.TECHNICAL_GROUP);
   public static final Block INVISIBLE_LIGHT =
       register("invisible_light", new InvisibleLightBlock(), NaissanceE.TECHNICAL_GROUP);
+  public static final Block ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp());
   public static final Block[] LIGHT_BLOCKS = new Block[15];
 
   static {
@@ -124,16 +125,15 @@ public final class ModBlocks {
   }
 
   // Ladders
-  public static final Block BLACK_LADDER = register("black_ladder", new TwoPartLadderBlock(BlockColor.BLACK));
-  public static final Block GRAY_LADDER = register("gray_ladder", new TwoPartLadderBlock(BlockColor.GRAY));
-  public static final Block LIGHT_GRAY_LADDER = register("light_gray_ladder", new TwoPartLadderBlock(BlockColor.LIGHT_GRAY));
-  public static final Block WHITE_LADDER = register("white_ladder", new TwoPartLadderBlock(BlockColor.WHITE));
+  public static final Block BLACK_LADDER = register("black_ladder", new LadderBlockWithoutSupport(BlockColor.BLACK));
+  public static final Block GRAY_LADDER = register("gray_ladder", new LadderBlockWithoutSupport(BlockColor.GRAY));
+  public static final Block LIGHT_GRAY_LADDER = register("light_gray_ladder", new LadderBlockWithoutSupport(BlockColor.LIGHT_GRAY));
+  public static final Block WHITE_LADDER = register("white_ladder", new LadderBlockWithoutSupport(BlockColor.WHITE));
+
   public static final Block BLACK_HALF_LADDER = register("black_half_ladder", new HalfLadderBlock(BlockColor.BLACK));
   public static final Block GRAY_HALF_LADDER = register("gray_half_ladder", new HalfLadderBlock(BlockColor.GRAY));
   public static final Block LIGHT_GRAY_HALF_LADDER = register("light_gray_half_ladder", new HalfLadderBlock(BlockColor.LIGHT_GRAY));
   public static final Block WHITE_HALF_LADDER = register("white_half_ladder", new HalfLadderBlock(BlockColor.WHITE));
-
-  public static final Block ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp());
 
   // TODO corners, posts, walls, light orb controller, etc.
   // TODO doors (make partially openable)

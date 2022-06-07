@@ -9,9 +9,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldView;
 
 /**
- * Custom ladder that does not disappear if the block it is placed against is removed.
+ * A ladder block that can be placed anywhere and does not break when its supporting block is removed.
  */
-public class TwoPartLadderBlock extends LadderBlock implements Colored {
+public class LadderBlockWithoutSupport extends LadderBlock implements Colored {
   private final BlockColor color;
 
   /**
@@ -19,7 +19,7 @@ public class TwoPartLadderBlock extends LadderBlock implements Colored {
    *
    * @param color Ladder’s color.
    */
-  public TwoPartLadderBlock(final BlockColor color) {
+  public LadderBlockWithoutSupport(final BlockColor color) {
     super(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE).nonOpaque());
     this.color = color;
   }
