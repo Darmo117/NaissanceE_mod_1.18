@@ -3,6 +3,7 @@ package net.darmo_creations.naissancee.items;
 import net.darmo_creations.naissancee.Utils;
 import net.darmo_creations.naissancee.block_entities.LightOrbControllerBlockEntity;
 import net.darmo_creations.naissancee.blocks.LightOrbControllerBlock;
+import net.darmo_creations.naissancee.network.ServerNetworkUtils;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -62,7 +63,7 @@ public class LightOrbTweakerItem extends Item {
             NbtCompound tag = new NbtCompound();
             tag.put(CONTROLLER_POS_TAG_KEY, NbtHelper.fromBlockPos(be.get().getPos()));
             player.getStackInHand(hand).setNbt(tag);
-            Utils.sendMessage(world, player,
+            ServerNetworkUtils.sendMessage(world, player,
                 new TranslatableText("item.naissancee.light_orb_tweaker.action_bar.controller_selected",
                     Utils.blockPosToString(pos)).setStyle(Style.EMPTY.withColor(Formatting.YELLOW)), true);
             return ActionResult.SUCCESS;
@@ -78,11 +79,11 @@ public class LightOrbTweakerItem extends Item {
               int nbRemoved = controller.get().removeCheckpoint(p);
               success = nbRemoved != 0;
               if (nbRemoved == 0) {
-                Utils.sendMessage(world, player,
+                ServerNetworkUtils.sendMessage(world, player,
                     new TranslatableText("item.naissancee.light_orb_tweaker.action_bar.cannot_remove_checkpoint")
                         .setStyle(Style.EMPTY.withColor(Formatting.RED)), true);
               } else {
-                Utils.sendMessage(world, player,
+                ServerNetworkUtils.sendMessage(world, player,
                     new TranslatableText("item.naissancee.light_orb_tweaker.action_bar.checkpoints_removed", nbRemoved)
                         .setStyle(Style.EMPTY.withColor(Formatting.GREEN)), true);
               }

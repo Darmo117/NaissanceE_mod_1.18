@@ -17,7 +17,8 @@ public class ClientToServerPacketFactory {
       new Identifier(NaissanceE.MODID, "light_orb_controller_data_packet");
 
   /**
-   * Creates a byte buffer to serve as payload for a packet to send light orb controller’s data to the server.
+   * Creates a byte buffer to serve as payload for a packet to send
+   * data of a light orb controller block entity to the server.
    */
   public static PacketByteBuf createLightOrbControllerBEPacketByteBuffer(
       final BlockPos pos, final boolean active, final boolean loops, final boolean invisible, final int lightLevel,
