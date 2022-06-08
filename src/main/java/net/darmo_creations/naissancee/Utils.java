@@ -3,6 +3,7 @@ package net.darmo_creations.naissancee;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -44,6 +45,13 @@ public final class Utils {
   }
 
   /**
+   * Converts a block position to a string.
+   */
+  public static String blockPosToString(BlockPos pos) {
+    return "%d %d %d".formatted(pos.getX(), pos.getY(), pos.getZ());
+  }
+
+  /**
    * Performs a true modulo operation using the mathematical definition of "a mod b".
    *
    * @param a Value to get the modulo of.
@@ -52,6 +60,20 @@ public final class Utils {
    */
   public static int trueModulo(int a, int b) {
     return ((a % b) + b) % b;
+  }
+
+  /**
+   * Sends a chat message to a player. Does nothing if the world is remote (i.e. client-side).
+   *
+   * @param world       The world the player is in.
+   * @param player      The player to send the message to.
+   * @param text        Message’s text.
+   * @param inActionBar Whether to send the message in the player’s action bar.
+   */
+  public static void sendMessage(final World world, PlayerEntity player, final Text text, final boolean inActionBar) {
+    if (!world.isClient()) {
+      player.sendMessage(text, inActionBar);
+    }
   }
 
   private Utils() {

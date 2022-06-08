@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "naissancee:block/light_orb_controller"
+    }
+  }
+}

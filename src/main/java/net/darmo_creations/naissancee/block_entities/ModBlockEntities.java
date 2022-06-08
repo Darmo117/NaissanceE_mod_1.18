@@ -2,6 +2,7 @@ package net.darmo_creations.naissancee.block_entities;
 
 import net.darmo_creations.naissancee.NaissanceE;
 import net.darmo_creations.naissancee.block_entities.renderers.InvisibleLightBlockEntityRenderer;
+import net.darmo_creations.naissancee.block_entities.renderers.LightOrbControllerBlockEntityRenderer;
 import net.darmo_creations.naissancee.blocks.ModBlocks;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -19,6 +20,8 @@ public final class ModBlockEntities {
       register("invisible_light_block", InvisibleLightBlockEntity::new, ModBlocks.INVISIBLE_LIGHT);
   public static final BlockEntityType<FloatingVariableLightBlockEntity> FLOATING_VARIABLE_LIGHT_BLOCK =
       register("floating_variable_light", FloatingVariableLightBlockEntity::new, ModBlocks.FLOATING_VARIABLE_LIGHT_BLOCK);
+  public static final BlockEntityType<LightOrbControllerBlockEntity> LIGHT_ORB_CONTROLLER =
+      register("light_orb_controller", LightOrbControllerBlockEntity::new, ModBlocks.LIGHT_ORB_CONTROLLER);
 
   /**
    * Registers a block entity type.
@@ -56,6 +59,7 @@ public final class ModBlockEntities {
    */
   public static void registerRenderers() {
     BlockEntityRendererRegistry.register(INVISIBLE_LIGHT_BLOCK, InvisibleLightBlockEntityRenderer::new);
+    BlockEntityRendererRegistry.register(LIGHT_ORB_CONTROLLER, LightOrbControllerBlockEntityRenderer::new);
   }
 
   private ModBlockEntities() {

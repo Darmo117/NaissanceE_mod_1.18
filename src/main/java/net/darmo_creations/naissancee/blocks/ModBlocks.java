@@ -13,6 +13,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.function.Function;
 
@@ -99,7 +100,10 @@ public final class ModBlocks {
     }
   }
 
-  // TODO light orb controller, etc.
+  public static final LightOrbControllerBlock LIGHT_ORB_CONTROLLER =
+      register("light_orb_controller", new LightOrbControllerBlock(), NaissanceE.TECHNICAL_GROUP);
+  public static final LightOrbSourceBlock LIGHT_ORB_SOURCE =
+      register("light_orb_source", new LightOrbSourceBlock(), null);
 
   /**
    * Instanciates then registers a block for each {@link BlockColor}.
@@ -143,9 +147,11 @@ public final class ModBlocks {
    * @param <T>       Type of the block to register.
    * @return The registered block.
    */
-  private static <T extends Block> T register(final String name, final T block, final ItemGroup itemGroup) {
+  private static <T extends Block> T register(final String name, final T block, @Nullable final ItemGroup itemGroup) {
     Registry.register(Registry.BLOCK, new Identifier(NaissanceE.MODID, name), block);
-    Registry.register(Registry.ITEM, new Identifier(NaissanceE.MODID, name), new BlockItem(block, new FabricItemSettings().group(itemGroup)));
+    if (itemGroup != null) {
+      Registry.register(Registry.ITEM, new Identifier(NaissanceE.MODID, name), new BlockItem(block, new FabricItemSettings().group(itemGroup)));
+    }
     return block;
   }
 

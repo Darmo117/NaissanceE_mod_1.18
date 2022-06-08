@@ -16,6 +16,8 @@ public final class ModItems {
       register("barrier_state_toggler", new PassableStateTogglerItem(new FabricItemSettings().group(NaissanceE.TECHNICAL_GROUP)));
   public static final Item INVISIBLE_LIGHT_TWEAKER =
       register("invisible_light_tweaker", new InvisibleLightTweakerItem(new FabricItemSettings().group(NaissanceE.TECHNICAL_GROUP)));
+  public static final Item LIGHT_ORB_TWEAKER =
+      register("light_orb_tweaker", new LightOrbTweakerItem(new FabricItemSettings().group(NaissanceE.TECHNICAL_GROUP)));
 
   /**
    * Registers an item.
