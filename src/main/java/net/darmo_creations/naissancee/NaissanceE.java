@@ -5,7 +5,6 @@ import net.darmo_creations.naissancee.blocks.BlockColor;
 import net.darmo_creations.naissancee.blocks.ModBlocks;
 import net.darmo_creations.naissancee.commands.SetPassableCommand;
 import net.darmo_creations.naissancee.dimensions.VoidDimensionEffects;
-import net.darmo_creations.naissancee.entities.ModEntities;
 import net.darmo_creations.naissancee.items.ModItems;
 import net.darmo_creations.naissancee.network.ClientToServerPacketFactory;
 import net.darmo_creations.naissancee.network.ServerPacketHandlers;
@@ -49,7 +48,6 @@ public class NaissanceE implements ModInitializer {
     ModBlocks.init();
     ModItems.init();
     ModBlockEntities.init();
-    ModEntities.init();
     // Inject custom dimension effects. Custom dimension and dimension type are added through datapack.
     DimensionEffectsAccessor.getIdentifierMap().put(VOID_DIMENSION_EFFECTS_KEY, new VoidDimensionEffects());
     this.registerServerPacketHandlers();

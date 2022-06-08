@@ -3,7 +3,9 @@ package net.darmo_creations.naissancee;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.Arrays;
@@ -59,6 +61,33 @@ public final class Utils {
    */
   public static int trueModulo(int a, int b) {
     return ((a % b) + b) % b;
+  }
+
+  /**
+   * Extracts a {@link Vec3d} from an NBT tag.
+   *
+   * @param nbt The NBT tag to query from.
+   * @param key Tag’s key.
+   * @return The vector.
+   */
+  public static Vec3d getVec3d(final NbtCompound nbt, final String key) {
+    NbtCompound tag = nbt.getCompound(key);
+    return new Vec3d(tag.getDouble("X"), tag.getDouble("Y"), tag.getDouble("Z"));
+  }
+
+  /**
+   * Puts a {@link Vec3d} in an NBT tag.
+   *
+   * @param vector The vector to serialize.
+   * @param nbt    The NBT tag to insert into.
+   * @param key    Tag’s key.
+   */
+  public static void putVec3d(final Vec3d vector, final NbtCompound nbt, final String key) {
+    NbtCompound tag = new NbtCompound();
+    tag.putDouble("X", vector.getX());
+    tag.putDouble("Y", vector.getY());
+    tag.putDouble("Z", vector.getZ());
+    nbt.put(key, tag);
   }
 
   private Utils() {

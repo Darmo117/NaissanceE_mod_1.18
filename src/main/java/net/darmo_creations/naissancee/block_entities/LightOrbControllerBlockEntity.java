@@ -2,50 +2,42 @@ package net.darmo_creations.naissancee.block_entities;
 
 import net.darmo_creations.naissancee.blocks.LightOrbControllerBlock;
 import net.darmo_creations.naissancee.blocks.ModBlocks;
-import net.darmo_creations.naissancee.entities.LightOrbEntity;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtHelper;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShapes;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
- * Tile entity for light orb controller.
+ * Block entity for light orb controller.
  * <p>
- * Creates a light orb entity when the tile entity is created, specifically when {@link #init()} is called.
- * It defines the behavior its associated light orb.
+ * Manages a single {@link LightOrb}.
  *
  * @see LightOrbControllerBlock
  * @see ModBlocks#LIGHT_ORB_CONTROLLER
+ * @see LightOrb
  */
 public class LightOrbControllerBlockEntity extends BlockEntity {
-  private static final String ORB_ID_TAG_KEY = "OrbID";
   private static final String ACTIVE_TAG_KEY = "Active";
   private static final String LOOPS_TAG_KEY = "Loops";
   private static final String INVISIBLE_TAG_KEY = "Invisible";
   private static final String LIGHT_LEVEL_TAG_KEY = "LightLevel";
   private static final String SPEED_TAG_KEY = "Speed";
   private static final String CHECKPOINTS_TAG_KEY = "Checkpoints";
+  private static final String ORB_DATA_TAG_KEY = "OrbData";
 
-  /**
-   * UUID of associated orb.
-   */
-  private UUID orbID;
   /**
    * Whether the orb is active, i.e. whether the player can interact with it.
    */
@@ -71,9 +63,13 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
    * Whether the orb should be invisible, i.e. not emit any particles.
    */
   private boolean invisible;
+  /**
+   * The light orb.
+   */
+  private LightOrb orb;
 
   /**
-   * Create a tile entity with empty path.
+   * Create a block entity with empty path.
    */
   public LightOrbControllerBlockEntity(BlockPos pos, BlockState state) {
     super(ModBlockEntities.LIGHT_ORB_CONTROLLER, pos, state);
@@ -81,7 +77,7 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
   }
 
   /**
-   * Initialize this tile entity.
+   * Initialize this block entity.
    * The path is initialized with a single stop checkpoint positionned right above the controller block.
    * Light level is set to 15 and speed to 0.25 blocks per second. Path does not loop by default.
    */
@@ -92,55 +88,43 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
     this.setSpeed(0.25);
     this.checkpoints = new LinkedList<>();
     this.addCheckpoint(this.pos.up(), true, 0);
-    this.spawnOrb();
   }
 
   /**
    * Spawns a new light orb after deleting the already existing one if it exists.
    * Does nothing when called client-side.
    */
-  public void spawnOrb() {
+  public void resetOrb() {
     //noinspection ConstantConditions
     if (!this.world.isClient()) {
-      LightOrbEntity currentOrb = this.getOrb();
-      if (currentOrb != null) {
-        currentOrb.remove(Entity.RemovalReason.DISCARDED);
-      }
-      LightOrbEntity newOrb = new LightOrbEntity(this.world, this);
+      this.orb = new LightOrb(this);
       BlockPos pos = this.checkpoints.get(0).getPos();
-      newOrb.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-      this.world.spawnEntity(newOrb);
-      this.orbID = newOrb.getUuid();
-      newOrb.init();
+      this.orb.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
       this.markDirty();
+      this.world.updateListeners(this.getPos(), this.getCachedState(), this.getCachedState(), Block.NOTIFY_ALL);
     }
   }
 
   /**
-   * Kills the associated light orb.
-   * Does nothing when called client-side.
+   * Executes one tick of this block entity’s logic.
    */
-  public void killOrb() {
-    //noinspection ConstantConditions
-    if (!this.world.isClient()) {
-      LightOrbEntity currentOrb = this.getOrb();
-      if (currentOrb != null) {
-        currentOrb.remove(Entity.RemovalReason.DISCARDED);
+  public void tick() {
+    if (this.orb != null) {
+      this.orb.tick();
+      //noinspection ConstantConditions
+      if (this.orb.hasMoved() && !this.world.isClient()) {
         this.markDirty();
       }
     }
   }
 
   /**
-   * Get the associated orb entity, based on its UUID.
-   *
-   * @return The entity object or null if it doesn’t exist.
-   * @see #orbID
+   * Called when the block associated to this block entity is removed.
    */
-  private LightOrbEntity getOrb() {
-    //noinspection ConstantConditions
-    List<LightOrbEntity> orbs = this.world.getEntitiesByClass(LightOrbEntity.class, VoxelShapes.UNBOUNDED.getBoundingBox(), e -> e.getUuid().equals(this.orbID));
-    return !orbs.isEmpty() ? orbs.get(0) : null;
+  public void onRemoved() {
+    if (this.orb != null) {
+      this.orb.onRemoved();
+    }
   }
 
   /**
@@ -169,7 +153,7 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
    */
   public void addCheckpoint(BlockPos pos, boolean stop, int ticksToWait) {
     this.checkpoints.add(new PathCheckpoint(pos, stop, ticksToWait));
-    this.spawnOrb();
+    this.resetOrb();
   }
 
   /**
@@ -187,7 +171,7 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
     }
     this.checkpoints = checkpoints;
     if (anyRemoved) {
-      this.spawnOrb();
+      this.resetOrb();
     }
     return oldSize - this.checkpoints.size();
   }
@@ -246,6 +230,11 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
     return this.loops;
   }
 
+  /**
+   * Set whether the path should loop.
+   *
+   * @param loops True to loop, false otherwise.
+   */
   public void setLoops(boolean loops) {
     this.loops = loops;
     this.markDirty();
@@ -312,7 +301,6 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
   @Override
   protected void writeNbt(NbtCompound nbt) {
     super.writeNbt(nbt);
-    nbt.put(ORB_ID_TAG_KEY, NbtHelper.fromUuid(this.orbID));
     nbt.putBoolean(ACTIVE_TAG_KEY, this.active);
     nbt.putBoolean(LOOPS_TAG_KEY, this.loops);
     nbt.putBoolean(INVISIBLE_TAG_KEY, this.invisible);
@@ -323,13 +311,16 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
       list.add(checkpoint.toNBT());
     }
     nbt.put(CHECKPOINTS_TAG_KEY, list);
+    if (this.orb != null) {
+      NbtCompound orbData = new NbtCompound();
+      this.orb.writeToNBT(orbData);
+      nbt.put(ORB_DATA_TAG_KEY, orbData);
+    }
   }
 
   @Override
   public void readNbt(NbtCompound nbt) {
     super.readNbt(nbt);
-    //noinspection ConstantConditions
-    this.orbID = NbtHelper.toUuid(nbt.get(ORB_ID_TAG_KEY));
     this.active = nbt.getBoolean(ACTIVE_TAG_KEY);
     this.loops = nbt.getBoolean(LOOPS_TAG_KEY);
     this.invisible = nbt.getBoolean(INVISIBLE_TAG_KEY);
@@ -338,6 +329,9 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
     this.checkpoints = new LinkedList<>();
     for (NbtElement tag : nbt.getList(CHECKPOINTS_TAG_KEY, NbtElement.COMPOUND_TYPE)) {
       this.checkpoints.add(new PathCheckpoint((NbtCompound) tag));
+    }
+    if (nbt.contains(ORB_DATA_TAG_KEY)) {
+      this.orb = new LightOrb(this, nbt.getCompound(ORB_DATA_TAG_KEY));
     }
   }
 

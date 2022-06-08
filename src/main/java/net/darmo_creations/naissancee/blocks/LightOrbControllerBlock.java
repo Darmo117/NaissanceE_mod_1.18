@@ -2,13 +2,15 @@ package net.darmo_creations.naissancee.blocks;
 
 import net.darmo_creations.naissancee.Utils;
 import net.darmo_creations.naissancee.block_entities.LightOrbControllerBlockEntity;
-import net.darmo_creations.naissancee.entities.LightOrbEntity;
+import net.darmo_creations.naissancee.block_entities.ModBlockEntities;
 import net.darmo_creations.naissancee.gui.LightOrbControllerScreen;
 import net.darmo_creations.naissancee.items.LightOrbTweakerItem;
 import net.darmo_creations.naissancee.items.ModItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
@@ -23,7 +25,6 @@ import java.util.Optional;
 /**
  * This block lets players configure light orbs through the use of a special tool and a configuration GUI.
  *
- * @see LightOrbEntity
  * @see LightOrbTweakerItem
  * @see LightOrbControllerBlockEntity
  */
@@ -45,7 +46,7 @@ public class LightOrbControllerBlock extends BlockWithEntity implements Operator
 
   @Override
   public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-    Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos).ifPresent(LightOrbControllerBlockEntity::killOrb);
+    Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos).ifPresent(LightOrbControllerBlockEntity::onRemoved);
     super.onBreak(world, pos, state, player);
   }
 
@@ -53,7 +54,6 @@ public class LightOrbControllerBlock extends BlockWithEntity implements Operator
   @Override
   public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
     Optional<LightOrbControllerBlockEntity> be = Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos);
-
     if (be.isPresent() && player.isCreativeLevelTwoOp() && player.getStackInHand(hand).getItem() == ModItems.LIGHT_ORB_TWEAKER) {
       if (world.isClient()) {
         MinecraftClient.getInstance().setScreen(new LightOrbControllerScreen(be.get()));
@@ -62,6 +62,13 @@ public class LightOrbControllerBlock extends BlockWithEntity implements Operator
     } else {
       return ActionResult.FAIL;
     }
+  }
+
+  @Override
+  public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+    return type == ModBlockEntities.LIGHT_ORB_CONTROLLER
+        ? (world_, pos, state_, be) -> ((LightOrbControllerBlockEntity) be).tick()
+        : null;
   }
 
   @Override

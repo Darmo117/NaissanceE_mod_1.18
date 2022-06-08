@@ -51,7 +51,7 @@ public final class ServerPacketHandlers {
             NaissanceE.LOGGER.error(e.getMessage(), e);
             return;
           }
-          controller.spawnOrb();
+          controller.resetOrb();
         })
     );
   }

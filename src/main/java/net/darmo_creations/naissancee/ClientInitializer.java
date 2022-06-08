@@ -2,7 +2,6 @@ package net.darmo_creations.naissancee;
 
 import net.darmo_creations.naissancee.block_entities.ModBlockEntities;
 import net.darmo_creations.naissancee.blocks.ModBlocks;
-import net.darmo_creations.naissancee.entities.ModEntities;
 import net.darmo_creations.naissancee.network.ClientPacketHandlers;
 import net.darmo_creations.naissancee.network.ServerToClientPacketFactory;
 import net.fabricmc.api.ClientModInitializer;
@@ -16,7 +15,6 @@ public class ClientInitializer implements ClientModInitializer {
   public void onInitializeClient() {
     ModBlocks.registerBlockRenderLayers();
     ModBlockEntities.registerRenderers();
-    ModEntities.registerRenderers();
     this.registerPacketReceivers();
   }
 
