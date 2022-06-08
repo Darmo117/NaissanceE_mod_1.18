@@ -17,6 +17,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Matrix3f;
+import net.minecraft.util.math.Matrix4f;
 
 import java.util.List;
 
@@ -60,7 +62,7 @@ public class LightOrbControllerBlockEntityRenderer implements BlockEntityRendere
         }
         this.renderCheckpoint(be, checkpoint, i == 0, i == size - 1, matrices, vertexConsumers);
         if (nextCheckpoint != null) {
-          this.renderLine(be, checkpoint, nextCheckpoint, vertexConsumers);
+          this.renderLine(be, checkpoint, nextCheckpoint, matrices, vertexConsumers);
         }
       }
     }
@@ -94,10 +96,10 @@ public class LightOrbControllerBlockEntityRenderer implements BlockEntityRendere
     double boxY2 = checkpointPos.getY() - bePos.getY() + end;
     double boxZ2 = checkpointPos.getZ() - bePos.getZ() + end;
 
-    double lineX = checkpointPos.getX() - bePos.getX() + 0.5;
-    double lineY1 = checkpointPos.getY() - bePos.getY();
-    double lineZ = checkpointPos.getZ() - bePos.getZ() + 0.5;
-    double lineY2 = checkpointPos.getY() - bePos.getY() + 1;
+    float lineX = checkpointPos.getX() - bePos.getX() + 0.5f;
+    float lineY1 = checkpointPos.getY() - bePos.getY();
+    float lineZ = checkpointPos.getZ() - bePos.getZ() + 0.5f;
+    float lineY2 = checkpointPos.getY() - bePos.getY() + 1;
 
     int boxR = 0, boxG = 0, boxB = 0;
     if (checkpoint.isStop()) {
@@ -115,30 +117,36 @@ public class LightOrbControllerBlockEntityRenderer implements BlockEntityRendere
 
     VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getLines());
     if (isFirst || isLast) {
-      // FIXME
-//      vertexConsumer.vertex(lineX, lineY1, lineZ).color(lineR, lineG, lineB, 255).next();
-//      vertexConsumer.vertex(lineX, lineY2, lineZ).color(lineR, lineG, lineB, 255).next();
+      Matrix4f matrix4f = matrices.peek().getPositionMatrix();
+      Matrix3f matrix3f = matrices.peek().getNormalMatrix();
+      vertexConsumer.vertex(matrix4f, lineX, lineY1, lineZ).color(lineR, lineG, lineB, 255).normal(matrix3f, 0, 1, 0).next();
+      vertexConsumer.vertex(matrix4f, lineX, lineY2, lineZ).color(lineR, lineG, lineB, 255).normal(matrix3f, 0, 1, 0).next();
     }
     WorldRenderer.drawBox(matrices, vertexConsumer, boxX1, boxY1, boxZ1, boxX2, boxY2, boxZ2, boxR, boxG, boxB, 1);
   }
 
-  private void renderLine(LightOrbControllerBlockEntity be,
-                          PathCheckpoint checkpoint1, PathCheckpoint checkpoint2,
-                          VertexConsumerProvider vertexConsumers) {
+  private void renderLine(LightOrbControllerBlockEntity be, PathCheckpoint checkpoint1, PathCheckpoint checkpoint2,
+                          MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
     BlockPos tePos = be.getPos();
     BlockPos pos1 = checkpoint1.getPos();
     BlockPos pos2 = checkpoint2.getPos();
-    final double offset = 0.5;
-    double x1 = pos1.getX() - tePos.getX() + offset;
-    double y1 = pos1.getY() - tePos.getY() + offset;
-    double z1 = pos1.getZ() - tePos.getZ() + offset;
-    double x2 = pos2.getX() - tePos.getX() + offset;
-    double y2 = pos2.getY() - tePos.getY() + offset;
-    double z2 = pos2.getZ() - tePos.getZ() + offset;
+    final float offset = 0.5f;
+    float x1 = pos1.getX() - tePos.getX() + offset;
+    float y1 = pos1.getY() - tePos.getY() + offset;
+    float z1 = pos1.getZ() - tePos.getZ() + offset;
+    float x2 = pos2.getX() - tePos.getX() + offset;
+    float y2 = pos2.getY() - tePos.getY() + offset;
+    float z2 = pos2.getZ() - tePos.getZ() + offset;
     VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getLines());
-    // FIXME
-//    vertexConsumer.vertex(x1, y1, z1).color(255, 255, 255, 255).next();
-//    vertexConsumer.vertex(x2, y2, z2).color(255, 255, 255, 255).next();
+    Matrix4f matrix4f = matrices.peek().getPositionMatrix();
+    Matrix3f matrix3f = matrices.peek().getNormalMatrix();
+    // Draw 3 lines with different normals to give the resulting line the same width from all camera angles
+    vertexConsumer.vertex(matrix4f, x1, y1, z1).color(255, 255, 255, 255).normal(matrix3f, 0, 1, 0).next();
+    vertexConsumer.vertex(matrix4f, x2, y2, z2).color(255, 255, 255, 255).normal(matrix3f, 0, 1, 0).next();
+    vertexConsumer.vertex(matrix4f, x1, y1, z1).color(255, 255, 255, 255).normal(matrix3f, 1, 0, 0).next();
+    vertexConsumer.vertex(matrix4f, x2, y2, z2).color(255, 255, 255, 255).normal(matrix3f, 1, 0, 0).next();
+    vertexConsumer.vertex(matrix4f, x1, y1, z1).color(255, 255, 255, 255).normal(matrix3f, 0, 0, 1).next();
+    vertexConsumer.vertex(matrix4f, x2, y2, z2).color(255, 255, 255, 255).normal(matrix3f, 0, 0, 1).next();
   }
 
   @Override
