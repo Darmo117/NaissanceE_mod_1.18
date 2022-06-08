@@ -4,6 +4,8 @@ import io.netty.buffer.Unpooled;
 import net.darmo_creations.naissancee.NaissanceE;
 import net.darmo_creations.naissancee.block_entities.PathCheckpoint;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
@@ -19,6 +21,8 @@ public class ClientToServerPacketFactory {
   /**
    * Creates a byte buffer to serve as payload for a packet to send
    * data of a light orb controller block entity to the server.
+   *
+   * @see ServerPacketHandlers#handleLightOrbControllerBEPacket(MinecraftServer, ServerPlayerEntity, PacketByteBuf)
    */
   public static PacketByteBuf createLightOrbControllerBEPacketByteBuffer(
       final BlockPos pos, final boolean active, final boolean loops, final boolean invisible, final int lightLevel,

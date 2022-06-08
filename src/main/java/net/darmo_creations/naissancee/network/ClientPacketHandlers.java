@@ -19,6 +19,7 @@ public final class ClientPacketHandlers {
    *
    * @param client  Game client instance.
    * @param byteBuf Packet’s payload.
+   * @see ServerToClientPacketFactory#createEntitySpawnPacket(Entity)
    */
   public static void handleEntitySpawnPacket(MinecraftClient client, final PacketByteBuf byteBuf) {
     EntityType<?> entityType = Registry.ENTITY_TYPE.get(byteBuf.readVarInt());

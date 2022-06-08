@@ -22,6 +22,7 @@ public final class ServerPacketHandlers {
    * @param server Server instance.
    * @param player Player that sent the packet.
    * @param buf    Packet’s payload.
+   * @see ClientToServerPacketFactory#createLightOrbControllerBEPacketByteBuffer(BlockPos, boolean, boolean, boolean, int, double, List)
    */
   public static void handleLightOrbControllerBEPacket(MinecraftServer server, final ServerPlayerEntity player, final PacketByteBuf buf) {
     BlockPos pos = buf.readBlockPos();
