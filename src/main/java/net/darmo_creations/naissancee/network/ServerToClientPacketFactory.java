@@ -14,7 +14,7 @@ import net.minecraft.util.registry.Registry;
  * A class that defines static methods that create packets to be sent from the server to a client.
  */
 public class ServerToClientPacketFactory {
-  public static final Identifier ENTITY_SPAWN_PACKET_ID = new Identifier(NaissanceE.MODID, "entity_spawn_packet");
+  public static final Identifier ENTITY_SPAWN_PACKET_ID = new Identifier(NaissanceE.MOD_ID, "entity_spawn_packet");
 
   /**
    * Creates a packet to spawn an entity on the client.

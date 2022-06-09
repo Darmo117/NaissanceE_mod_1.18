@@ -28,7 +28,7 @@ public final class ModItems {
    * @return The registered item.
    */
   private static <T extends Item> T register(final String name, final T item) {
-    return Registry.register(Registry.ITEM, new Identifier(NaissanceE.MODID, name), item);
+    return Registry.register(Registry.ITEM, new Identifier(NaissanceE.MOD_ID, name), item);
   }
 
   /**

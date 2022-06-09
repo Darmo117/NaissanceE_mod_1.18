@@ -39,7 +39,7 @@ public final class ModBlockEntities {
     //noinspection unchecked
     return (T) Registry.register(
         Registry.BLOCK_ENTITY_TYPE,
-        new Identifier(NaissanceE.MODID, name),
+        new Identifier(NaissanceE.MOD_ID, name),
         FabricBlockEntityTypeBuilder.create(factory, blocks).build()
     );
   }

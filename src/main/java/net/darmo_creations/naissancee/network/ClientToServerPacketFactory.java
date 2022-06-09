@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ClientToServerPacketFactory {
   public static final Identifier LIGHT_ORB_CONTROLLER_DATA_PACKET_ID =
-      new Identifier(NaissanceE.MODID, "light_orb_controller_data_packet");
+      new Identifier(NaissanceE.MOD_ID, "light_orb_controller_data_packet");
 
   /**
    * Creates a byte buffer to serve as payload for a packet to send

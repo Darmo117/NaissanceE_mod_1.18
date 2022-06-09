@@ -24,24 +24,24 @@ import org.slf4j.LoggerFactory;
  */
 // TODO mod icon
 public class NaissanceE implements ModInitializer {
-  public static final String MODID = "naissancee";
-  public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
+  public static final String MOD_ID = "naissancee";
+  public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
   // Creative mode’s item groups
   public static final ItemGroup BLOCKS_GROUP = FabricItemGroupBuilder.build(
-      new Identifier(MODID, "building"),
+      new Identifier(MOD_ID, "building"),
       () -> new ItemStack(ModBlocks.COLORED_LIGHT_SENSITIVE_BARRIERS.get(BlockColor.LIGHT_GRAY))
   );
   public static final ItemGroup TECHNICAL_GROUP = FabricItemGroupBuilder.build(
-      new Identifier(MODID, "technical"),
+      new Identifier(MOD_ID, "technical"),
       () -> new ItemStack(ModItems.INVISIBLE_LIGHT_TWEAKER)
   );
   public static final ItemGroup CREATURES_GROUP = FabricItemGroupBuilder.build(
-      new Identifier(MODID, "creatures"),
+      new Identifier(MOD_ID, "creatures"),
       () -> new ItemStack(ModBlocks.LIVING_BLOCK)
   );
 
-  public static final Identifier VOID_DIMENSION_EFFECTS_KEY = new Identifier(MODID, "void");
+  public static final Identifier VOID_DIMENSION_EFFECTS_KEY = new Identifier(MOD_ID, "void");
 
   @Override
   public void onInitialize() {

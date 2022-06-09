@@ -148,9 +148,9 @@ public final class ModBlocks {
    * @return The registered block.
    */
   private static <T extends Block> T register(final String name, final T block, @Nullable final ItemGroup itemGroup) {
-    Registry.register(Registry.BLOCK, new Identifier(NaissanceE.MODID, name), block);
+    Registry.register(Registry.BLOCK, new Identifier(NaissanceE.MOD_ID, name), block);
     if (itemGroup != null) {
-      Registry.register(Registry.ITEM, new Identifier(NaissanceE.MODID, name), new BlockItem(block, new FabricItemSettings().group(itemGroup)));
+      Registry.register(Registry.ITEM, new Identifier(NaissanceE.MOD_ID, name), new BlockItem(block, new FabricItemSettings().group(itemGroup)));
     }
     return block;
   }
