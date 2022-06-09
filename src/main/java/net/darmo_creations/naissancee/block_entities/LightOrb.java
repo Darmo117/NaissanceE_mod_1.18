@@ -153,20 +153,20 @@ public class LightOrb {
         this.moved = true;
 
         if (reachedNextCP) {
-          if (nextCheckpoint.isStop()) {
-            this.waitForPlayer = true;
+          Optional<Pair<Integer, PathCheckpoint>> nextNextCheckpoint =
+              this.controller.getNextCheckpoint(this.nextCheckpointIndex);
+          if (nextCheckpoint.isStop() || nextNextCheckpoint.isEmpty()) { // Last CP may not be set to stop
+            this.waitForPlayer = nextNextCheckpoint.isPresent();
             this.stop();
-            this.moved = false;
           }
           this.timeToWait = nextCheckpoint.getTicksToWait();
-          this.controller.getNextCheckpoint(this.nextCheckpointIndex).ifPresent(p -> {
-            this.nextCheckpointIndex = p.getKey();
+          nextNextCheckpoint.ifPresent(pair -> {
+            this.nextCheckpointIndex = pair.getKey();
             if (!nextCheckpoint.isStop()) {
               if (this.timeToWait == 0) {
-                this.updateMotion(p.getValue());
+                this.updateMotion(pair.getValue());
               } else {
                 this.stop();
-                this.moved = false;
               }
             }
           });
@@ -211,6 +211,7 @@ public class LightOrb {
    */
   private void stop() {
     this.velocity = Vec3d.ZERO;
+    this.moved = false;
   }
 
   /**
