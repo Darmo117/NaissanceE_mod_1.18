@@ -91,12 +91,22 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
   }
 
   /**
+   * Returns the light orb managed by this block entity.
+   */
+  public Optional<LightOrb> getOrb() {
+    return Optional.ofNullable(this.orb);
+  }
+
+  /**
    * Spawns a new light orb after deleting the already existing one if it exists.
    * Does nothing when called client-side.
    */
   public void resetOrb() {
     //noinspection ConstantConditions
     if (!this.world.isClient()) {
+      if (this.orb != null) {
+        this.orb.onRemoved();
+      }
       this.orb = new LightOrb(this);
       BlockPos pos = this.checkpoints.get(0).getPos();
       this.orb.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);

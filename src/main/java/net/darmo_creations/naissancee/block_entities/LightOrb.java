@@ -33,7 +33,7 @@ public class LightOrb {
   /**
    * Box used to detect collisions with players.
    */
-  private static final Box BOX = new Box(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5);
+  private static final Box BOX = new Box(-0.4, -0.4, -0.4, 0.4, 0.4, 0.4);
 
   private final LightOrbControllerBlockEntity controller;
   private int nextCheckpointIndex;
@@ -79,6 +79,13 @@ public class LightOrb {
    */
   public Vec3d getPosition() {
     return this.position;
+  }
+
+  /**
+   * Returns the size of the hit box.
+   */
+  public Vec3d getHitBoxSize() {
+    return new Vec3d(BOX.getXLength(), BOX.getYLength(), BOX.getZLength());
   }
 
   /**

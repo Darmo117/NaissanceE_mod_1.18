@@ -1,5 +1,6 @@
 package net.darmo_creations.naissancee.block_entities.renderers;
 
+import net.darmo_creations.naissancee.block_entities.LightOrb;
 import net.darmo_creations.naissancee.block_entities.LightOrbControllerBlockEntity;
 import net.darmo_creations.naissancee.block_entities.PathCheckpoint;
 import net.darmo_creations.naissancee.blocks.LightOrbControllerBlock;
@@ -10,7 +11,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Matrix3f;
 import net.minecraft.util.math.Matrix4f;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class LightOrbControllerBlockEntityRenderer implements BlockEntityRendere
         && stack.getItem() == ModItems.LIGHT_ORB_TWEAKER
         && LightOrbTweakerItem.getControllerTileEntity(stack, be.getWorld()).map(t -> t.getPos().equals(be.getPos())).orElse(false)) {
       this.renderControllerBox(matrices, vertexConsumers);
+      be.getOrb().ifPresent(orb -> this.renderLightOrbBox(be, orb, matrices, vertexConsumers));
 
       List<PathCheckpoint> checkpoints = be.getCheckpoints();
       for (int i = 0, size = checkpoints.size(); i < size; i++) {
@@ -68,63 +70,66 @@ public class LightOrbControllerBlockEntityRenderer implements BlockEntityRendere
     }
   }
 
-  private void renderControllerBox(MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
-    final double offset = 0.01;
-    double boxX1 = -offset;
-    double boxY1 = -offset;
-    double boxZ1 = -offset;
-    double boxX2 = 1 + offset;
-    double boxY2 = 1 + offset;
-    double boxZ2 = 1 + offset;
-    VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getLines());
-    WorldRenderer.drawBox(matrices, vertexConsumer, boxX1, boxY1, boxZ1, boxX2, boxY2, boxZ2, 1, 1, 0, 1);
+  /**
+   * Renders the hit box of the given light orb.
+   */
+  private void renderLightOrbBox(LightOrbControllerBlockEntity be, LightOrb orb, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
+    BlockPos bePos = be.getPos();
+    Vec3d pos = orb.getPosition();
+    Vec3d hitBox = orb.getHitBoxSize();
+    RenderUtils.renderBoxInWorld(
+        matrices, vertexConsumers,
+        pos.getX() - bePos.getX(), pos.getY() - bePos.getY(), pos.getZ() - bePos.getZ(),
+        hitBox.getX(), hitBox.getY(), hitBox.getZ(),
+        0xffffff
+    );
   }
 
-  private void renderCheckpoint(LightOrbControllerBlockEntity be, PathCheckpoint checkpoint,
-                                boolean isFirst, boolean isLast, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
+  /**
+   * Renders a box around the controller block.
+   */
+  private void renderControllerBox(MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
+    final double offset = 1e-3;
+    RenderUtils.renderBoxInWorld(matrices, vertexConsumers,
+        0.5, 0.5, 0.5,
+        1 + offset, 1 + offset, 1 + offset,
+        0xffff00
+    );
+  }
+
+  /**
+   * Renders boxes for the given checkpoint.
+   */
+  private void renderCheckpoint(
+      LightOrbControllerBlockEntity be, PathCheckpoint checkpoint,
+      boolean isFirst, boolean isLast,
+      MatrixStack matrices, VertexConsumerProvider vertexConsumers
+  ) {
     BlockPos bePos = be.getPos();
     BlockPos checkpointPos = checkpoint.getPos();
+    double x = checkpointPos.getX() - bePos.getX() + 0.5;
+    double y = checkpointPos.getY() - bePos.getY() + 0.5;
+    double z = checkpointPos.getZ() - bePos.getZ() + 0.5;
 
-    final double boxSize = 0.25;
-    double start = 0.5 - boxSize;
-    double end = 0.5 + boxSize;
-
-    double boxX1 = checkpointPos.getX() - bePos.getX() + start;
-    double boxY1 = checkpointPos.getY() - bePos.getY() + start;
-    double boxZ1 = checkpointPos.getZ() - bePos.getZ() + start;
-    double boxX2 = checkpointPos.getX() - bePos.getX() + end;
-    double boxY2 = checkpointPos.getY() - bePos.getY() + end;
-    double boxZ2 = checkpointPos.getZ() - bePos.getZ() + end;
-
-    float lineX = checkpointPos.getX() - bePos.getX() + 0.5f;
-    float lineY1 = checkpointPos.getY() - bePos.getY();
-    float lineZ = checkpointPos.getZ() - bePos.getZ() + 0.5f;
-    float lineY2 = checkpointPos.getY() - bePos.getY() + 1;
-
-    int boxR = 0, boxG = 0, boxB = 0;
-    if (checkpoint.isStop()) {
-      boxR = 1;
-    } else {
-      boxG = 1;
-    }
-    int lineR = 0, lineG = 0, lineB = 0;
-    if (isFirst) {
-      lineB = 255;
-    } else if (isLast) {
-      lineG = 255;
-      lineB = 255;
-    }
-
-    VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getLines());
     if (isFirst || isLast) {
-      Matrix4f matrix4f = matrices.peek().getPositionMatrix();
-      Matrix3f matrix3f = matrices.peek().getNormalMatrix();
-      vertexConsumer.vertex(matrix4f, lineX, lineY1, lineZ).color(lineR, lineG, lineB, 255).normal(matrix3f, 0, 1, 0).next();
-      vertexConsumer.vertex(matrix4f, lineX, lineY2, lineZ).color(lineR, lineG, lineB, 255).normal(matrix3f, 0, 1, 0).next();
+      int color;
+      if (isFirst && isLast) {
+        color = 0xff0000;
+      } else if (isFirst) {
+        color = 0xffff00;
+      } else {
+        color = 0xff00ff;
+      }
+      RenderUtils.renderBoxInWorld(matrices, vertexConsumers, x, y, z, 1, 1, 1, color);
     }
-    WorldRenderer.drawBox(matrices, vertexConsumer, boxX1, boxY1, boxZ1, boxX2, boxY2, boxZ2, boxR, boxG, boxB, 1);
+
+    int color = checkpoint.isStop() ? 0xff0000 : 0x00ff00;
+    RenderUtils.renderBoxInWorld(matrices, vertexConsumers, x, y, z, 0.5, 0.5, 0.5, color);
   }
 
+  /**
+   * Renders a line between two checkpoints.
+   */
   private void renderLine(LightOrbControllerBlockEntity be, PathCheckpoint checkpoint1, PathCheckpoint checkpoint2,
                           MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
     BlockPos tePos = be.getPos();
