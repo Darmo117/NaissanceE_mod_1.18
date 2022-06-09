@@ -14,7 +14,7 @@ import net.minecraft.world.World;
  */
 public class InvisibleLightTweakerItem extends Item {
   public InvisibleLightTweakerItem(Settings settings) {
-    super(settings);
+    super(settings.maxCount(1));
   }
 
   @Override

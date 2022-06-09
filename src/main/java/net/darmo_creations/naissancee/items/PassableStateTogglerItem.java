@@ -15,7 +15,7 @@ import net.minecraft.world.World;
  */
 public class PassableStateTogglerItem extends Item {
   public PassableStateTogglerItem(Settings settings) {
-    super(settings);
+    super(settings.maxCount(1));
   }
 
   @Override
