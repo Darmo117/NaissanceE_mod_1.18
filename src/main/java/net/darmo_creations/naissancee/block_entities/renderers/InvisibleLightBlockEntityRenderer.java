@@ -63,13 +63,12 @@ public class InvisibleLightBlockEntityRenderer implements BlockEntityRenderer<In
    * Draws a rotating item in the center of the block.
    */
   private void drawRotatingItem(final InvisibleLightBlockEntity blockEntity, final float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
-    //noinspection ConstantConditions
-    int lightAbove = WorldRenderer.getLightmapCoordinates(blockEntity.getWorld(), blockEntity.getPos().up());
     matrices.push();
     matrices.translate(0.5, 0.4, 0.5);
+    //noinspection ConstantConditions
     matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((blockEntity.getWorld().getTime() + tickDelta) * 2));
     MinecraftClient.getInstance().getItemRenderer()
-        .renderItem(STACK, ModelTransformation.Mode.GROUND, lightAbove, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0);
+        .renderItem(STACK, ModelTransformation.Mode.GROUND, 13631712, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0);
     matrices.pop();
   }
 
