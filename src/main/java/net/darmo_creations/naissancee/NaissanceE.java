@@ -22,7 +22,6 @@ import org.slf4j.LoggerFactory;
 /**
  * Mod’s main class. Common initializer for both client and server.
  */
-// TODO mod icon
 public class NaissanceE implements ModInitializer {
   public static final String MOD_ID = "naissancee";
   public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
