@@ -149,5 +149,10 @@ public class VerticalQuarterBlock extends Block implements Colored, Waterloggabl
     public String asString() {
       return this.name;
     }
+
+    @Override
+    public String toString() {
+      return this.asString();
+    }
   }
 }

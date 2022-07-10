@@ -184,5 +184,10 @@ public class HorizontalQuarterBlock extends Block implements Colored, Waterlogga
     public String asString() {
       return this.name;
     }
+
+    @Override
+    public String toString() {
+      return this.asString();
+    }
   }
 }
