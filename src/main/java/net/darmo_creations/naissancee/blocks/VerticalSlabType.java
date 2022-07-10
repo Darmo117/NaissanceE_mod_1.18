@@ -33,6 +33,11 @@ public enum VerticalSlabType implements StringIdentifiable {
     return this.name;
   }
 
+  @Override
+  public String toString() {
+    return this.asString();
+  }
+
   /**
    * Returns the slab type for the given horizontal direction.
    *
