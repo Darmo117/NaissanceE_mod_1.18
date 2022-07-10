@@ -32,7 +32,7 @@ public class PlainDoorBlock extends DoorBlock implements Colored {
    */
   public PlainDoorBlock(final BlockColor color, final boolean fullyCloses) {
     // Must use metal material to have same behavior as vanilla’s iron door
-    super(FabricBlockSettings.of(Material.METAL, color.getMapColor()).sounds(BlockSoundGroup.STONE));
+    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.METAL, color.getMapColor()).sounds(BlockSoundGroup.STONE)));
     this.color = color;
     this.fullyCloses = fullyCloses;
   }

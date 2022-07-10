@@ -5,7 +5,7 @@ package net.darmo_creations.naissancee.blocks;
  *
  * @see BlockColor
  */
-public interface Colored {
+public interface Colored extends NaissanceEBlock {
   /**
    * Returns the color of this block.
    */

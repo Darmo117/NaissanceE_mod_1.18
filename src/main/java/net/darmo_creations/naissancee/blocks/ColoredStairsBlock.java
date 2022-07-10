@@ -16,9 +16,9 @@ public class ColoredStairsBlock extends StairsBlock implements Colored {
    * @param baseBlock Colored block to use a base.
    */
   public ColoredStairsBlock(final ColoredBlock baseBlock) {
-    super(baseBlock.getDefaultState(),
+    super(baseBlock.getDefaultState(), NaissanceEBlock.getSettings(
         FabricBlockSettings.of(baseBlock.getDefaultState().getMaterial(), baseBlock.getColor().getMapColor())
-            .sounds(BlockSoundGroup.STONE));
+            .sounds(BlockSoundGroup.STONE)));
     this.color = baseBlock.getColor();
   }
 

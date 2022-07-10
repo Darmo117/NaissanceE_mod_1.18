@@ -17,7 +17,7 @@ public abstract class VariableLightBlock extends Block {
   public static final IntProperty LIGHT_LEVEL = IntProperty.of("light_level", 0, 15);
 
   public VariableLightBlock(Settings settings) {
-    super(settings.luminance(state -> state.get(LIGHT_LEVEL)));
+    super(NaissanceEBlock.getSettings(settings.luminance(state -> state.get(LIGHT_LEVEL))));
   }
 
   /**

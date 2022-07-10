@@ -37,7 +37,7 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
   protected static final VoxelShape EAST_SHAPE = createCuboidShape(8, 0, 0, 16, 16, 16);
 
   public VerticalSlabBlock(Settings settings) {
-    super(settings);
+    super(NaissanceEBlock.getSettings(settings));
     this.setDefaultState(this.getDefaultState().with(TYPE, VerticalSlabType.NORTH).with(WATERLOGGED, false));
   }
 

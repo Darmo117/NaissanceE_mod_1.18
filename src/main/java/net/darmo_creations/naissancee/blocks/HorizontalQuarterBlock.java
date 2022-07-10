@@ -47,7 +47,7 @@ public class HorizontalQuarterBlock extends Block implements Colored, Waterlogga
   private final BlockColor color;
 
   public HorizontalQuarterBlock(final BlockColor color) {
-    super(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE));
+    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE)));
     this.color = color;
     this.setDefaultState(this.getDefaultState()
         .with(POSITION, Position.NORTH_BOTTOM)

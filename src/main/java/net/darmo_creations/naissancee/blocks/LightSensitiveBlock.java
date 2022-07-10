@@ -10,7 +10,7 @@ import net.minecraft.world.World;
  *
  * @param <T> Concrete block class.
  */
-public interface LightSensitiveBlock<T extends LightSensitiveBlock<T>> {
+public interface LightSensitiveBlock<T extends LightSensitiveBlock<T>> extends NaissanceEBlock {
   /**
    * Adds specific settings related to the solidity of the block.
    *
@@ -19,7 +19,7 @@ public interface LightSensitiveBlock<T extends LightSensitiveBlock<T>> {
    * @return The new settings.
    */
   static AbstractBlock.Settings getSettings(AbstractBlock.Settings settings, final boolean passable) {
-    return passable ? settings.nonOpaque() : settings;
+    return NaissanceEBlock.getSettings(passable ? settings.nonOpaque() : settings);
   }
 
   /**

@@ -28,7 +28,7 @@ public class LivingBlock extends Block {
   public static final BooleanProperty EAST = BooleanProperty.of("east");
 
   public LivingBlock() {
-    super(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).sounds(BlockSoundGroup.METAL));
+    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).sounds(BlockSoundGroup.METAL)));
   }
 
   @Override

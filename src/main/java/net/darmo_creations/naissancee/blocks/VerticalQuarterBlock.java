@@ -37,7 +37,7 @@ public class VerticalQuarterBlock extends Block implements Colored, Waterloggabl
   private final BlockColor color;
 
   public VerticalQuarterBlock(final BlockColor color) {
-    super(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE));
+    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE)));
     this.color = color;
     this.setDefaultState(this.getDefaultState()
         .with(POSITION, Position.NORTH)

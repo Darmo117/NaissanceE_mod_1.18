@@ -23,7 +23,7 @@ public abstract class AbstractPostBlock extends PillarBlock implements Colored, 
   private final BlockColor color;
 
   public AbstractPostBlock(final BlockColor color) {
-    super(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE));
+    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE)));
     this.color = color;
     this.setDefaultState(this.getDefaultState()
         .with(AXIS, Direction.Axis.Y)

@@ -17,7 +17,7 @@ public class ColoredBlock extends Block implements Colored {
    * @param color Block’s color.
    */
   public ColoredBlock(final BlockColor color) {
-    super(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE));
+    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE)));
     this.color = color;
   }
 

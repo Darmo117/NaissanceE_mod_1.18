@@ -30,7 +30,7 @@ public class BlockActivatorLamp extends Block {
   private static final int TICK_DELAY = 10;
 
   public BlockActivatorLamp() {
-    super(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(15));
+    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(15)));
     this.setDefaultState(this.getDefaultState().with(POWERED, false));
   }
 

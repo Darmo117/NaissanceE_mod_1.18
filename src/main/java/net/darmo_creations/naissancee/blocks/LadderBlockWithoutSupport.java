@@ -20,7 +20,7 @@ public class LadderBlockWithoutSupport extends LadderBlock implements Colored {
    * @param color Ladder’s color.
    */
   public LadderBlockWithoutSupport(final BlockColor color) {
-    super(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE).nonOpaque());
+    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE).nonOpaque()));
     this.color = color;
   }
 
