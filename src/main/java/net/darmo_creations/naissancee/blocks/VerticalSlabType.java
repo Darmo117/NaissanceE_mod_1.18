@@ -1,5 +1,7 @@
 package net.darmo_creations.naissancee.blocks;
 
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.Direction;
 
@@ -26,6 +28,32 @@ public enum VerticalSlabType implements StringIdentifiable {
    */
   public Direction getDirection() {
     return this.direction;
+  }
+
+  /**
+   * Applies the given rotation to this slab type.
+   *
+   * @param rotation Rotation to apply.
+   * @return Resulting slab type.
+   */
+  public VerticalSlabType rotate(BlockRotation rotation) {
+    if (this.getDirection() == null) {
+      return this;
+    }
+    return forDirection(rotation.rotate(this.getDirection()));
+  }
+
+  /**
+   * Applies the given mirror transformation to this slab type.
+   *
+   * @param mirror Mirror transformation to apply.
+   * @return Resulting slab type.
+   */
+  public VerticalSlabType mirror(BlockMirror mirror) {
+    if (this.getDirection() == null) {
+      return this;
+    }
+    return forDirection(mirror.apply(this.getDirection()));
   }
 
   @Override

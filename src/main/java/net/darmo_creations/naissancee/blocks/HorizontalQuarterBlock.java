@@ -10,6 +10,8 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -156,6 +158,18 @@ public class HorizontalQuarterBlock extends Block implements Colored, Waterlogga
     return super.getFluidState(state);
   }
 
+  @SuppressWarnings("deprecation")
+  @Override
+  public BlockState rotate(BlockState state, BlockRotation rotation) {
+    return state.with(POSITION, state.get(POSITION).rotate(rotation));
+  }
+
+  @SuppressWarnings("deprecation")
+  @Override
+  public BlockState mirror(BlockState state, BlockMirror mirror) {
+    return state.with(POSITION, state.get(POSITION).mirror(mirror));
+  }
+
   public enum Position implements StringIdentifiable {
     NORTH_TOP("north_top"),
     NORTH_MIDDLE("north_middle"),
@@ -178,6 +192,99 @@ public class HorizontalQuarterBlock extends Block implements Colored, Waterlogga
 
     Position(String name) {
       this.name = name;
+    }
+
+    /**
+     * Applies the given rotation to this position.
+     *
+     * @param rotation Rotation to apply.
+     * @return Resulting position.
+     */
+    public Position rotate(BlockRotation rotation) {
+      return switch (rotation) {
+        case NONE -> this;
+        case CLOCKWISE_90 -> switch (this) {
+          case NORTH_TOP -> EAST_TOP;
+          case NORTH_MIDDLE -> EAST_MIDDLE;
+          case NORTH_BOTTOM -> EAST_BOTTOM;
+          case SOUTH_TOP -> WEST_TOP;
+          case SOUTH_MIDDLE -> WEST_MIDDLE;
+          case SOUTH_BOTTOM -> WEST_BOTTOM;
+          case WEST_TOP -> NORTH_TOP;
+          case WEST_MIDDLE -> NORTH_MIDDLE;
+          case WEST_BOTTOM -> NORTH_BOTTOM;
+          case EAST_TOP -> SOUTH_TOP;
+          case EAST_MIDDLE -> SOUTH_MIDDLE;
+          case EAST_BOTTOM -> SOUTH_BOTTOM;
+          case X_TOP -> Z_TOP;
+          case X_BOTTOM -> Z_BOTTOM;
+          case Z_TOP -> X_TOP;
+          case Z_BOTTOM -> X_BOTTOM;
+        };
+        case CLOCKWISE_180 -> switch (this) {
+          case NORTH_TOP -> SOUTH_TOP;
+          case NORTH_MIDDLE -> SOUTH_MIDDLE;
+          case NORTH_BOTTOM -> SOUTH_BOTTOM;
+          case SOUTH_TOP -> NORTH_TOP;
+          case SOUTH_MIDDLE -> NORTH_MIDDLE;
+          case SOUTH_BOTTOM -> NORTH_BOTTOM;
+          case WEST_TOP -> EAST_TOP;
+          case WEST_MIDDLE -> EAST_MIDDLE;
+          case WEST_BOTTOM -> EAST_BOTTOM;
+          case EAST_TOP -> WEST_TOP;
+          case EAST_MIDDLE -> WEST_MIDDLE;
+          case EAST_BOTTOM -> WEST_BOTTOM;
+          default -> this;
+        };
+        case COUNTERCLOCKWISE_90 -> switch (this) {
+          case NORTH_TOP -> WEST_TOP;
+          case NORTH_MIDDLE -> WEST_MIDDLE;
+          case NORTH_BOTTOM -> WEST_BOTTOM;
+          case SOUTH_TOP -> EAST_TOP;
+          case SOUTH_MIDDLE -> EAST_MIDDLE;
+          case SOUTH_BOTTOM -> EAST_BOTTOM;
+          case WEST_TOP -> SOUTH_TOP;
+          case WEST_MIDDLE -> SOUTH_MIDDLE;
+          case WEST_BOTTOM -> SOUTH_BOTTOM;
+          case EAST_TOP -> NORTH_TOP;
+          case EAST_MIDDLE -> NORTH_MIDDLE;
+          case EAST_BOTTOM -> NORTH_BOTTOM;
+          case X_TOP -> Z_TOP;
+          case X_BOTTOM -> Z_BOTTOM;
+          case Z_TOP -> X_TOP;
+          case Z_BOTTOM -> X_BOTTOM;
+        };
+      };
+    }
+
+    /**
+     * Applies the given mirror transformation to this position.
+     *
+     * @param mirror Mirror transformation to apply.
+     * @return Resulting position.
+     */
+    public Position mirror(BlockMirror mirror) {
+      return switch (mirror) {
+        case NONE -> this;
+        case LEFT_RIGHT -> switch (this) {
+          case NORTH_TOP -> SOUTH_TOP;
+          case NORTH_MIDDLE -> SOUTH_MIDDLE;
+          case NORTH_BOTTOM -> SOUTH_BOTTOM;
+          case SOUTH_TOP -> NORTH_TOP;
+          case SOUTH_MIDDLE -> NORTH_MIDDLE;
+          case SOUTH_BOTTOM -> NORTH_BOTTOM;
+          default -> this;
+        };
+        case FRONT_BACK -> switch (this) {
+          case WEST_TOP -> EAST_TOP;
+          case WEST_MIDDLE -> EAST_MIDDLE;
+          case WEST_BOTTOM -> EAST_BOTTOM;
+          case EAST_TOP -> WEST_TOP;
+          case EAST_MIDDLE -> WEST_MIDDLE;
+          case EAST_BOTTOM -> WEST_BOTTOM;
+          default -> this;
+        };
+      };
     }
 
     @Override

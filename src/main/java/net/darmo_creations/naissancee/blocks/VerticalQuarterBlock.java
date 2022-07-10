@@ -10,6 +10,8 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -129,6 +131,18 @@ public class VerticalQuarterBlock extends Block implements Colored, Waterloggabl
     return super.getFluidState(state);
   }
 
+  @SuppressWarnings("deprecation")
+  @Override
+  public BlockState rotate(BlockState state, BlockRotation rotation) {
+    return state.with(POSITION, state.get(POSITION).rotate(rotation));
+  }
+
+  @SuppressWarnings("deprecation")
+  @Override
+  public BlockState mirror(BlockState state, BlockMirror mirror) {
+    return state.with(POSITION, state.get(POSITION).mirror(mirror));
+  }
+
   public enum Position implements StringIdentifiable {
     NORTH_WEST("north_west"),
     NORTH("north"),
@@ -143,6 +157,80 @@ public class VerticalQuarterBlock extends Block implements Colored, Waterloggabl
 
     Position(String name) {
       this.name = name;
+    }
+
+    /**
+     * Applies the given rotation to this position.
+     *
+     * @param rotation Rotation to apply.
+     * @return Resulting position.
+     */
+    public Position rotate(BlockRotation rotation) {
+      return switch (rotation) {
+        case NONE -> this;
+        case CLOCKWISE_90 -> switch (this) {
+          case NORTH_WEST -> NORTH_EAST;
+          case NORTH -> EAST;
+          case NORTH_EAST -> SOUTH_EAST;
+          case EAST -> SOUTH;
+          case SOUTH_EAST -> SOUTH_WEST;
+          case SOUTH -> WEST;
+          case SOUTH_WEST -> NORTH_WEST;
+          case WEST -> NORTH;
+        };
+        case CLOCKWISE_180 -> switch (this) {
+          case NORTH_WEST -> SOUTH_EAST;
+          case NORTH -> SOUTH;
+          case NORTH_EAST -> SOUTH_WEST;
+          case EAST -> WEST;
+          case SOUTH_EAST -> NORTH_WEST;
+          case SOUTH -> NORTH;
+          case SOUTH_WEST -> NORTH_EAST;
+          case WEST -> EAST;
+        };
+        case COUNTERCLOCKWISE_90 -> switch (this) {
+          case NORTH_WEST -> SOUTH_WEST;
+          case NORTH -> WEST;
+          case NORTH_EAST -> NORTH_WEST;
+          case EAST -> NORTH;
+          case SOUTH_EAST -> NORTH_EAST;
+          case SOUTH -> EAST;
+          case SOUTH_WEST -> SOUTH_EAST;
+          case WEST -> SOUTH;
+        };
+      };
+    }
+
+    /**
+     * Applies the given mirror transformation to this position.
+     *
+     * @param mirror Mirror transformation to apply.
+     * @return Resulting position.
+     */
+    public Position mirror(BlockMirror mirror) {
+      return switch (mirror) {
+        case NONE -> this;
+        case LEFT_RIGHT -> switch (this) {
+          case NORTH_WEST -> SOUTH_WEST;
+          case NORTH -> SOUTH;
+          case NORTH_EAST -> SOUTH_EAST;
+          case EAST -> EAST;
+          case SOUTH_EAST -> NORTH_EAST;
+          case SOUTH -> NORTH;
+          case SOUTH_WEST -> NORTH_WEST;
+          case WEST -> WEST;
+        };
+        case FRONT_BACK -> switch (this) {
+          case NORTH_WEST -> NORTH_EAST;
+          case NORTH -> NORTH;
+          case NORTH_EAST -> NORTH_WEST;
+          case EAST -> WEST;
+          case SOUTH_EAST -> SOUTH_WEST;
+          case SOUTH -> SOUTH;
+          case SOUTH_WEST -> SOUTH_EAST;
+          case WEST -> EAST;
+        };
+      };
     }
 
     @Override

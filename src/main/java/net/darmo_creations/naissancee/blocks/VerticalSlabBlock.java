@@ -15,6 +15,8 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -143,5 +145,17 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
   @Override
   public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
     return type == NavigationType.WATER && world.getFluidState(pos).isIn(FluidTags.WATER);
+  }
+
+  @SuppressWarnings("deprecation")
+  @Override
+  public BlockState rotate(BlockState state, BlockRotation rotation) {
+    return state.with(TYPE, state.get(TYPE).rotate(rotation));
+  }
+
+  @SuppressWarnings("deprecation")
+  @Override
+  public BlockState mirror(BlockState state, BlockMirror mirror) {
+    return state.with(TYPE, state.get(TYPE).mirror(mirror));
   }
 }
