@@ -62,7 +62,7 @@ public final class ModBlocks {
       register("floating_variable_light_block", new FloatingVariableLightBlock(), NaissanceE.TECHNICAL_GROUP);
   public static final InvisibleLightBlock INVISIBLE_LIGHT =
       register("invisible_light", new InvisibleLightBlock(), NaissanceE.TECHNICAL_GROUP);
-  public static final BlockActivatorLamp ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp());
+  public static final BlockActivatorLamp ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp(), NaissanceE.TECHNICAL_GROUP);
   public static final Block[] LIGHT_BLOCKS = new Block[15];
 
   static {
@@ -82,9 +82,9 @@ public final class ModBlocks {
 
   // Doors
   public static final ColoredBlockMap<PlainDoorBlock> COLORED_DOORS =
-      generateAndRegisterColoredBlocks("%s_door", color -> new PlainDoorBlock(color, true));
+      generateAndRegisterColoredBlocks("%s_door", color -> new PlainDoorBlock(color, true), NaissanceE.TECHNICAL_GROUP);
   public static final ColoredBlockMap<PlainDoorBlock> COLORED_PARTIAL_DOORS =
-      generateAndRegisterColoredBlocks("%s_partial_door", color -> new PlainDoorBlock(color, false));
+      generateAndRegisterColoredBlocks("%s_partial_door", color -> new PlainDoorBlock(color, false), NaissanceE.TECHNICAL_GROUP);
 
   // Creatures
   public static final LivingBlock LIVING_BLOCK = register("living_block", new LivingBlock(), NaissanceE.CREATURES_GROUP);
@@ -106,7 +106,7 @@ public final class ModBlocks {
       register("light_orb_source", new LightOrbSourceBlock(), null);
 
   /**
-   * Instanciates then registers a block for each {@link BlockColor}.
+   * Instanciates then registers a block for each {@link BlockColor} and puts them in the mod’s “Blocks” item group.
    *
    * @param namePattern  Pattern for the block’s name into which to insert the color name.
    * @param blockFactory A factory that returns a block instance for the given color.
@@ -117,10 +117,27 @@ public final class ModBlocks {
       final String namePattern,
       final Function<BlockColor, T> blockFactory
   ) {
+    return generateAndRegisterColoredBlocks(namePattern, blockFactory, NaissanceE.BLOCKS_GROUP);
+  }
+
+  /**
+   * Instanciates then registers a block for each {@link BlockColor}, and puts them in the given item group.
+   *
+   * @param namePattern  Pattern for the block’s name into which to insert the color name.
+   * @param blockFactory A factory that returns a block instance for the given color.
+   * @param itemGroup    Item group to put the blocks in.
+   * @param <T>          Concrete type of generated blocks.
+   * @return A map associating a block instance to each {@link BlockColor}.
+   */
+  private static <T extends Block> ColoredBlockMap<T> generateAndRegisterColoredBlocks(
+      final String namePattern,
+      final Function<BlockColor, T> blockFactory,
+      @Nullable final ItemGroup itemGroup
+  ) {
     ColoredBlockMap<T> blocks = new ColoredBlockMap<>(BlockColor.class);
     Arrays.stream(BlockColor.values()).forEach(color -> {
       T block = blockFactory.apply(color);
-      register(namePattern.formatted(color.asString()), block);
+      register(namePattern.formatted(color.asString()), block, itemGroup);
       blocks.put(color, block);
     });
     return blocks;

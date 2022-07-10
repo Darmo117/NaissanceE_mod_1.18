@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "naissancee:white_block",
+    "naissancee:light_gray_block",
+    "naissancee:gray_block",
+    "naissancee:black_block"
+  ]
+}

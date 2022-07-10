@@ -1,6 +1,15 @@
 {
   "replace": false,
   "values": [
-    "naissancee:activator_lamp"
+    "naissancee:activator_lamp",
+    "naissancee:white_light_sensitive_barrier",
+    "naissancee:white_light_sensitive_barrier_passable",
+    "naissancee:light_gray_light_sensitive_barrier",
+    "naissancee:light_gray_light_sensitive_barrier_passable",
+    "naissancee:gray_light_sensitive_barrier",
+    "naissancee:gray_light_sensitive_barrier_passable",
+    "naissancee:black_light_sensitive_barrier",
+    "naissancee:black_light_sensitive_barrier_passable",
+    "naissancee:living_block"
   ]
 }
