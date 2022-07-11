@@ -13,6 +13,6 @@ public interface NaissanceEBlock {
    * @return The new settings.
    */
   static AbstractBlock.Settings getSettings(AbstractBlock.Settings settings) {
-    return settings.strength(-1, 3_600_000).dropsNothing();
+    return settings.strength(1_000_000, 3_600_000).dropsNothing();
   }
 }
