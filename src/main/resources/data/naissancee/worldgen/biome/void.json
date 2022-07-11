@@ -1,7 +1,7 @@
 {
   "precipitation": "none",
-  "category": "none",
-  "temperature": 0.3,
+  "category": "the_end",
+  "temperature": 1,
   "temperature_modifier": "none",
   "downfall": 0.5,
   "creature_spawn_probability": 0,
