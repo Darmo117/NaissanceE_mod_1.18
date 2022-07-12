@@ -6,12 +6,12 @@ import net.darmo_creations.naissancee.blocks.ModBlocks;
 import net.darmo_creations.naissancee.commands.SetPassableCommand;
 import net.darmo_creations.naissancee.dimensions.VoidDimensionEffects;
 import net.darmo_creations.naissancee.items.ModItems;
-import net.darmo_creations.naissancee.network.ClientToServerPacketFactory;
-import net.darmo_creations.naissancee.network.ServerPacketHandlers;
+import net.darmo_creations.naissancee.network.C2SPacketFactory;
+import net.darmo_creations.naissancee.network.PacketRegistry;
+import net.darmo_creations.naissancee.network.packets.LightOrbControllerDataPacket;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.mixin.client.rendering.DimensionEffectsAccessor;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -54,11 +54,14 @@ public class NaissanceE implements ModInitializer {
   }
 
   /**
-   * Registers all server-side packet handlers.
+   * Registers all packets and associated handlers.
    */
   private void registerServerPacketHandlers() {
-    ServerPlayNetworking.registerGlobalReceiver(ClientToServerPacketFactory.LIGHT_ORB_CONTROLLER_DATA_PACKET_ID,
-        (server, player, handler, buf, responseSender) -> ServerPacketHandlers.handleLightOrbControllerBEPacket(server, player, buf));
+    PacketRegistry.registerPacket(
+        C2SPacketFactory.LIGHT_ORB_CONTROLLER_DATA_PACKET_ID,
+        LightOrbControllerDataPacket.class,
+        new LightOrbControllerDataPacket.ServerHandler()
+    );
   }
 
   /**

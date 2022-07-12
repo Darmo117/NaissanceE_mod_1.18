@@ -2,8 +2,8 @@ package net.darmo_creations.naissancee.gui;
 
 import net.darmo_creations.naissancee.block_entities.LightOrbControllerBlockEntity;
 import net.darmo_creations.naissancee.block_entities.PathCheckpoint;
-import net.darmo_creations.naissancee.network.ClientToServerPacketFactory;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.darmo_creations.naissancee.network.C2SPacketFactory;
+import net.darmo_creations.naissancee.network.packets.LightOrbControllerDataPacket;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.SliderWidget;
@@ -143,9 +143,9 @@ public class LightOrbControllerScreen extends Screen {
           this.blockEntity.setSpeed(this.speed);
           this.checkpoints = this.checkpointList.getEntries();
           this.blockEntity.setCheckpoints(this.checkpoints);
-          ClientPlayNetworking.send(ClientToServerPacketFactory.LIGHT_ORB_CONTROLLER_DATA_PACKET_ID,
-              ClientToServerPacketFactory.createLightOrbControllerBEPacketByteBuffer(
-                  this.blockEntity.getPos(), this.active, this.loops, this.invisible, this.lightLevel, this.speed, this.checkpoints));
+          C2SPacketFactory.sendPacket(
+              new LightOrbControllerDataPacket(this.blockEntity.getPos(), this.active, this.loops,
+                  this.invisible, this.lightLevel, this.speed, this.checkpoints));
           this.client.setScreen(null);
         }
     );
