@@ -9,6 +9,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.SliderWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.TranslatableText;
+import org.lwjgl.glfw.GLFW;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -135,19 +136,7 @@ public class LightOrbControllerScreen extends Screen {
         leftButtonX, bottomY,
         BUTTON_WIDTH, BUTTON_HEIGHT,
         new TranslatableText("gui.done"),
-        button -> {
-          this.blockEntity.setActive(this.active);
-          this.blockEntity.setLoops(this.loops);
-          this.blockEntity.setEntityInvisible(this.invisible);
-          this.blockEntity.setLightLevel(this.lightLevel);
-          this.blockEntity.setSpeed(this.speed);
-          this.checkpoints = this.checkpointList.getEntries();
-          this.blockEntity.setCheckpoints(this.checkpoints);
-          C2SPacketFactory.sendPacket(
-              new LightOrbControllerDataPacket(this.blockEntity.getPos(), this.active, this.loops,
-                  this.invisible, this.lightLevel, this.speed, this.checkpoints));
-          this.client.setScreen(null);
-        }
+        b -> this.onDone()
     );
 
     ButtonWidget cancelBtn = new ButtonWidget(
@@ -182,6 +171,31 @@ public class LightOrbControllerScreen extends Screen {
    */
   private float getTrueSpeedValue(double v) {
     return new BigDecimal(v).setScale(2, RoundingMode.HALF_UP).floatValue();
+  }
+
+  @Override
+  public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+    if (keyCode == GLFW.GLFW_KEY_ENTER || keyCode == GLFW.GLFW_KEY_KP_ENTER) {
+      this.onDone();
+      return true;
+    } else {
+      return super.keyPressed(keyCode, scanCode, modifiers);
+    }
+  }
+
+  private void onDone() {
+    this.blockEntity.setActive(this.active);
+    this.blockEntity.setLoops(this.loops);
+    this.blockEntity.setEntityInvisible(this.invisible);
+    this.blockEntity.setLightLevel(this.lightLevel);
+    this.blockEntity.setSpeed(this.speed);
+    this.checkpoints = this.checkpointList.getEntries();
+    this.blockEntity.setCheckpoints(this.checkpoints);
+    C2SPacketFactory.sendPacket(
+        new LightOrbControllerDataPacket(this.blockEntity.getPos(), this.active, this.loops,
+            this.invisible, this.lightLevel, this.speed, this.checkpoints));
+    //noinspection ConstantConditions
+    this.client.setScreen(null);
   }
 
   @Override
