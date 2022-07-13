@@ -7,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +16,6 @@ import net.minecraft.util.math.Vec3i;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 
 /**
  * A light orb is a virtual “entity” managed by a {@link LightOrbControllerBlockEntity}.
@@ -235,9 +233,12 @@ public class LightOrb {
    * Returns whether a player is colliding with this orb.
    */
   private boolean isPlayerColliding() {
-    Predicate<PlayerEntity> filter = player -> true;
     //noinspection ConstantConditions
-    return this.controller.getWorld().getEntitiesByType(EntityType.PLAYER, BOX.offset(this.position), filter).stream().findAny().isPresent();
+    return this.controller.getWorld()
+        .getEntitiesByType(EntityType.PLAYER, BOX.offset(this.position), player -> !player.isSpectator())
+        .stream()
+        .findAny()
+        .isPresent();
   }
 
   /**
