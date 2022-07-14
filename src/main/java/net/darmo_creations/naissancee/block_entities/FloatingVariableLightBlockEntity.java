@@ -33,7 +33,7 @@ public class FloatingVariableLightBlockEntity extends BlockEntity {
   public FloatingVariableLightBlockEntity(BlockPos pos, BlockState state) {
     super(ModBlockEntities.FLOATING_VARIABLE_LIGHT_BLOCK, pos, state);
     this.time = DELAY;
-    this.increasing = true;
+    this.increasing = state.get(FloatingVariableLightBlock.LIGHT_LEVEL) < 15;
     this.stopped = true;
     this.waitForNoCollision = true;
     this.playerColliding = false;
