@@ -63,6 +63,7 @@ public final class ModBlocks {
   public static final InvisibleLightBlock INVISIBLE_LIGHT =
       register("invisible_light", new InvisibleLightBlock(), NaissanceE.TECHNICAL_GROUP);
   public static final BlockActivatorLamp ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp(), NaissanceE.TECHNICAL_GROUP);
+  public static final SmallLightsBlock SMALL_LIGHTS = register("small_lights", new SmallLightsBlock(), NaissanceE.BLOCKS_GROUP);
   public static final Block[] LIGHT_BLOCKS = new Block[15];
 
   static {

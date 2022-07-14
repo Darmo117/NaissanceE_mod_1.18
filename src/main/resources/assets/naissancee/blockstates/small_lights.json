@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "naissancee:block/small_lights"
+    },
+    "facing=east": {
+      "model": "naissancee:block/small_lights",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "naissancee:block/small_lights",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "naissancee:block/small_lights",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "naissancee:block/small_lights",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "naissancee:block/small_lights",
+      "x": 90
+    }
+  }
+}
