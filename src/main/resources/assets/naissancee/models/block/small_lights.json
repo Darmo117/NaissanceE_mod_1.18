@@ -1,5 +1,9 @@
 {
   "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "naissancee:blocks/small_lights_face",
+    "side": "naissancee:blocks/small_lights_side"
+  },
   "elements": [
     {
       "from": [10, 1, 15],
@@ -37,9 +41,5 @@
         "down": {"uv": [0, 0, 1, 2], "texture": "#side"}
       }
     }
-  ],
-  "textures": {
-    "end": "naissancee:blocks/small_lights_face",
-    "side": "naissancee:blocks/small_lights_side"
-  }
+  ]
 }
