@@ -75,6 +75,8 @@ public final class ModBlocks {
     }
   }
 
+  public static final LightBlockerBlock LIGHT_BLOCKER = register("light_blocker", new LightBlockerBlock());
+
   // Ladders
   public static final ColoredBlockMap<LadderBlockWithoutSupport> COLORED_LADDERS =
       generateAndRegisterColoredBlocks("%s_ladder", LadderBlockWithoutSupport::new);

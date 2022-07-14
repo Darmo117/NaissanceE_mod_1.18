@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "naissancee:items/light_crossed",
+    "all": "naissancee:blocks/invisible"
+  }
+}
