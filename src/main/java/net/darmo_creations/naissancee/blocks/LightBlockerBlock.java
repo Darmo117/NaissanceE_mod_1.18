@@ -24,6 +24,11 @@ import java.util.Random;
  * Implemented as a vertical slab as having a full hitbox would mess up render of neighboring blocks.
  */
 public class LightBlockerBlock extends VerticalSlabBlock {
+  protected static final VoxelShape NORTH_SHAPE = createCuboidShape(0, 0, 0, 16, 16, 0.1);
+  protected static final VoxelShape SOUTH_SHAPE = createCuboidShape(0, 0, 15.9, 16, 16, 16);
+  protected static final VoxelShape WEST_SHAPE = createCuboidShape(0, 0, 0, 0.1, 16, 16);
+  protected static final VoxelShape EAST_SHAPE = createCuboidShape(15.9, 0, 0, 16, 16, 16);
+
   public LightBlockerBlock() {
     super(FabricBlockSettings.of(Material.AIR).sounds(BlockSoundGroup.STONE));
   }
@@ -32,6 +37,17 @@ public class LightBlockerBlock extends VerticalSlabBlock {
   @Override
   public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
     return VoxelShapes.empty();
+  }
+
+  @Override
+  public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    return switch (state.get(TYPE)) {
+      case NORTH -> NORTH_SHAPE;
+      case SOUTH -> SOUTH_SHAPE;
+      case EAST -> EAST_SHAPE;
+      case WEST -> WEST_SHAPE;
+      case DOUBLE -> VoxelShapes.fullCube();
+    };
   }
 
   @Override
