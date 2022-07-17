@@ -38,6 +38,8 @@ public final class ModBlocks {
       generateAndRegisterColoredBlocks("%s_post", PostBlock::new);
   public static final ColoredBlockMap<ThickPostBlock> COLORED_THICK_POSTS =
       generateAndRegisterColoredBlocks("%s_thick_post", ThickPostBlock::new);
+  public static final ColoredBlockMap<ColoredWallBlock> COLORED_WALLS =
+      generateAndRegisterColoredBlocks("%s_wall", ColoredWallBlock::new);
 
   // Light-sensitive blocks
   public static final ColoredBlockMap<LightSensitiveBarrierBlock> COLORED_LIGHT_SENSITIVE_BARRIERS =
