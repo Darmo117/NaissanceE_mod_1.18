@@ -70,6 +70,11 @@
   "block.naissancee.white_light_sensitive_barrier_vslab": "White Light-Sensitive Barrier Vertical Slab",
   "block.naissancee.white_light_sensitive_barrier_vslab_passable": "White Light-Sensitive Barrier Vertical Slab (Passable)",
 
+  "block.naissancee.black_wall": "Black Wall",
+  "block.naissancee.light_gray_wall": "Light Gray Wall",
+  "block.naissancee.gray_wall": "Gray Wall",
+  "block.naissancee.white_wall": "White Wall",
+
   "block.naissancee.black_ladder": "Black Ladder",
   "block.naissancee.gray_ladder": "Gray Ladder",
   "block.naissancee.light_gray_ladder": "Light Gray Ladder",
