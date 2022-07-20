@@ -1,0 +1,20 @@
+{
+  "type": "naissancee:darker_void",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [],
+      "biome": "naissancee:black_void",
+      "lakes": false,
+      "features": false,
+      "structures": {
+        "stronghold": {
+          "distance": 0,
+          "count": 0,
+          "spread": 0
+        },
+        "structures": []
+      }
+    }
+  }
+}
