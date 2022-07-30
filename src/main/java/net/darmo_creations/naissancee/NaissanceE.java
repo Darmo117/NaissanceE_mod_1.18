@@ -3,6 +3,7 @@ package net.darmo_creations.naissancee;
 import net.darmo_creations.naissancee.block_entities.ModBlockEntities;
 import net.darmo_creations.naissancee.blocks.BlockColor;
 import net.darmo_creations.naissancee.blocks.ModBlocks;
+import net.darmo_creations.naissancee.commands.PushCommand;
 import net.darmo_creations.naissancee.commands.SetPassableCommand;
 import net.darmo_creations.naissancee.dimensions.VoidDimensionEffects;
 import net.darmo_creations.naissancee.items.ModItems;
@@ -69,5 +70,6 @@ public class NaissanceE implements ModInitializer {
    */
   private void registerCommands() {
     CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> SetPassableCommand.register(dispatcher));
+    CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> PushCommand.register(dispatcher));
   }
 }
