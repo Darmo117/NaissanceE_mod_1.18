@@ -10,6 +10,7 @@ import net.darmo_creations.naissancee.items.ModItems;
 import net.darmo_creations.naissancee.network.C2SPacketFactory;
 import net.darmo_creations.naissancee.network.PacketRegistry;
 import net.darmo_creations.naissancee.network.packets.LightOrbControllerDataPacket;
+import net.darmo_creations.naissancee.sounds.ModSounds;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
@@ -48,6 +49,7 @@ public class NaissanceE implements ModInitializer {
     ModBlocks.init();
     ModItems.init();
     ModBlockEntities.init();
+    ModSounds.init();
     // Inject custom dimension effects. Custom dimension and dimension type are added through datapack.
     DimensionEffectsAccessor.getIdentifierMap().put(VOID_DIMENSION_EFFECTS_KEY, new VoidDimensionEffects());
     this.registerServerPacketHandlers();
