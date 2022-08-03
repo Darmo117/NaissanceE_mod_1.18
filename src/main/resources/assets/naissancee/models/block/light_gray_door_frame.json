@@ -1,0 +1,6 @@
+{
+	"parent": "naissancee:block/door_frame",
+	"textures": {
+		"all": "naissancee:blocks/light_gray_block"
+	}
+}

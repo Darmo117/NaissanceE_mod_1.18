@@ -1,0 +1,6 @@
+{
+	"parent": "naissancee:block/door_frame_top",
+	"textures": {
+		"all": "naissancee:blocks/white_block"
+	}
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "naissancee:block/black_door_frame"
+    },
+    "facing=south": {
+      "model": "naissancee:block/black_door_frame",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "naissancee:block/black_door_frame",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "naissancee:block/black_door_frame",
+      "y": 90
+    }
+  }
+}

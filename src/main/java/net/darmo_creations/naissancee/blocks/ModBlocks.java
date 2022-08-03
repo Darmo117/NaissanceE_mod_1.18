@@ -68,6 +68,7 @@ public final class ModBlocks {
       register("invisible_light", new InvisibleLightBlock(), NaissanceE.TECHNICAL_GROUP);
   public static final BlockActivatorLamp ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp(), NaissanceE.TECHNICAL_GROUP);
   public static final SmallLightsBlock SMALL_LIGHTS = register("small_lights", new SmallLightsBlock(), NaissanceE.BLOCKS_GROUP);
+  // TODO small square light
 
   public static final Block[] LIGHT_BLOCKS = new Block[15];
 
@@ -108,6 +109,10 @@ public final class ModBlocks {
       generateAndRegisterColoredBlocks("%s_door", color -> new PlainDoorBlock(color, true), NaissanceE.TECHNICAL_GROUP);
   public static final ColoredBlockMap<PlainDoorBlock> COLORED_PARTIAL_DOORS =
       generateAndRegisterColoredBlocks("%s_partial_door", color -> new PlainDoorBlock(color, false), NaissanceE.TECHNICAL_GROUP);
+  public static final ColoredBlockMap<ColoredDoorFrame> COLORED_DOOR_FRAMES =
+      generateAndRegisterColoredBlocks("%s_door_frame", ColoredDoorFrame::new, NaissanceE.TECHNICAL_GROUP);
+  public static final ColoredBlockMap<ColoredDoorFrameTop> COLORED_DOOR_FRAME_TOPS =
+      generateAndRegisterColoredBlocks("%s_door_frame_top", ColoredDoorFrameTop::new, NaissanceE.TECHNICAL_GROUP);
 
   // Creatures
   public static final LivingBlock LIVING_BLOCK = register("living_block", new LivingBlock(), NaissanceE.CREATURES_GROUP);

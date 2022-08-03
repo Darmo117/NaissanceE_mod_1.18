@@ -105,6 +105,16 @@
   "block.naissancee.light_gray_partial_door": "Light Gray Partial Door",
   "block.naissancee.white_partial_door": "White Partial Door",
 
+  "block.naissancee.black_door_frame": "Black Door Frame",
+  "block.naissancee.gray_door_frame": "Gray Door Frame",
+  "block.naissancee.light_gray_door_frame": "Light Gray Door Frame",
+  "block.naissancee.white_door_frame": "White Door Frame",
+
+  "block.naissancee.black_door_frame_top": "Black Door Frame Top",
+  "block.naissancee.gray_door_frame_top": "Gray Door Frame Top",
+  "block.naissancee.light_gray_door_frame_top": "Light Gray Door Frame Top",
+  "block.naissancee.white_door_frame_top": "White Door Frame Top",
+
   "block.naissancee.activator_lamp": "Activator Lamp",
 
   "block.naissancee.invisible_light": "Invisible Light",
