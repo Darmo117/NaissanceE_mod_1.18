@@ -42,6 +42,7 @@ public final class ModBlocks {
       generateAndRegisterColoredBlocks("%s_corner_block", ColoredCornerBlock::new);
   public static final ColoredBlockMap<ColoredCompositeBlock> COMPOSITE_BLOCKS =
       generateAndRegisterColoredBlocks("%s_composite_block", ColoredCompositeBlock::new);
+  // TODO vent grids and vertical/horizontal bars
 
   // Light-sensitive blocks
   public static final ColoredBlockMap<LightSensitiveBarrierBlock> COLORED_LIGHT_SENSITIVE_BARRIERS =
@@ -67,8 +68,9 @@ public final class ModBlocks {
   public static final InvisibleLightBlock INVISIBLE_LIGHT =
       register("invisible_light", new InvisibleLightBlock(), NaissanceE.TECHNICAL_GROUP);
   public static final BlockActivatorLamp ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp(), NaissanceE.TECHNICAL_GROUP);
-  public static final SmallLightsBlock SMALL_LIGHTS = register("small_lights", new SmallLightsBlock(), NaissanceE.BLOCKS_GROUP);
-  // TODO small square light
+  public static final SmallLightsBlock SMALL_LIGHTS = register("small_lights", new SmallLightsBlock());
+  public static final SmallLightBlock SMALL_LIGHT = register("small_light", new SmallLightBlock());
+  public static final SmallOffsetLightBlock SMALL_OFFSET_LIGHT = register("small_offset_light", new SmallOffsetLightBlock());
 
   public static final Block[] LIGHT_BLOCKS = new Block[15];
 
