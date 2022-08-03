@@ -1,0 +1,6 @@
+{
+	"parent": "naissancee:block/corner_ct",
+	"textures": {
+		"all": "naissancee:blocks/gray_block"
+	}
+}

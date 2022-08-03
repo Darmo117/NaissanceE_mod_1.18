@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "naissancee:blocks/light_block_15",
+    "top": "naissancee:blocks/light_block_15",
+    "side": "naissancee:blocks/light_block_15"
+  }
+}

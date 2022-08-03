@@ -29,7 +29,7 @@ import net.minecraft.world.WorldAccess;
  * Base class for vertical slabs.
  * Vertical slabs are waterloggable.
  */
-public class VerticalSlabBlock extends Block implements Waterloggable {
+public class VerticalSlabBlock extends Block implements Waterloggable, NaissanceEBlock {
   public static final EnumProperty<VerticalSlabType> TYPE = EnumProperty.of("type", VerticalSlabType.class);
   public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 

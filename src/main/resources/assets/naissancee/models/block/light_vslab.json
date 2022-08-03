@@ -1,0 +1,8 @@
+{
+  "parent": "naissancee:block/vertical_slab",
+  "textures": {
+    "side": "naissancee:blocks/light_block_15",
+    "top": "naissancee:blocks/light_block_15",
+    "bottom": "naissancee:blocks/light_block_15"
+  }
+}

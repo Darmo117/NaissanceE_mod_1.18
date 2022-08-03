@@ -1,11 +1,12 @@
 package net.darmo_creations.naissancee.blocks;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.block.Waterloggable;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -20,7 +21,7 @@ import net.minecraft.world.BlockView;
 /**
  * This class represents a vertical quarter of a block.
  */
-public class VerticalQuarterBlock extends Block implements Colored, Waterloggable {
+public class VerticalQuarterBlock extends Block implements Waterloggable, NaissanceEBlock {
   public static final EnumProperty<Position> POSITION = EnumProperty.of("position", Position.class);
   public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
@@ -36,19 +37,11 @@ public class VerticalQuarterBlock extends Block implements Colored, Waterloggabl
 
   private static final VoxelShape EAST = createCuboidShape(8, 0, 4, 16, 16, 12);
 
-  private final BlockColor color;
-
-  public VerticalQuarterBlock(final BlockColor color) {
-    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE)));
-    this.color = color;
+  public VerticalQuarterBlock(Settings settings) {
+    super(NaissanceEBlock.getSettings(settings));
     this.setDefaultState(this.getDefaultState()
         .with(POSITION, Position.NORTH)
         .with(WATERLOGGED, false));
-  }
-
-  @Override
-  public BlockColor getColor() {
-    return this.color;
   }
 
   @Override

@@ -1,0 +1,6 @@
+{
+	"parent": "naissancee:block/corner_ncb",
+	"textures": {
+		"all": "naissancee:blocks/light_block_15"
+	}
+}

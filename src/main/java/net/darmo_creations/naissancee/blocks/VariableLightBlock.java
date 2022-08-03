@@ -13,7 +13,7 @@ import java.util.function.Function;
 /**
  * Base class for blocks with a light level that may vary.
  */
-public abstract class VariableLightBlock extends Block {
+public abstract class VariableLightBlock extends Block implements NaissanceEBlock {
   public static final IntProperty LIGHT_LEVEL = IntProperty.of("light_level", 0, 15);
 
   public VariableLightBlock(Settings settings) {

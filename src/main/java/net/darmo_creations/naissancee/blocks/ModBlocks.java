@@ -4,9 +4,7 @@ import net.darmo_creations.naissancee.NaissanceE;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
@@ -30,16 +28,20 @@ public final class ModBlocks {
       generateAndRegisterColoredBlocks("%s_slab", ColoredSlabBlock::new);
   public static final ColoredBlockMap<ColoredVerticalSlabBlock> COLORED_VERTICAL_SLABS =
       generateAndRegisterColoredBlocks("%s_vslab", ColoredVerticalSlabBlock::new);
-  public static final ColoredBlockMap<HorizontalQuarterBlock> COLORED_HORIZONTAL_QUARTER_BLOCKS =
-      generateAndRegisterColoredBlocks("%s_horizontal_quarter_block", HorizontalQuarterBlock::new);
-  public static final ColoredBlockMap<VerticalQuarterBlock> COLORED_VERTICAL_QUARTER_BLOCKS =
-      generateAndRegisterColoredBlocks("%s_vertical_quarter_block", VerticalQuarterBlock::new);
+  public static final ColoredBlockMap<ColoredHorizontalQuarterBlock> COLORED_HORIZONTAL_QUARTER_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_horizontal_quarter_block", ColoredHorizontalQuarterBlock::new);
+  public static final ColoredBlockMap<ColoredVerticalQuarterBlock> COLORED_VERTICAL_QUARTER_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_vertical_quarter_block", ColoredVerticalQuarterBlock::new);
   public static final ColoredBlockMap<PostBlock> COLORED_POSTS =
       generateAndRegisterColoredBlocks("%s_post", PostBlock::new);
   public static final ColoredBlockMap<ThickPostBlock> COLORED_THICK_POSTS =
       generateAndRegisterColoredBlocks("%s_thick_post", ThickPostBlock::new);
   public static final ColoredBlockMap<ColoredWallBlock> COLORED_WALLS =
       generateAndRegisterColoredBlocks("%s_wall", ColoredWallBlock::new);
+  public static final ColoredBlockMap<ColoredCornerBlock> CORNER_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_corner_block", ColoredCornerBlock::new);
+  public static final ColoredBlockMap<ColoredCompositeBlock> COMPOSITE_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_composite_block", ColoredCompositeBlock::new);
 
   // Light-sensitive blocks
   public static final ColoredBlockMap<LightSensitiveBarrierBlock> COLORED_LIGHT_SENSITIVE_BARRIERS =
@@ -66,6 +68,7 @@ public final class ModBlocks {
       register("invisible_light", new InvisibleLightBlock(), NaissanceE.TECHNICAL_GROUP);
   public static final BlockActivatorLamp ACTIVATOR_LAMP = register("activator_lamp", new BlockActivatorLamp(), NaissanceE.TECHNICAL_GROUP);
   public static final SmallLightsBlock SMALL_LIGHTS = register("small_lights", new SmallLightsBlock(), NaissanceE.BLOCKS_GROUP);
+
   public static final Block[] LIGHT_BLOCKS = new Block[15];
 
   static {
@@ -76,6 +79,21 @@ public final class ModBlocks {
       );
     }
   }
+
+  public static final SlabBlock LIGHT_SLAB =
+      register("light_slab", new SlabBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(15)));
+  public static final VerticalSlabBlock LIGHT_BLOCK_VSLAB =
+      register("light_vslab", new VerticalSlabBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(15)));
+  public static final StairsBlock LIGHT_STAIRS =
+      register("light_stairs", new StairsBlock(LIGHT_BLOCKS[14].getDefaultState(), FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(15)));
+  public static final HorizontalQuarterBlock LIGHT_HORIZONTAL_QUARTER_BLOCK =
+      register("light_horizontal_quarter_block", new HorizontalQuarterBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(15)));
+  public static final VerticalQuarterBlock LIGHT_VERTICAL_QUARTER_BLOCK =
+      register("light_vertical_quarter_block", new VerticalQuarterBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(15)));
+  public static final CornerBlock LIGHT_CORNER_BLOCK =
+      register("light_corner_block", new CornerBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(15)));
+  public static final CompositeBlock LIGHT_COMPOSITE_BLOCK =
+      register("light_composite_block", new CompositeBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(15)));
 
   public static final LightBlockerBlock LIGHT_BLOCKER = register("light_blocker", new LightBlockerBlock());
 

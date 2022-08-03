@@ -28,7 +28,7 @@ import java.util.Optional;
  * @see LightOrbTweakerItem
  * @see LightOrbControllerBlockEntity
  */
-public class LightOrbControllerBlock extends BlockWithEntity implements OperatorBlock {
+public class LightOrbControllerBlock extends BlockWithEntity implements OperatorBlock, NaissanceEBlock {
   public LightOrbControllerBlock() {
     // Same settings as command block
     super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.METAL, MapColor.WHITE).sounds(BlockSoundGroup.METAL)));

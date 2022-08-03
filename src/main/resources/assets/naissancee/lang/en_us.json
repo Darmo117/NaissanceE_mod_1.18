@@ -75,6 +75,16 @@
   "block.naissancee.gray_wall": "Gray Wall",
   "block.naissancee.white_wall": "White Wall",
 
+  "block.naissancee.black_corner_block": "Black Corner Block",
+  "block.naissancee.light_gray_corner_block": "Light Gray Corner Block",
+  "block.naissancee.gray_corner_block": "Gray Corner Block",
+  "block.naissancee.white_corner_block": "White Corner Block",
+
+  "block.naissancee.black_composite_block": "Black Composite Block",
+  "block.naissancee.light_gray_composite_block": "Light Gray Composite Block",
+  "block.naissancee.gray_composite_block": "Gray Composite Block",
+  "block.naissancee.white_composite_block": "White Composite Block",
+
   "block.naissancee.black_ladder": "Black Ladder",
   "block.naissancee.gray_ladder": "Gray Ladder",
   "block.naissancee.light_gray_ladder": "Light Gray Ladder",
@@ -117,6 +127,14 @@
   "block.naissancee.light_block_13": "Light Block 13",
   "block.naissancee.light_block_14": "Light Block 14",
   "block.naissancee.light_block_15": "Light Block 15",
+
+  "block.naissancee.light_slab": "Light Slab",
+  "block.naissancee.light_vslab": "Light Vertical Slab",
+  "block.naissancee.light_stairs": "Light Stairs",
+  "block.naissancee.light_horizontal_quarter_block": "Light Horizontal Quarter Block",
+  "block.naissancee.light_vertical_quarter_block": "Light Vertical Quarter Block",
+  "block.naissancee.light_corner_block": "Light Corner Block",
+  "block.naissancee.light_composite_block": "Light Composite Block",
 
   "block.naissancee.creature_block_0": "“Creature” Block 0",
   "block.naissancee.creature_block_1": "“Creature” Block 1",
