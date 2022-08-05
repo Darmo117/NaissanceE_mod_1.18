@@ -61,6 +61,12 @@ public class InvisibleLightBlock extends VariableLightBlock implements BlockEnti
     return super.getPlacementState(ctx).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
   }
 
+  @SuppressWarnings("deprecation")
+  @Override
+  public FluidState getFluidState(BlockState state) {
+    return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+  }
+
   @Override
   public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
     return new InvisibleLightBlockEntity(pos, state);

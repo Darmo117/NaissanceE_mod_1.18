@@ -102,4 +102,10 @@ public class SmallOffsetLightBlock extends HorizontalFacingBlock implements Nais
     FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
     return state.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
   }
+
+  @SuppressWarnings("deprecation")
+  @Override
+  public FluidState getFluidState(BlockState state) {
+    return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+  }
 }

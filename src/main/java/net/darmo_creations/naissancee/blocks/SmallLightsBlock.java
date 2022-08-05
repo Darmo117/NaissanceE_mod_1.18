@@ -64,4 +64,10 @@ public class SmallLightsBlock extends FacingBlock implements NaissanceEBlock, Wa
         .with(FACING, ctx.getSide().getOpposite())
         .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
   }
+
+  @SuppressWarnings("deprecation")
+  @Override
+  public FluidState getFluidState(BlockState state) {
+    return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+  }
 }

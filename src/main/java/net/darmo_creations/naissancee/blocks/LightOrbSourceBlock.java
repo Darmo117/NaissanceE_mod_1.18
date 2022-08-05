@@ -41,6 +41,12 @@ public class LightOrbSourceBlock extends VariableLightBlock {
 
   @SuppressWarnings("deprecation")
   @Override
+  public FluidState getFluidState(BlockState state) {
+    return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+  }
+
+  @SuppressWarnings("deprecation")
+  @Override
   public BlockRenderType getRenderType(BlockState state) {
     return BlockRenderType.INVISIBLE;
   }
