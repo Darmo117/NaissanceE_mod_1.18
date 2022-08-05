@@ -2,10 +2,14 @@ package net.darmo_creations.naissancee.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -14,8 +18,9 @@ import net.minecraft.world.BlockView;
 /**
  * A small flat light block.
  */
-public class SmallLightBlock extends FacingBlock implements NaissanceEBlock {
+public class SmallLightBlock extends FacingBlock implements NaissanceEBlock, Waterloggable {
   public static final IntProperty LIGHT_LEVEL = IntProperty.of("light_level", 0, 15);
+  public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
   public static final VoxelShape NORTH_SHAPE = createCuboidShape(4, 4, 0, 12, 12, 2);
   public static final VoxelShape WEST_SHAPE = createCuboidShape(0, 4, 4, 2, 12, 12);
@@ -28,12 +33,15 @@ public class SmallLightBlock extends FacingBlock implements NaissanceEBlock {
     super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, MapColor.WHITE)
         .sounds(BlockSoundGroup.STONE)
         .luminance(state -> state.get(LIGHT_LEVEL))));
-    this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(LIGHT_LEVEL, 15));
+    this.setDefaultState(this.getDefaultState()
+        .with(FACING, Direction.NORTH)
+        .with(LIGHT_LEVEL, 15)
+        .with(WATERLOGGED, false));
   }
 
   @Override
   protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-    super.appendProperties(builder.add(FACING, LIGHT_LEVEL));
+    super.appendProperties(builder.add(FACING, LIGHT_LEVEL, WATERLOGGED));
   }
 
   @SuppressWarnings("deprecation")
@@ -51,6 +59,9 @@ public class SmallLightBlock extends FacingBlock implements NaissanceEBlock {
 
   @Override
   public BlockState getPlacementState(ItemPlacementContext ctx) {
-    return this.getDefaultState().with(FACING, ctx.getSide().getOpposite());
+    FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
+    return this.getDefaultState()
+        .with(FACING, ctx.getSide().getOpposite())
+        .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
   }
 }

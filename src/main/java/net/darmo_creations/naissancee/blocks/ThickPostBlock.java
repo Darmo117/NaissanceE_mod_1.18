@@ -10,7 +10,7 @@ import net.minecraft.world.BlockView;
 /**
  * This class represent a single wall post.
  */
-public class ThickPostBlock extends AbstractPostBlock implements Colored, Waterloggable {
+public class ThickPostBlock extends AbstractPostBlock implements Colored {
   private static final VoxelShape SHAPE_X = createCuboidShape(0, 4, 4, 16, 12, 12);
   private static final VoxelShape SHAPE_Y = createCuboidShape(4, 0, 4, 12, 16, 12);
   private static final VoxelShape SHAPE_Z = createCuboidShape(4, 4, 0, 12, 12, 16);

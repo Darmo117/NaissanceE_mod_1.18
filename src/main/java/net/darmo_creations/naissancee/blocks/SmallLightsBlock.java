@@ -2,16 +2,22 @@ package net.darmo_creations.naissancee.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
-public class SmallLightsBlock extends FacingBlock implements NaissanceEBlock {
+public class SmallLightsBlock extends FacingBlock implements NaissanceEBlock, Waterloggable {
+  public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+
   private static final VoxelShape AABB_NORTH = createCuboidShape(0, 0, 15, 16, 16, 16);
   private static final VoxelShape AABB_SOUTH = createCuboidShape(0, 0, 0, 16, 16, 1);
   private static final VoxelShape AABB_WEST = createCuboidShape(15, 0, 0, 16, 16, 16);
@@ -24,12 +30,12 @@ public class SmallLightsBlock extends FacingBlock implements NaissanceEBlock {
         .sounds(BlockSoundGroup.STONE)
         .luminance(5)
         .nonOpaque()));
-    this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH));
+    this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
   }
 
   @Override
   protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-    super.appendProperties(builder.add(FACING));
+    super.appendProperties(builder.add(FACING, WATERLOGGED));
   }
 
   @SuppressWarnings("deprecation")
@@ -53,6 +59,9 @@ public class SmallLightsBlock extends FacingBlock implements NaissanceEBlock {
 
   @Override
   public BlockState getPlacementState(ItemPlacementContext ctx) {
-    return this.getDefaultState().with(FACING, ctx.getSide());
+    FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
+    return this.getDefaultState()
+        .with(FACING, ctx.getSide().getOpposite())
+        .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
   }
 }

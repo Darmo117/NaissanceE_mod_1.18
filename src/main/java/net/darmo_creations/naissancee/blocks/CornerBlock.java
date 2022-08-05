@@ -160,7 +160,8 @@ public class CornerBlock extends Block implements Waterloggable, NaissanceEBlock
         state = state.with(POSITION, Position.CENTER);
       }
     }
-    return state;
+    FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
+    return state.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
   }
 
   @SuppressWarnings("deprecation")

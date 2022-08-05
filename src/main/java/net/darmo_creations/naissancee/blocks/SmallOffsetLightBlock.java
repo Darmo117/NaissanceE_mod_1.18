@@ -3,9 +3,12 @@ package net.darmo_creations.naissancee.blocks;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.WallMountLocation;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
@@ -18,9 +21,10 @@ import net.minecraft.world.BlockView;
 /**
  * A small flat light block offset by 0.5 blocks.
  */
-public class SmallOffsetLightBlock extends HorizontalFacingBlock implements NaissanceEBlock {
+public class SmallOffsetLightBlock extends HorizontalFacingBlock implements NaissanceEBlock, Waterloggable {
   public static final EnumProperty<WallMountLocation> FACE = Properties.WALL_MOUNT_LOCATION;
   public static final IntProperty LIGHT_LEVEL = IntProperty.of("light_level", 0, 15);
+  public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
   public static final VoxelShape WALL_NORTH_SHAPE = createCuboidShape(-4, 4, 0, 4, 12, 2);
   public static final VoxelShape WALL_WEST_SHAPE = createCuboidShape(0, 4, 12, 2, 12, 20);
@@ -44,12 +48,13 @@ public class SmallOffsetLightBlock extends HorizontalFacingBlock implements Nais
     this.setDefaultState(this.getDefaultState()
         .with(FACING, Direction.NORTH)
         .with(FACE, WallMountLocation.WALL)
-        .with(LIGHT_LEVEL, 15));
+        .with(LIGHT_LEVEL, 15)
+        .with(WATERLOGGED, false));
   }
 
   @Override
   protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-    super.appendProperties(builder.add(FACING, LIGHT_LEVEL, FACE));
+    super.appendProperties(builder.add(FACING, LIGHT_LEVEL, FACE, WATERLOGGED));
   }
 
   @SuppressWarnings("deprecation")
@@ -84,13 +89,17 @@ public class SmallOffsetLightBlock extends HorizontalFacingBlock implements Nais
   @Override
   public BlockState getPlacementState(ItemPlacementContext ctx) {
     Direction facing = ctx.getSide();
+    BlockState state = this.getDefaultState();
     if (facing.getAxis() != Direction.Axis.Y) {
-      return this.getDefaultState()
+      state = state
           .with(FACING, facing.getOpposite())
           .with(FACE, WallMountLocation.WALL);
+    } else {
+      state = state
+          .with(FACING, ctx.getPlayerFacing())
+          .with(FACE, facing == Direction.DOWN ? WallMountLocation.CEILING : WallMountLocation.FLOOR);
     }
-    return this.getDefaultState()
-        .with(FACING, ctx.getPlayerFacing())
-        .with(FACE, facing == Direction.DOWN ? WallMountLocation.CEILING : WallMountLocation.FLOOR);
+    FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
+    return state.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
   }
 }
