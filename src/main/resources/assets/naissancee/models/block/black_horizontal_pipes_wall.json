@@ -1,0 +1,6 @@
+{
+  "parent": "naissancee:block/horizontal_pipes_wall",
+  "textures": {
+    "all": "naissancee:blocks/black_block"
+  }
+}

@@ -1,13 +1,11 @@
 package net.darmo_creations.naissancee.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
@@ -24,6 +22,11 @@ public class LightOrbSourceBlock extends VariableLightBlock {
   public LightOrbSourceBlock() {
     super(FabricBlockSettings.of(Material.AIR).air());
     this.setDefaultState(this.getDefaultState().with(LIGHT_LEVEL, 15).with(WATERLOGGED, false));
+  }
+
+  @Override
+  protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    super.appendProperties(builder.add(WATERLOGGED));
   }
 
   @SuppressWarnings("deprecation")

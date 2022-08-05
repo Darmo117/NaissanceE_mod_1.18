@@ -85,6 +85,16 @@
   "block.naissancee.gray_composite_block": "Gray Composite Block",
   "block.naissancee.white_composite_block": "White Composite Block",
 
+  "block.naissancee.black_vertical_pipes": "Black Vertical Pipes",
+  "block.naissancee.light_gray_vertical_pipes": "Light Gray Vertical Pipes",
+  "block.naissancee.gray_vertical_pipes": "Gray Vertical Pipes",
+  "block.naissancee.white_vertical_pipes": "White Vertical Pipes",
+
+  "block.naissancee.black_horizontal_pipes": "Black Horizontal Pipes",
+  "block.naissancee.light_gray_horizontal_pipes": "Light Gray Horizontal Pipes",
+  "block.naissancee.gray_horizontal_pipes": "Gray Horizontal Pipes",
+  "block.naissancee.white_horizontal_pipes": "White Horizontal Pipes",
+
   "block.naissancee.black_ladder": "Black Ladder",
   "block.naissancee.gray_ladder": "Gray Ladder",
   "block.naissancee.light_gray_ladder": "Light Gray Ladder",

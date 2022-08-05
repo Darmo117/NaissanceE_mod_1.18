@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "naissancee:block/white_vertical_pipes"
+    },
+    "facing=east": {
+      "model": "naissancee:block/white_vertical_pipes",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "naissancee:block/white_vertical_pipes",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "naissancee:block/white_vertical_pipes",
+      "y": 270
+    }
+  }
+}

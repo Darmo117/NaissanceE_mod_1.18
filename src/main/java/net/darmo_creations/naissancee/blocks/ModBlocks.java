@@ -42,7 +42,11 @@ public final class ModBlocks {
       generateAndRegisterColoredBlocks("%s_corner_block", ColoredCornerBlock::new);
   public static final ColoredBlockMap<ColoredCompositeBlock> COMPOSITE_BLOCKS =
       generateAndRegisterColoredBlocks("%s_composite_block", ColoredCompositeBlock::new);
-  // TODO vent grids and vertical/horizontal bars
+  public static final ColoredBlockMap<VerticalPipesBlock> VERTICAL_PIPES =
+      generateAndRegisterColoredBlocks("%s_vertical_pipes", VerticalPipesBlock::new);
+  public static final ColoredBlockMap<HorizontalPipesBlock> HORIZONTAL_PIPES =
+      generateAndRegisterColoredBlocks("%s_horizontal_pipes", HorizontalPipesBlock::new);
+  // TODO add vent grids
 
   // Light-sensitive blocks
   public static final ColoredBlockMap<LightSensitiveBarrierBlock> COLORED_LIGHT_SENSITIVE_BARRIERS =
