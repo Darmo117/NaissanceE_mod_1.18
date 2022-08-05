@@ -95,6 +95,11 @@
   "block.naissancee.gray_horizontal_pipes": "Gray Horizontal Pipes",
   "block.naissancee.white_horizontal_pipes": "White Horizontal Pipes",
 
+  "block.naissancee.black_vent_grid": "Black Vent Grid",
+  "block.naissancee.light_gray_vent_grid": "Light Gray Vent Grid",
+  "block.naissancee.gray_vent_grid": "Gray Vent Grid",
+  "block.naissancee.white_vent_grid": "White Vent Grid",
+
   "block.naissancee.black_ladder": "Black Ladder",
   "block.naissancee.gray_ladder": "Gray Ladder",
   "block.naissancee.light_gray_ladder": "Light Gray Ladder",

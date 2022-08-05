@@ -46,7 +46,8 @@ public final class ModBlocks {
       generateAndRegisterColoredBlocks("%s_vertical_pipes", VerticalPipesBlock::new);
   public static final ColoredBlockMap<HorizontalPipesBlock> HORIZONTAL_PIPES =
       generateAndRegisterColoredBlocks("%s_horizontal_pipes", HorizontalPipesBlock::new);
-  // TODO add vent grids
+  public static final ColoredBlockMap<VentGridBlock> VENT_GRID_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_vent_grid", VentGridBlock::new);
 
   // Light-sensitive blocks
   public static final ColoredBlockMap<LightSensitiveBarrierBlock> COLORED_LIGHT_SENSITIVE_BARRIERS =

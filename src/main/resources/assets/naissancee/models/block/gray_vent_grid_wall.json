@@ -1,0 +1,6 @@
+{
+  "parent": "naissancee:block/vent_grid_wall",
+  "textures": {
+    "all": "naissancee:blocks/gray_block"
+  }
+}
