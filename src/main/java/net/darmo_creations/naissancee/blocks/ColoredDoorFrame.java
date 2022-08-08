@@ -1,10 +1,10 @@
 package net.darmo_creations.naissancee.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
-import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Material;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -13,7 +13,7 @@ import net.minecraft.world.BlockView;
 /**
  * A block acting as the sides of a door frame.
  */
-public class ColoredDoorFrame extends HorizontalFacingBlock implements Colored {
+public class ColoredDoorFrame extends WaterloggableHorizontalFacingBlock implements Colored {
   private final BlockColor color;
 
   private static final VoxelShape NORTH_SHAPE = createCuboidShape(-2, 0, 0, 18, 16, 2);
@@ -44,35 +44,14 @@ public class ColoredDoorFrame extends HorizontalFacingBlock implements Colored {
    * @param color Frame’s color.
    */
   public ColoredDoorFrame(final BlockColor color) {
-    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE)));
+    super(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE),
+        NORTH_SHAPE, EAST_SHAPE, SOUTH_SHAPE, WEST_SHAPE);
     this.color = color;
   }
 
   @Override
   public BlockColor getColor() {
     return this.color;
-  }
-
-  @Override
-  protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-    super.appendProperties(builder.add(FACING));
-  }
-
-  @Override
-  public BlockState getPlacementState(ItemPlacementContext ctx) {
-    return this.getDefaultState().with(FACING, ctx.getPlayerFacing());
-  }
-
-  @SuppressWarnings("deprecation")
-  @Override
-  public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-    return switch (state.get(FACING)) {
-      case NORTH -> NORTH_SHAPE;
-      case SOUTH -> SOUTH_SHAPE;
-      case WEST -> WEST_SHAPE;
-      case EAST -> EAST_SHAPE;
-      default -> VoxelShapes.empty();
-    };
   }
 
   @SuppressWarnings("deprecation")

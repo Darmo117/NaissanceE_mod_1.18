@@ -40,7 +40,9 @@ public class VerticalSlabBlock extends Block implements Waterloggable, Naissance
 
   public VerticalSlabBlock(Settings settings) {
     super(NaissanceEBlock.getSettings(settings));
-    this.setDefaultState(this.getDefaultState().with(TYPE, VerticalSlabType.NORTH).with(WATERLOGGED, false));
+    this.setDefaultState(this.getStateManager().getDefaultState()
+        .with(TYPE, VerticalSlabType.NORTH)
+        .with(WATERLOGGED, false));
   }
 
   @Override

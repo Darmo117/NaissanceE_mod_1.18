@@ -29,6 +29,11 @@ public class LivingBlock extends Block {
 
   public LivingBlock() {
     super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).sounds(BlockSoundGroup.METAL)));
+    this.setDefaultState(this.getStateManager().getDefaultState()
+        .with(NORTH, false)
+        .with(SOUTH, false)
+        .with(WEST, false)
+        .with(EAST, false));
   }
 
   @Override

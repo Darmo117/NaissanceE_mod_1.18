@@ -69,7 +69,7 @@ public class CornerBlock extends Block implements Waterloggable, NaissanceEBlock
    */
   public CornerBlock(Settings settings) {
     super(NaissanceEBlock.getSettings(settings));
-    this.setDefaultState(this.getDefaultState()
+    this.setDefaultState(this.getStateManager().getDefaultState()
         .with(VERTICAL_POSITION, VerticalPosition.BOTTOM)
         .with(POSITION, Position.NORTH)
         .with(WATERLOGGED, false));

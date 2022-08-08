@@ -31,7 +31,7 @@ public class BlockActivatorLamp extends Block {
 
   public BlockActivatorLamp() {
     super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(15)));
-    this.setDefaultState(this.getDefaultState().with(POWERED, false));
+    this.setDefaultState(this.getStateManager().getDefaultState().with(POWERED, false));
   }
 
   @Override

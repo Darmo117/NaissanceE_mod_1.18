@@ -27,7 +27,7 @@ public class FloatingVariableLightBlock extends VariableLightBlock implements Bl
   public FloatingVariableLightBlock() {
     super(FabricBlockSettings.of(Material.STONE, MapColor.WHITE)
         .sounds(BlockSoundGroup.STONE));
-    this.setDefaultState(this.getDefaultState().with(LIGHT_LEVEL, FloatingVariableLightBlockEntity.MIN_LIGHT_LEVEL));
+    this.setDefaultState(this.getStateManager().getDefaultState().with(LIGHT_LEVEL, FloatingVariableLightBlockEntity.MIN_LIGHT_LEVEL));
   }
 
   @SuppressWarnings("deprecation")

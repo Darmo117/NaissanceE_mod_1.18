@@ -34,7 +34,7 @@ public class InvisibleLightBlock extends VariableLightBlock implements BlockEnti
     super(FabricBlockSettings.of(Material.AIR)
         .sounds(BlockSoundGroup.GLASS)
         .air());
-    this.setDefaultState(this.getDefaultState().with(LIGHT_LEVEL, 15).with(WATERLOGGED, false));
+    this.setDefaultState(this.getStateManager().getDefaultState().with(LIGHT_LEVEL, 15).with(WATERLOGGED, false));
   }
 
   @Override

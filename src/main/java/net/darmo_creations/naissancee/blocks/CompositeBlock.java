@@ -59,7 +59,7 @@ public class CompositeBlock extends Block implements Waterloggable, NaissanceEBl
    */
   public CompositeBlock(Settings settings) {
     super(NaissanceEBlock.getSettings(settings));
-    this.setDefaultState(this.getDefaultState()
+    this.setDefaultState(this.getStateManager().getDefaultState()
         .with(NORTH_EAST_TOP, false)
         .with(NORTH_WEST_TOP, false)
         .with(NORTH_EAST_BOTTOM, false)

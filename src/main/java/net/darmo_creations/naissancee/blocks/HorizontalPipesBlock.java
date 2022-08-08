@@ -1,16 +1,10 @@
 package net.darmo_creations.naissancee.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
-import net.minecraft.block.enums.WallMountLocation;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Material;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -20,10 +14,7 @@ import net.minecraft.world.BlockView;
 /**
  * A block representing a pair of “pipes“ oriented along the x or z axis.
  */
-public class HorizontalPipesBlock extends HorizontalFacingBlock implements Colored, Waterloggable {
-  public static final EnumProperty<WallMountLocation> FACE = Properties.WALL_MOUNT_LOCATION;
-  public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-
+public class HorizontalPipesBlock extends WaterloggableWallMountedBlock implements Colored {
   private static final VoxelShape NORTH_WALL_SHAPE = VoxelShapes.union(
       createCuboidShape(0, 2, 0, 16, 6, 8),
       createCuboidShape(0, 10, 0, 16, 14, 8));
@@ -54,22 +45,13 @@ public class HorizontalPipesBlock extends HorizontalFacingBlock implements Color
   private final BlockColor color;
 
   public HorizontalPipesBlock(final BlockColor color) {
-    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE)));
+    super(FabricBlockSettings.of(Material.STONE, color.getMapColor()).sounds(BlockSoundGroup.STONE));
     this.color = color;
-    this.setDefaultState(this.getDefaultState()
-        .with(FACING, Direction.NORTH)
-        .with(FACE, WallMountLocation.WALL)
-        .with(WATERLOGGED, false));
   }
 
   @Override
   public BlockColor getColor() {
     return this.color;
-  }
-
-  @Override
-  protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-    super.appendProperties(builder.add(FACING, FACE, WATERLOGGED));
   }
 
   @SuppressWarnings("deprecation")
@@ -99,28 +81,5 @@ public class HorizontalPipesBlock extends HorizontalFacingBlock implements Color
         }
       }
     };
-  }
-
-  @Override
-  public BlockState getPlacementState(ItemPlacementContext ctx) {
-    Direction facing = ctx.getSide();
-    BlockState state = this.getDefaultState();
-    if (facing.getAxis() != Direction.Axis.Y) {
-      state = state
-          .with(FACING, facing.getOpposite())
-          .with(FACE, WallMountLocation.WALL);
-    } else {
-      state = state
-          .with(FACING, ctx.getPlayerFacing())
-          .with(FACE, facing == Direction.DOWN ? WallMountLocation.CEILING : WallMountLocation.FLOOR);
-    }
-    FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-    return state.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-  }
-
-  @SuppressWarnings("deprecation")
-  @Override
-  public FluidState getFluidState(BlockState state) {
-    return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
   }
 }

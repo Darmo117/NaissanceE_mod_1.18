@@ -49,7 +49,7 @@ public class HorizontalQuarterBlock extends Block implements Waterloggable, Nais
 
   public HorizontalQuarterBlock(Settings settings) {
     super(NaissanceEBlock.getSettings(settings));
-    this.setDefaultState(this.getDefaultState()
+    this.setDefaultState(this.getStateManager().getDefaultState()
         .with(POSITION, Position.NORTH_BOTTOM)
         .with(WATERLOGGED, false));
   }

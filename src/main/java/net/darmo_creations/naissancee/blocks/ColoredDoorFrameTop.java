@@ -1,22 +1,20 @@
 package net.darmo_creations.naissancee.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Material;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
 
 /**
  * A block acting as the top of a door frame.
  * A lamp is added when the player placing the block is sneaking.
  */
-public class ColoredDoorFrameTop extends HorizontalFacingBlock implements Colored {
+public class ColoredDoorFrameTop extends WaterloggableHorizontalFacingBlock implements Colored {
   public static final BooleanProperty LAMP = BooleanProperty.of("lamp");
 
   private static final VoxelShape NORTH_FRAME_SHAPE = createCuboidShape(-2, 0, 0, 18, 2, 2);
@@ -37,11 +35,15 @@ public class ColoredDoorFrameTop extends HorizontalFacingBlock implements Colore
    * @param color Frame top’s color.
    */
   public ColoredDoorFrameTop(final BlockColor color) {
-    super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, color.getMapColor())
-        .sounds(BlockSoundGroup.STONE)
-        .luminance(state -> state.get(LAMP) ? 15 : 0)));
+    super(FabricBlockSettings.of(Material.STONE, color.getMapColor())
+            .sounds(BlockSoundGroup.STONE)
+            .luminance(state -> state.get(LAMP) ? 15 : 0),
+        state -> state.get(LAMP) ? NORTH_LAMP_SHAPE : NORTH_FRAME_SHAPE,
+        state -> state.get(LAMP) ? EAST_LAMP_SHAPE : EAST_FRAME_SHAPE,
+        state -> state.get(LAMP) ? SOUTH_LAMP_SHAPE : SOUTH_FRAME_SHAPE,
+        state -> state.get(LAMP) ? WEST_LAMP_SHAPE : WEST_FRAME_SHAPE);
     this.color = color;
-    this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(LAMP, false));
+    this.setDefaultState(this.getDefaultState().with(LAMP, false));
   }
 
   @Override
@@ -57,28 +59,6 @@ public class ColoredDoorFrameTop extends HorizontalFacingBlock implements Colore
   @Override
   public BlockState getPlacementState(ItemPlacementContext ctx) {
     //noinspection ConstantConditions
-    return this.getDefaultState().with(FACING, ctx.getPlayerFacing()).with(LAMP, ctx.getPlayer().isSneaking());
-  }
-
-  @SuppressWarnings("deprecation")
-  @Override
-  public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-    VoxelShape shape = switch (state.get(FACING)) {
-      case NORTH -> NORTH_FRAME_SHAPE;
-      case SOUTH -> SOUTH_FRAME_SHAPE;
-      case WEST -> WEST_FRAME_SHAPE;
-      case EAST -> EAST_FRAME_SHAPE;
-      default -> VoxelShapes.empty();
-    };
-    if (state.get(LAMP)) {
-      return VoxelShapes.union(shape, switch (state.get(FACING)) {
-        case NORTH -> NORTH_LAMP_SHAPE;
-        case SOUTH -> SOUTH_LAMP_SHAPE;
-        case WEST -> WEST_LAMP_SHAPE;
-        case EAST -> EAST_LAMP_SHAPE;
-        default -> VoxelShapes.empty();
-      });
-    }
-    return shape;
+    return super.getPlacementState(ctx).with(LAMP, ctx.getPlayer().isSneaking());
   }
 }

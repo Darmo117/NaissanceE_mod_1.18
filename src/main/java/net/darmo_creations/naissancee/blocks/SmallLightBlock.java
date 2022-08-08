@@ -33,7 +33,7 @@ public class SmallLightBlock extends FacingBlock implements NaissanceEBlock, Wat
     super(NaissanceEBlock.getSettings(FabricBlockSettings.of(Material.STONE, MapColor.WHITE)
         .sounds(BlockSoundGroup.STONE)
         .luminance(state -> state.get(LIGHT_LEVEL))));
-    this.setDefaultState(this.getDefaultState()
+    this.setDefaultState(this.getStateManager().getDefaultState()
         .with(FACING, Direction.NORTH)
         .with(LIGHT_LEVEL, 15)
         .with(WATERLOGGED, false));

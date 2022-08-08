@@ -38,7 +38,7 @@ public class HalfLadderBlock extends LadderBlockWithoutSupport implements Colore
   public HalfLadderBlock(final BlockColor color) {
     super(color);
     // Override default state defined in BlockLadder
-    this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(SIDE, Side.LEFT));
+    this.setDefaultState(this.getStateManager().getDefaultState().with(FACING, Direction.NORTH).with(SIDE, Side.LEFT));
   }
 
   @Override

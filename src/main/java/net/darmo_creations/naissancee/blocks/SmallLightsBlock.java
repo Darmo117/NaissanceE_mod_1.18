@@ -30,7 +30,9 @@ public class SmallLightsBlock extends FacingBlock implements NaissanceEBlock, Wa
         .sounds(BlockSoundGroup.STONE)
         .luminance(5)
         .nonOpaque()));
-    this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
+    this.setDefaultState(this.getStateManager().getDefaultState()
+        .with(FACING, Direction.NORTH)
+        .with(WATERLOGGED, false));
   }
 
   @Override

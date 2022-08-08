@@ -39,7 +39,7 @@ public class VerticalQuarterBlock extends Block implements Waterloggable, Naissa
 
   public VerticalQuarterBlock(Settings settings) {
     super(NaissanceEBlock.getSettings(settings));
-    this.setDefaultState(this.getDefaultState()
+    this.setDefaultState(this.getStateManager().getDefaultState()
         .with(POSITION, Position.NORTH)
         .with(WATERLOGGED, false));
   }
