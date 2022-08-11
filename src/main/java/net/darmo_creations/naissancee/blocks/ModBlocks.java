@@ -52,7 +52,10 @@ public final class ModBlocks {
       generateAndRegisterColoredBlocks("%s_vertical_groove", VerticalGrooveBlock::new);
   public static final ColoredBlockMap<HorizontalGrooveBlock> HORIZONTAL_GROOVE_BLOCKS =
       generateAndRegisterColoredBlocks("%s_horizontal_groove", HorizontalGrooveBlock::new);
-  // TODO groove corners
+  public static final ColoredBlockMap<VerticalGrooveCornerBlock> VERTICAL_GROOVE_CORNER_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_vertical_groove_corner", VerticalGrooveCornerBlock::new);
+  public static final ColoredBlockMap<HorizontalGrooveCornerBlock> HORIZONTAL_GROOVE_CORNER_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_horizontal_groove_corner", HorizontalGrooveCornerBlock::new);
 
   // Light-sensitive blocks
   public static final ColoredBlockMap<LightSensitiveBarrierBlock> COLORED_LIGHT_SENSITIVE_BARRIERS =

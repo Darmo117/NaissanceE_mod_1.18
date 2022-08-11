@@ -110,6 +110,16 @@
   "block.naissancee.gray_vertical_groove": "Gray Vertical Groove",
   "block.naissancee.white_vertical_groove": "White Vertical Groove",
 
+  "block.naissancee.black_horizontal_groove_corner": "Black Horizontal Groove Corner",
+  "block.naissancee.light_gray_horizontal_groove_corner": "Light Gray Horizontal Groove Corner",
+  "block.naissancee.gray_horizontal_groove_corner": "Gray Horizontal Groove Corner",
+  "block.naissancee.white_horizontal_groove_corner": "White Horizontal Groove Corner",
+
+  "block.naissancee.black_vertical_groove_corner": "Black Vertical Groove Corner",
+  "block.naissancee.light_gray_vertical_groove_corner": "Light Gray Vertical Groove Corner",
+  "block.naissancee.gray_vertical_groove_corner": "Gray Vertical Groove Corner",
+  "block.naissancee.white_vertical_groove_corner": "White Vertical Groove Corner",
+
   "block.naissancee.black_ladder": "Black Ladder",
   "block.naissancee.gray_ladder": "Gray Ladder",
   "block.naissancee.light_gray_ladder": "Light Gray Ladder",

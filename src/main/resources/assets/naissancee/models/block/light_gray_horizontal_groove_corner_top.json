@@ -1,0 +1,6 @@
+{
+  "parent": "naissancee:block/horizontal_groove_corner_top",
+  "textures": {
+    "all": "naissancee:blocks/light_gray_block"
+  }
+}
