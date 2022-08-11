@@ -1,0 +1,6 @@
+{
+	"parent": "naissancee:block/horizontal_groove_floor",
+	"textures": {
+		"all": "naissancee:blocks/black_block"
+	}
+}

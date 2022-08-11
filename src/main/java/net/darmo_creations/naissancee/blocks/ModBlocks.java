@@ -48,6 +48,11 @@ public final class ModBlocks {
       generateAndRegisterColoredBlocks("%s_horizontal_pipes", HorizontalPipesBlock::new);
   public static final ColoredBlockMap<VentGridBlock> VENT_GRID_BLOCKS =
       generateAndRegisterColoredBlocks("%s_vent_grid", VentGridBlock::new);
+  public static final ColoredBlockMap<VerticalGrooveBlock> VERTICAL_GROOVE_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_vertical_groove", VerticalGrooveBlock::new);
+  public static final ColoredBlockMap<HorizontalGrooveBlock> HORIZONTAL_GROOVE_BLOCKS =
+      generateAndRegisterColoredBlocks("%s_horizontal_groove", HorizontalGrooveBlock::new);
+  // TODO groove corners
 
   // Light-sensitive blocks
   public static final ColoredBlockMap<LightSensitiveBarrierBlock> COLORED_LIGHT_SENSITIVE_BARRIERS =

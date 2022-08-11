@@ -100,6 +100,16 @@
   "block.naissancee.gray_vent_grid": "Gray Vent Grid",
   "block.naissancee.white_vent_grid": "White Vent Grid",
 
+  "block.naissancee.black_horizontal_groove": "Black Horizontal Groove",
+  "block.naissancee.light_gray_horizontal_groove": "Light Gray Horizontal Groove",
+  "block.naissancee.gray_horizontal_groove": "Gray Horizontal Groove",
+  "block.naissancee.white_horizontal_groove": "White Horizontal Groove",
+
+  "block.naissancee.black_vertical_groove": "Black Vertical Groove",
+  "block.naissancee.light_gray_vertical_groove": "Light Gray Vertical Groove",
+  "block.naissancee.gray_vertical_groove": "Gray Vertical Groove",
+  "block.naissancee.white_vertical_groove": "White Vertical Groove",
+
   "block.naissancee.black_ladder": "Black Ladder",
   "block.naissancee.gray_ladder": "Gray Ladder",
   "block.naissancee.light_gray_ladder": "Light Gray Ladder",

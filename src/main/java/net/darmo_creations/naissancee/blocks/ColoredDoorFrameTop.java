@@ -53,7 +53,7 @@ public class ColoredDoorFrameTop extends WaterloggableHorizontalFacingBlock impl
 
   @Override
   protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-    super.appendProperties(builder.add(FACING, LAMP));
+    super.appendProperties(builder.add(LAMP));
   }
 
   @Override

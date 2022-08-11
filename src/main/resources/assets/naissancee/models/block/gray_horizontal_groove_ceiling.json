@@ -1,0 +1,6 @@
+{
+	"parent": "naissancee:block/horizontal_groove_ceiling",
+	"textures": {
+		"all": "naissancee:blocks/gray_block"
+	}
+}
