@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 /**
  * Client-side mod initializer.
  */
+@SuppressWarnings("unused")
 public class ClientInitializer implements ClientModInitializer {
   @Override
   public void onInitializeClient() {
