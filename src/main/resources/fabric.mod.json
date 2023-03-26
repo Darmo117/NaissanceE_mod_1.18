@@ -27,7 +27,8 @@
   },
 
   "mixins": [
-    "disable_experimental_settings_warning.mixin.json"
+    "disable_experimental_settings_warning.mixin.json",
+    "disable_hud_bars_in_adventure_mode.json"
   ],
 
   "depends": {

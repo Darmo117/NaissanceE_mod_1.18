@@ -7,11 +7,13 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 /**
  * Disables the annoying warning shown when loading a save with experimental settings.
- *
+ * <p>
  * Original code by <a href="https://github.com/rdvdev2/DisableCustomWorldsAdvice">rdvdev2</a>.
+ *
  * @author rdvdev2
  * @author Darmo
  */
+@SuppressWarnings("unused")
 @Mixin(MinecraftClient.class)
 public abstract class MixinMinecraftClient {
   @ModifyVariable(
