@@ -10,6 +10,10 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
+/**
+ * HUD overlay that displays a red halo effect to indicate the player’s health status.
+ * The lower the player’s health is, the redder the overlay gets.
+ */
 public class HurtOverlay implements HudRenderCallback {
   private static final Identifier OVERLAY = new Identifier("textures/misc/nausea.png");
   private static final float RED = 0.2f;
